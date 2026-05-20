@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proyecto Aura — Kickoff Doc v1.1</title>
+<style>
+  :root {
+    --bg: #0c0e12;
+    --bg-card: #14171d;
+    --bg-card-hover: #1a1e26;
+    --border: #232831;
+    --text: #e6e9ee;
+    --text-dim: #9aa3b2;
+    --text-muted: #6b7280;
+    --accent: #7dd3fc;
+    --accent-dim: #38bdf8;
+    --warn: #fbbf24;
+    --good: #86efac;
+    --bad: #fca5a5;
+    --gold: #fbbf24;
+    --silver: #cbd5e1;
+    --bronze: #d4a574;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 24px 96px; }
+  header.top { padding: 48px 0 32px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  header.top h1 { font-size: 38px; margin: 0 0 8px; letter-spacing: -0.02em; }
+  header.top .sub { color: var(--text-dim); font-size: 16px; margin-bottom: 24px; }
+  .meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--text-muted); }
+  .meta span { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; }
+
+  nav.toc {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  nav.toc h2 { margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
+  nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
+  nav.toc li { margin: 4px 0; }
+  nav.toc a { color: var(--accent); text-decoration: none; font-size: 14px; }
+  nav.toc a:hover { text-decoration: underline; }
+
+  section { margin-bottom: 56px; }
+  section > h2 {
+    font-size: 28px;
+    margin: 0 0 6px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+    letter-spacing: -0.01em;
+  }
+  section > h3 {
+    font-size: 20px;
+    margin: 32px 0 12px;
+    color: var(--accent);
+  }
+  section > h4 {
+    font-size: 16px;
+    margin: 20px 0 8px;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  p { margin: 8px 0; }
+  ul, ol { padding-left: 22px; }
+  li { margin: 4px 0; }
+  code { background: #1f242e; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--accent); }
+  pre {
+    background: #0a0c10;
+    border: 1px solid var(--border);
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  blockquote {
+    border-left: 3px solid var(--accent);
+    margin: 12px 0;
+    padding: 4px 16px;
+    color: var(--text-dim);
+    background: rgba(125, 211, 252, 0.04);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+  }
+  .card.featured {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(125, 211, 252, 0.15);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: #1a1e26; font-weight: 600; color: var(--text); font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; }
+  tr:last-child td { border-bottom: none; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .score { font-weight: 600; color: var(--accent); }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(125, 211, 252, 0.15);
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .badge.warn { background: rgba(251, 191, 36, 0.15); color: var(--warn); }
+  .badge.good { background: rgba(134, 239, 172, 0.15); color: var(--good); }
+  .badge.bad { background: rgba(252, 165, 165, 0.15); color: var(--bad); }
+
+  .person {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+  }
+  .person h3 { margin-top: 0; }
+  .person .person-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .person .person-meta span { padding: 3px 10px; background: #1a1e26; border-radius: 6px; }
+
+  .top3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 24px 0; }
+  @media (max-width: 800px) { .top3 { grid-template-columns: 1fr; } }
+  .top3 .card { position: relative; }
+  .top3 .medal {
+    position: absolute; top: -12px; left: 16px;
+    background: var(--bg);
+    padding: 0 8px;
+    font-size: 22px;
+  }
+
+  details { margin: 12px 0; }
+  details summary {
+    cursor: pointer;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-weight: 600;
+  }
+  details summary:hover { background: var(--bg-card-hover); }
+  details[open] summary { border-radius: 8px 8px 0 0; border-bottom: none; }
+  details > div { border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; padding: 16px; }
+
+  .flow {
+    background: #0a0c10;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+  }
+  .flow pre { background: transparent; border: none; padding: 0; font-size: 13px; line-height: 1.45; color: var(--text-dim); }
+
+  .check { color: var(--good); font-weight: 700; }
+  .cross { color: var(--bad); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>Proyecto Aura — Kickoff Doc v1.1</h1>
+  <div class="sub">Identificar la mejor idea de negocio para 4 fundadores con perfiles complementarios — Quito ↔ Barcelona</div>
+  <div class="meta">
+    <span>📅 2026-05-20</span>
+    <span>📄 v1.1 DRAFT</span>
+    <span>👥 Danilo · Mariam · Bastien · Joseph</span>
+    <span>💰 Bootstrap 21–31k USD</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h2>Tabla de contenido</h2>
+  <ol>
+    <li><a href="#contexto">Contexto y filtros</a></li>
+    <li><a href="#equipo">Equipo (4 perfiles)</a></li>
+    <li><a href="#variables">Variables del equipo</a></li>
+    <li><a href="#gobernanza">Gobernanza pre-empresa</a></li>
+    <li><a href="#equity">3 modelos equity diferido</a></li>
+    <li><a href="#criterios">40 criterios de evaluación</a></li>
+    <li><a href="#challenge">Preguntas-challenge</a></li>
+    <li><a href="#recomendacion">Parte II — Recomendación</a></li>
+    <li><a href="#top3">Top 3 ideas (MVP, stack, roadmap)</a></li>
+    <li><a href="#flujo">Diagrama de decisión</a></li>
+    <li><a href="#proximos14">Próximos 14 días</a></li>
+  </ol>
+</nav>
+
+<!-- ====================== CONTEXTO ====================== -->
+<section id="contexto">
+  <h2>Parte 0 — Contexto y filtros</h2>
+  <p>Equipo multidisciplinario distribuido. Buscamos ideas <strong>realistas, escalables, automatizables con IA, defendibles, ejecutables en &lt;6 meses, con potencial internacional</strong>.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>❌ NO queremos</h4>
+      <ul>
+        <li>SaaS genérico, dropshipping, marketplaces sin diferenciación</li>
+        <li>Apps sociales vacías, dependientes de hype</li>
+        <li>Ideas imposibles de ejecutar, ultra-reguladas sin ventaja</li>
+        <li>Modelos que requieran millones iniciales</li>
+        <li>AI-wrapper vacío (donde IA es todo el valor)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>✅ SÍ queremos</h4>
+      <ul>
+        <li>Diferenciación clara por equipo</li>
+        <li>Cashflow rápido + B2B premium o infra</li>
+        <li>Defendibilidad real + IA como multiplicador</li>
+        <li>MVP &lt; 60 días, internacional</li>
+        <li>Aprovechamiento real de IT + legal + médico + PM</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== EQUIPO ====================== -->
+<section id="equipo">
+  <h2>Parte 1 — Equipo</h2>
+
+  <h3>Snapshot</h3>
+  <table>
+    <tr><th>Persona</th><th>Edad</th><th>Ubic</th><th>Rol natural</th><th>Capital</th><th>h/sem</th><th>Riesgo</th></tr>
+    <tr><td><strong>Mario Danilo Rojas</strong></td><td>41</td><td>Quito EC</td><td>Producto / Tech / Estrategia</td><td>10–20k USD</td><td>15–30</td><td>Mod-Alto</td></tr>
+    <tr><td><strong>Mariam Estefanía Rojas</strong></td><td>36</td><td>Barcelona ES</td><td>Médica / Validación</td><td>~5k USD</td><td>Limitado</td><td>Moderado</td></tr>
+    <tr><td><strong>Bastien Debieve</strong></td><td>34</td><td>Barcelona ES</td><td>Strategy / GTM / Ops EU</td><td>~5k USD</td><td>~10</td><td>Moderado</td></tr>
+    <tr><td><strong>Mario Joseph Rojas</strong></td><td>39</td><td>Quito EC</td><td>Operador legal/admin</td><td>1–2k USD</td><td>Limitado</td><td>Moderado</td></tr>
+  </table>
+
+  <div class="person">
+    <h3>Mario Danilo Rojas</h3>
+    <div class="person-meta"><span>41 años</span><span>Quito EC</span><span>ES nativo · EN pro</span><span>Capital 10–20k USD</span><span>15–30 h/sem</span></div>
+    <p><strong>Perfil:</strong> Senior UX/UI Designer + Product Strategist + Agentic Workflow Designer. 15+ años en defense, banking, pharma, enterprise.</p>
+    <p><strong>Skills:</strong> UX/UI enterprise, AI workflows, Claude Code / agent orchestration, product strategy, design systems, frontend, IA, systems thinking, rapid prototyping.</p>
+    <p><strong>Fortalezas:</strong> convierte ambigüedad en sistemas; visión de producto; execution velocity; mezcla negocio + UX + tecnología.</p>
+    <p><strong>Limitaciones:</strong> lesiones físicas; evita negocios físicamente demandantes, ops caóticas, soporte masivo low-end, freelance puro.</p>
+    <p><strong>Éxito = </strong> empresa sólida, rentable, escalable; libertad y estabilidad para sí y la familia.</p>
+  </div>
+
+  <div class="person">
+    <h3>Mariam Estefanía Rojas</h3>
+    <div class="person-meta"><span>36 años</span><span>Barcelona ES</span><span>ES nativo · EN básico</span><span>Capital ~5k USD</span><span>Tiempo limitado</span></div>
+    <p><strong>Perfil:</strong> Oncóloga médica con subespecialización en tumores GI (cáncer colorrectal, canal anal). Combina alta complejidad asistencial con investigación clínica y traslacional.</p>
+    <p><strong>Skills:</strong> oncología avanzada, medicina basada en evidencia, investigación traslacional, comunicación científica, docencia, mentoring.</p>
+    <p><strong>Red:</strong> red médica oncología, investigadores clínicos, exposición a farma vía congresos y ensayos, entorno hospital universitario.</p>
+    <p><strong>Ventaja competitiva:</strong> subespecialización GI + perfil híbrido clínico/investigador/académico + medicina de precisión + experiencia internacional.</p>
+    <p><strong>Limitaciones:</strong> disponibilidad limitada por carga asistencial; riesgo burnout; necesidad de equilibrio personal/financiero.</p>
+  </div>
+
+  <div class="person">
+    <h3>Bastien Debieve</h3>
+    <div class="person-meta"><span>34 años</span><span>Barcelona ES</span><span>FR nativo · ES/EN/DE pro · CAT básico</span><span>Capital ~5k USD</span><span>~10 h/sem</span></div>
+    <p><strong>Perfil:</strong> PM estratégico + MBA, EMBL Barcelona Collaboratorium. 7+ años Horizon Europe, IHI, EIT, healthtech, IA, biotech. 35+ consorcios internacionales.</p>
+    <p><strong>Skills:</strong> Complex/Strategic PM, EU proposal coordination, grant writing, business model design, GTM strategy, ops, financiación, public affairs, AI &amp; health innovation, multicultural team coord.</p>
+    <p><strong>Fortalezas:</strong> convierte complejidad institucional en estructura operativa; coordina actores diversos; sensibilidad política + visión estratégica + ejecución; redacción estratégica; transversal salud/IA/innovación/política pública.</p>
+    <p><strong>Éxito =</strong> actividad rentable + reputación + influencia institucional + estabilidad familiar (vivienda).</p>
+    <p><strong>Si no genera 6/12/18 m:</strong> sigue trabajo actual; exige señales claras (aprendizaje, reputación, contactos, pilotos, monetización).</p>
+  </div>
+
+  <div class="person">
+    <h3>Mario Joseph Rojas</h3>
+    <div class="person-meta"><span>39 años</span><span>Quito EC</span><span>ES nativo</span><span>Capital 1–2k USD + posible préstamo</span><span>Tiempo limitado</span></div>
+    <p><strong>Perfil:</strong> Abogado, derecho público, administrativo, registral, propiedad, laboral.</p>
+    <p><strong>Rol acordado:</strong> <span class="badge warn">Operador familiar de confianza</span>, no co-fundador estratégico. Trabajador confiable porque es familia. Sin objetivos personales propios definidos para este proyecto.</p>
+    <p><strong>Restricción crítica:</strong> abogado en Ecuador → <strong>no</strong> puede actuar como abogado de la empresa si esta opera en España/UE. Compliance UE = abogado externo independiente.</p>
+    <p><strong>Habilidades:</strong> resolución de conflictos, mediación, atención al usuario, toma de decisiones, trabajo bajo presión.</p>
+  </div>
+</section>
+
+<!-- ====================== VARIABLES ====================== -->
+<section id="variables">
+  <h2>Parte 1.6 — Variables del equipo</h2>
+
+  <h3>Geografía</h3>
+  <p>Quito (Danilo, Joseph) ↔ Barcelona (Mariam, Bastien). Diferencia ~6–7h, manejable. Ventaja: costos LATAM + acceso UE + talento híbrido + venta internacional.</p>
+
+  <h3>Capital total y plan financiero</h3>
+  <table>
+    <tr><th>Fase</th><th>Recurso</th><th>Monto</th><th>Uso</th></tr>
+    <tr><td>Bootstrap (mes 0–3)</td><td>Capital propio</td><td><strong>~21–31k USD</strong></td><td>Marketing, landing, ventas, pilotos manuales. Cero manufactura, cero inventario, cero dev pesado.</td></tr>
+    <tr><td>Post-contrato firmado</td><td>Línea deuda × 3 socios senior</td><td><strong>40k × 3 = 120k USD techo</strong></td><td>Solo con contrato firmado o LOI. Repago prioritario antes de dividendos.</td></tr>
+  </table>
+  <blockquote><strong>Regla dura:</strong> "vender antes de fabricar". Cualquier inversión &gt; 5k USD sin LOI/contrato → unanimidad senior. Joseph no participa en deuda.</blockquote>
+</section>
+
+<!-- ====================== GOBERNANZA ====================== -->
+<section id="gobernanza">
+  <h2>Parte 2 — Gobernanza pre-empresa</h2>
+
+  <div class="card featured">
+    <h4>Principio fundacional</h4>
+    <p><strong>Equity ≠ amistad. % se construye, no se asume.</strong> Una hora de Mariam (cierre de venta médica) puede valer 100 horas de otro rol. No fijamos % hoy → diferimos hasta tener datos reales.</p>
+    <ul>
+      <li><strong>No constituimos sociedad todavía.</strong> Operación informal con reglas escritas.</li>
+      <li><strong>Tracking semanal obligatorio</strong> desde día 1 (horas, dinero, contactos, deals, IP).</li>
+      <li><strong>Trigger de constitución:</strong> primer contrato &gt; 10k USD <em>o</em> mes 12 <em>o</em> oferta de inversión externa.</li>
+    </ul>
+  </div>
+
+  <h3 id="equity">2.2 — Tres modelos de equity diferido (a elegir por el equipo)</h3>
+  <p>Las tres opciones son válidas y equitativas por construcción. El equipo elige <strong>una</strong> antes de empezar formalmente.</p>
+
+  <div class="top3">
+    <div class="card">
+      <h4>🅰 Slicing Pie <span class="badge good">Recomendado</span></h4>
+      <p><strong>Cómo:</strong> cada socio acumula "slices" según contribución medida. % en vivo con fórmula. Cementación al evento trigger.</p>
+      <p><strong>Mide:</strong> tiempo × tarifa, dinero × multiplicador (4×), IP/contactos/contratos cerrados, riesgo asumido.</p>
+      <p><span class="check">+</span> Justo por construcción. Captura "1h Mariam = 100h" automáticamente.</p>
+      <p><span class="cross">−</span> Requiere disciplina semanal estricta.</p>
+    </div>
+    <div class="card">
+      <h4>🅱 Vesting con re-evaluación anual</h4>
+      <p><strong>Cómo:</strong> 25/25/25/25 simbólico SIN sociedad. Tras 12 meses, re-split forzoso.</p>
+      <p><strong>Mide:</strong> horas, capital, revenue atribuible, entregables.</p>
+      <p><span class="check">+</span> Simple. Una conversación grande al año.</p>
+      <p><span class="cross">−</span> Discusión política intensa al mes 12.</p>
+    </div>
+    <div class="card">
+      <h4>🅲 Founder Token Pool</h4>
+      <p><strong>Cómo:</strong> 100 tokens no-equity. Auto-asignación + revisión 360° mensual. Tokens → equity al trigger.</p>
+      <p><strong>Mide:</strong> reportes mensuales validados por pares + bonus por deal cerrado.</p>
+      <p><span class="check">+</span> Captura 1h Mariam = 100 naturalmente. Revisión continua.</p>
+      <p><span class="cross">−</span> Requiere acordar tabla de tarifas upfront.</p>
+    </div>
+  </div>
+
+  <h4>Tabla de tarifas internas (para A y C)</h4>
+  <table>
+    <tr><th>Recurso</th><th>Tarifa interna</th></tr>
+    <tr><td>Hora Danilo (producto/tech/UX)</td><td class="num">$80</td></tr>
+    <tr><td>Hora Bastien (estrategia/MBA/GTM)</td><td class="num">$100</td></tr>
+    <tr><td>Hora Mariam (medicina especializada)</td><td class="num">$200</td></tr>
+    <tr><td>Hora Joseph (operativa)</td><td class="num">$30</td></tr>
+    <tr><td>Dinero invertido</td><td class="num">× 3 multiplicador</td></tr>
+    <tr><td>Deal cerrado por contacto socio</td><td class="num">15% del valor en tokens/slices</td></tr>
+  </table>
+  <p style="color: var(--text-dim); font-size: 13px;">Tarifas indicativas. Equipo ratifica al elegir A o C.</p>
+
+  <h3>2.3 — Roles funcionales y vetos</h3>
+  <table>
+    <tr><th>Rol</th><th>Persona</th><th>Dominio</th><th>Veto sobre</th></tr>
+    <tr><td>CEO / Lead</td><td>Danilo</td><td>Producto, tech, dirección, ejecución</td><td>Producto, arquitectura</td></tr>
+    <tr><td>COO / Strategy</td><td>Bastien</td><td>Business model, GTM, financiación, ops UE</td><td>Estrategia, ops UE</td></tr>
+    <tr><td>CMO / Chief Medical</td><td>Mariam</td><td>Validación científica, claims, ética, red sanitaria</td><td>Cualquier claim médico, ética</td></tr>
+    <tr><td>Legal / Ops EC</td><td>Joseph</td><td>Compliance Ecuador, contratos básicos, soporte registral</td><td>—</td></tr>
+  </table>
+  <p style="color: var(--text-dim); font-size: 13px;">Compliance UE → abogado externo independiente, no Joseph.</p>
+
+  <h3>2.4 — Reglas de decisión</h3>
+  <table>
+    <tr><th>Decisión</th><th>Quién decide</th></tr>
+    <tr><td>Día a día</td><td>Domain owner</td></tr>
+    <tr><td>Gasto &lt; 500 €</td><td>Domain owner</td></tr>
+    <tr><td>Gasto 500–5.000 €</td><td>CEO + 1 socio</td></tr>
+    <tr><td>Gasto &gt; 5.000 €</td><td>Mayoría 3/4 socios</td></tr>
+    <tr><td>Estrategia / pivot / venta</td><td>Unanimidad 3 senior (Danilo+Bastien+Mariam). Joseph: voz, no voto.</td></tr>
+    <tr><td>Claims médicos</td><td>Veto Mariam</td></tr>
+    <tr><td>Contratos UE</td><td>Bastien + abogado externo</td></tr>
+    <tr><td>Reclutamiento socio nuevo</td><td>Unanimidad 3 senior</td></tr>
+    <tr><td>Cambio modelo equity</td><td>Unanimidad 4</td></tr>
+  </table>
+  <p><strong>Empate:</strong> mediador externo predefinido. Sin él disponible, voto CEO desempata excepto en estrategia/pivot/venta.</p>
+</section>
+
+<!-- ====================== CRITERIOS ====================== -->
+<section id="criterios">
+  <h2>Parte 3 — 40 criterios para evaluar una idea</h2>
+  <details>
+    <summary>Mostrar los 40 criterios completos</summary>
+    <div>
+      <table>
+        <tr><th>#</th><th>Criterio</th><th>Pregunta clave</th></tr>
+        <tr><td>1</td><td>Problema real</td><td>¿Qué dolor exacto? ¿Quién? ¿Cuánto pierde?</td></tr>
+        <tr><td>2</td><td>Cliente objetivo</td><td>¿Quién decide, usa, paga?</td></tr>
+        <tr><td>3</td><td>Necesidad y dolor</td><td>¿Riesgo económico, legal, operativo, estratégico?</td></tr>
+        <tr><td>4</td><td>Poder adquisitivo</td><td>¿Línea presupuestaria? ¿Cuánto paga hoy?</td></tr>
+        <tr><td>5</td><td>Urgencia</td><td>¿Fecha límite? ¿Regulación? ¿Crisis?</td></tr>
+        <tr><td>6</td><td>Tamaño mercado</td><td>¿Cuántos clientes? ¿Crece? ¿Nicho inicial?</td></tr>
+        <tr><td>7</td><td>Demanda real</td><td>¿Pagan ya? ¿Pilotos, preventas, LOI?</td></tr>
+        <tr><td>8</td><td>Competencia</td><td>¿Directos, indirectos, alternativa interna?</td></tr>
+        <tr><td>9</td><td>Diferenciación</td><td>¿Por qué nosotros? ¿Real o declarativa?</td></tr>
+        <tr><td>10</td><td>Propuesta de valor</td><td>¿Resultado prometido? ¿En 30s?</td></tr>
+        <tr><td>11</td><td>Oferta inicial</td><td>¿Servicio, auditoría, formación, software?</td></tr>
+        <tr><td>12</td><td>Modelo de negocio</td><td>¿Proyecto, hora, suscripción, paquete?</td></tr>
+        <tr><td>13</td><td>Precio</td><td>¿Valor + margen? ¿Mínimo rentable?</td></tr>
+        <tr><td>14</td><td>Rentabilidad</td><td>¿Cuántos clientes? ¿Punto equilibrio?</td></tr>
+        <tr><td>15</td><td>CAC</td><td>¿Cuánto cuesta cerrar venta?</td></tr>
+        <tr><td>16</td><td>Canales</td><td>¿LinkedIn, eventos, partners, licitaciones?</td></tr>
+        <tr><td>17</td><td>Ciclo de venta</td><td>¿Días, semanas, meses?</td></tr>
+        <tr><td>18</td><td>Capacidad ejecución</td><td>¿Versión 30–60 días?</td></tr>
+        <tr><td>19</td><td>Equipo y socios</td><td>¿Qué falta? ¿Compromiso?</td></tr>
+        <tr><td>20</td><td>Credibilidad</td><td>¿Casos, diplomas, red, prototipos?</td></tr>
+        <tr><td>21</td><td>MVP</td><td>¿Manual antes? ¿Hipótesis primero?</td></tr>
+        <tr><td>22</td><td>Validación mercado</td><td>¿Objeciones? ¿Palabras del cliente?</td></tr>
+        <tr><td>23</td><td>Posicionamiento</td><td>¿Premium, accesible, experto, sectorial?</td></tr>
+        <tr><td>24</td><td>Marca y comunicación</td><td>¿Nombre, promesa, lenguaje, web?</td></tr>
+        <tr><td>25</td><td>Legal y admin</td><td>¿Forma jurídica, IVA, seguros, contratos, datos?</td></tr>
+        <tr><td>26</td><td>Riesgo regulatorio</td><td>¿IA, datos, salud? ¿Amenaza u oportunidad?</td></tr>
+        <tr><td>27</td><td>PI</td><td>¿Marca, código, contenidos, BD, metodología?</td></tr>
+        <tr><td>28</td><td>Operaciones</td><td>¿Repetible? ¿Automatizable?</td></tr>
+        <tr><td>29</td><td>Escalabilidad</td><td>¿Crecer sin más horas?</td></tr>
+        <tr><td>30</td><td>Tesorería</td><td>¿Liquidez? ¿Pago tardío?</td></tr>
+        <tr><td>31</td><td>Riesgos</td><td>¿Top 3?</td></tr>
+        <tr><td>32</td><td>Timing</td><td>¿Mercado listo? ¿Cambios externos?</td></tr>
+        <tr><td>33</td><td>Estrategia entrada</td><td>¿Primer nicho, cliente, oferta?</td></tr>
+        <tr><td>34</td><td>Primeros clientes</td><td>¿Primeros 5? ¿Contactos?</td></tr>
+        <tr><td>35</td><td>Prueba social</td><td>¿Casos, testimonios, logos?</td></tr>
+        <tr><td>36</td><td>Retención y recurrencia</td><td>¿Suscripción, mantenimiento?</td></tr>
+        <tr><td>37</td><td>Satisfacción</td><td>¿Tiempo ahorrado, riesgo reducido?</td></tr>
+        <tr><td>38</td><td>Métricas</td><td>¿Tablero mensual?</td></tr>
+        <tr><td>39</td><td>Compatibilidad personal</td><td>¿Queremos años con esto?</td></tr>
+        <tr><td>40</td><td>Visión LP</td><td>¿Activos en 3 años?</td></tr>
+      </table>
+    </div>
+  </details>
+</section>
+
+<!-- ====================== RECOMENDACIÓN ====================== -->
+<section id="recomendacion">
+  <h2>Parte II — Recomendación experta</h2>
+
+  <div class="card featured">
+    <h3 style="color: var(--accent); margin-top: 0;">🎯 Resumen ejecutivo</h3>
+    <p><strong>Recomendación principal: Idea #1 — "Aura Compliance"</strong> — auditoría + plataforma SaaS-light de cumplimiento AI Act + RGPD + datos sanitarios para healthtech, biotech, hospitales y consorcios europeos.</p>
+    <p>Aprovecha al 100% los 4 perfiles. Ataca un dolor regulatorio inminente (AI Act 2025–2027, multas hasta 35M€ o 7% facturación global). Cliente con presupuesto y urgencia. Cashflow en &lt;90 días vía consultoría. Plataforma evoluciona del servicio.</p>
+    <p><strong>Estrategia secuencial:</strong> A1 spearhead (mes 1–6) → B1 MedCases (mes 4) → A2 GrantOps (mes 6). Las 3 se refuerzan en el mismo customer journey institucional UE.</p>
+  </div>
+
+  <h3>Marco analítico: 5 lentes</h3>
+  <table>
+    <tr><th>Lente</th><th>Pregunta crítica</th><th>Peso</th></tr>
+    <tr><td>L1 — Encaje del equipo</td><td>¿Los 4 perfiles son indispensables?</td><td>25%</td></tr>
+    <tr><td>L2 — Cliente con presupuesto y urgencia</td><td>¿Quién firma y por qué ahora?</td><td>25%</td></tr>
+    <tr><td>L3 — Defensibilidad</td><td>¿Qué impide que copien en 3 meses?</td><td>20%</td></tr>
+    <tr><td>L4 — Capital eficiente</td><td>¿MVP &lt; 30k? ¿Cashflow rápido?</td><td>15%</td></tr>
+    <tr><td>L5 — IA como multiplicador real</td><td>¿Sin IA el negocio existe?</td><td>15%</td></tr>
+  </table>
+
+  <h3>Las 18 ideas evaluadas</h3>
+  <table>
+    <tr><th>#</th><th>Idea</th><th>L1</th><th>L2</th><th>L3</th><th>L4</th><th>L5</th><th>Score</th></tr>
+    <tr style="background: rgba(125,211,252,0.08);"><td>A1</td><td><strong>Aura Compliance</strong></td><td>10</td><td>9</td><td>8</td><td>9</td><td>9</td><td class="score">9.05</td></tr>
+    <tr style="background: rgba(125,211,252,0.05);"><td>B1</td><td><strong>MedCases EU</strong></td><td>9</td><td>9</td><td>8</td><td>8</td><td>9</td><td class="score">8.65</td></tr>
+    <tr style="background: rgba(125,211,252,0.04);"><td>A2</td><td><strong>GrantOps</strong></td><td>9</td><td>8</td><td>9</td><td>8</td><td>8</td><td class="score">8.45</td></tr>
+    <tr><td>B5</td><td>Regulatory Watch</td><td>9</td><td>8</td><td>7</td><td>8</td><td>8</td><td class="score">8.05</td></tr>
+    <tr><td>C1</td><td>AI Audit Trail</td><td>9</td><td>8</td><td>9</td><td>5</td><td>9</td><td class="score">7.95</td></tr>
+    <tr><td>A4</td><td>AI Governance Bootcamp</td><td>9</td><td>8</td><td>6</td><td>9</td><td>7</td><td class="score">7.80</td></tr>
+    <tr><td>B2</td><td>Compliance Copilot</td><td>8</td><td>8</td><td>7</td><td>7</td><td>9</td><td class="score">7.75</td></tr>
+    <tr><td>A3</td><td>Oncology Trials Insights</td><td>9</td><td>8</td><td>7</td><td>7</td><td>7</td><td class="score">7.70</td></tr>
+    <tr><td>C5</td><td>Biomarker Insights Engine</td><td>9</td><td>7</td><td>9</td><td>4</td><td>9</td><td class="score">7.45</td></tr>
+    <tr><td>A5</td><td>Healthtech DD</td><td>8</td><td>8</td><td>6</td><td>9</td><td>6</td><td class="score">7.40</td></tr>
+    <tr><td>B6</td><td>Scientific Writing Studio</td><td>8</td><td>7</td><td>6</td><td>9</td><td>8</td><td class="score">7.40</td></tr>
+    <tr><td>B3</td><td>Tumor Board AI</td><td>9</td><td>7</td><td>7</td><td>5</td><td>8</td><td class="score">7.20</td></tr>
+    <tr><td>A6</td><td>EU Tender Strategist</td><td>7</td><td>8</td><td>6</td><td>9</td><td>6</td><td class="score">7.10</td></tr>
+    <tr><td>C2</td><td>TrialMatcher</td><td>8</td><td>7</td><td>8</td><td>4</td><td>8</td><td class="score">7.05</td></tr>
+    <tr><td>C3</td><td>Pharma Knowledge Vault</td><td>8</td><td>7</td><td>7</td><td>5</td><td>8</td><td class="score">7.00</td></tr>
+    <tr><td>C4</td><td>Hospital Innovation OS</td><td>8</td><td>7</td><td>8</td><td>4</td><td>8</td><td class="score">7.00</td></tr>
+    <tr><td>B4</td><td>Patient Journey OS</td><td>7</td><td>6</td><td>7</td><td>4</td><td>7</td><td class="score">6.20</td></tr>
+    <tr><td>C6</td><td>Predictive Health Survivors</td><td>6</td><td>5</td><td>7</td><td>4</td><td>8</td><td class="score">5.85</td></tr>
+  </table>
+</section>
+
+<!-- ====================== TOP 3 ====================== -->
+<section id="top3">
+  <h2>Top 3 — MVP, stack, monetización, roadmap</h2>
+
+  <div class="top3">
+    <div class="card featured">
+      <div class="medal">🥇</div>
+      <h3 style="color: var(--gold); margin-top: 0;">A1 — Aura Compliance</h3>
+      <p>Auditoría + plataforma SaaS-light AI Act / RGPD para healthtech UE.</p>
+      <p><strong>Cliente:</strong> healthtech series A–B, biotech, hospitales, consorcios H-Europe.</p>
+      <p><strong>Oferta inicial:</strong> Audit Sprint 4 semanas · 25k€</p>
+      <p><strong>Score:</strong> <span class="score">9.05</span></p>
+    </div>
+    <div class="card">
+      <div class="medal">🥈</div>
+      <h3 style="color: var(--silver); margin-top: 0;">B1 — MedCases EU</h3>
+      <p>Biblioteca curada de casos clínicos oncológicos GI + IA para Medical Affairs farma.</p>
+      <p><strong>Cliente:</strong> VP Medical Affairs / Director MSL en farma top 20.</p>
+      <p><strong>Oferta inicial:</strong> GI Briefings mensual · 8k€/mes</p>
+      <p><strong>Score:</strong> <span class="score">8.65</span></p>
+    </div>
+    <div class="card">
+      <div class="medal">🥉</div>
+      <h3 style="color: var(--bronze); margin-top: 0;">A2 — GrantOps</h3>
+      <p>Servicio + asistente IA para gestión de consorcios Horizon Europe / IHI / EIT.</p>
+      <p><strong>Cliente:</strong> coordinadores de consorcios H-Europe (universidades, hospitales, RTO).</p>
+      <p><strong>Oferta inicial:</strong> Setup 8k€ + 2k€/mes</p>
+      <p><strong>Score:</strong> <span class="score">8.45</span></p>
+    </div>
+  </div>
+
+  <h3>🥇 Aura Compliance — Detalle</h3>
+
+  <h4>Por qué esta idea</h4>
+  <ul>
+    <li><strong>AI Act</strong> entra gradualmente 2025–2027. Multas hasta <strong>35M€ o 7% facturación global</strong>. Healthtech y biotech son <em>alto riesgo</em> por defecto.</li>
+    <li>RGPD + datos sanitarios + AI Act = laberinto. Mayoría de organizaciones no tienen inventario de uso de IA.</li>
+    <li><strong>Equipo perfecto:</strong> Mariam (entrada hospitales) + Bastien (red Horizon) + Danilo (producto + IA) + Joseph (operativa).</li>
+    <li>Cliente con presupuesto: la línea "compliance" ya existe — solo se redirige.</li>
+    <li>Cashflow rápido: 15–40k€ por proyecto desde mes 2.</li>
+    <li>Defensibilidad: combinación equipo + biblioteca interna acumulada + brand "los que entienden salud + IA + UE" = barrera frente a Big4 (no entienden salud) y consultores médicos (no entienden IA).</li>
+  </ul>
+
+  <h4>Modelo de negocio</h4>
+  <table>
+    <tr><th>Producto</th><th>Precio</th><th>Margen</th></tr>
+    <tr><td>Audit Sprint (4 sem)</td><td>25k€</td><td>65%</td></tr>
+    <tr><td>Compliance Roadmap (retainer trimestral)</td><td>6k€/trim</td><td>75%</td></tr>
+    <tr><td>Plataforma SaaS-light (mes 9+)</td><td>500–2.500€/mes</td><td>80%</td></tr>
+    <tr><td>Workshops ejecutivos</td><td>4–8k€</td><td>70%</td></tr>
+    <tr><td>Subscription Regulatory Watch (cross-sell)</td><td>200–600€/mes</td><td>85%</td></tr>
+  </table>
+
+  <h4>Stack tecnológico</h4>
+  <ul>
+    <li><strong>Frontend:</strong> Next.js + Tailwind</li>
+    <li><strong>Backend:</strong> Supabase (auth + DB + storage) + Vercel</li>
+    <li><strong>IA core:</strong> Claude API (Sonnet producción, Opus revisión). Prompt caching obligatorio. Tool use para clasificación estructurada.</li>
+    <li><strong>Pipeline:</strong> ingestion → cartografía agentic (functional/technical/supplier) → clasificación riesgo → generación de docs (RAG con AI Act/RGPD/MDR/NIST AI RMF) → revisión humana</li>
+    <li><strong>Audit trail:</strong> qué prompt, qué modelo, qué versión de regulación → ironía positiva (somos el primer caso de uso de nuestro propio compliance)</li>
+  </ul>
+
+  <h4>Roadmap 12 meses</h4>
+  <table>
+    <tr><th>Mes</th><th>Hito</th></tr>
+    <tr><td>1</td><td>Plantillas + workflow + landing + 5 conversaciones de descubrimiento</td></tr>
+    <tr><td>2</td><td>Primer cliente piloto firmado (12k€)</td></tr>
+    <tr><td>3</td><td>Primera entrega + caso de estudio + iteración plantillas</td></tr>
+    <tr><td>4</td><td>2 clientes a precio completo (50k€) + LinkedIn semanal</td></tr>
+    <tr><td>5</td><td>Webinar + 3er cliente. Bastien activa Horizon partnerships</td></tr>
+    <tr><td>6</td><td>5 audits totales · 125k€. Decisión: invertir SaaS-light</td></tr>
+    <tr><td>7</td><td>MVP plataforma (cuestionario auto + clasificación auto)</td></tr>
+    <tr><td>8</td><td>2 clientes SaaS-light beta gratis</td></tr>
+    <tr><td>9</td><td>SaaS-light pagado (500€/mes × 5) + 2 audits</td></tr>
+    <tr><td>10</td><td>Cross-sell Regulatory Watch a clientes existentes</td></tr>
+    <tr><td>11</td><td>10 audits + 8 retainers + 8 SaaS pagados. <span class="badge">Trigger constitución</span></td></tr>
+    <tr><td>12</td><td>Pacto socios + estructura UE + plan año 2</td></tr>
+  </table>
+  <p><strong>Ingresos año 1:</strong> 250–400k€ · <strong>Coste:</strong> 60–100k€ · <strong>Margen:</strong> 60–75%.</p>
+
+  <details>
+    <summary>🥈 B1 MedCases EU — Detalle</summary>
+    <div>
+      <p><strong>Mariam es la cliente.</strong> Conoce el dolor: MSLs y Medical Affairs necesitan casos clínicos relevantes, actualizados, con contexto biomarcador.</p>
+      <p><strong>Mercado:</strong> &gt;2.000 MSLs en oncología GI en UE. Cada uno cuesta a su farma 150–250k€/año. Ahorrarles 5h/sem = ROI inmediato.</p>
+      <p><strong>Modelo:</strong> Briefings mensual 8k€/mes · Custom case bank 25–60k€/año · MedCases SaaS 30–80k€/año por equipo.</p>
+      <p><strong>MVP:</strong> mes 1 Mariam cura 20 casos GI iniciales + Danilo prototipa pipeline en Notion + Claude API. Mes 2 primer farma piloto.</p>
+      <p><strong>Defensibilidad:</strong> curación clínica de Mariam (y red de oncólogos colaboradores) es la barrera. Ningún SaaS genérico replica.</p>
+      <p><strong>Ingresos año 1:</strong> 180–320k€.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>🥉 A2 GrantOps — Detalle</summary>
+    <div>
+      <p><strong>Bastien hace esto profesionalmente desde hace 7 años.</strong> 35+ consorcios contribuidos.</p>
+      <p><strong>Mercado:</strong> cada consorcio Horizon tiene 3–8M€. 5–10% se va en gestión administrativa. Líderes odian esto.</p>
+      <p><strong>Modelo:</strong> Setup consorcio 8–15k€ · Operations retainer 2–5k€/mes · Reporting Pack 6–12k€ · GrantOps SaaS (mes 12+) 500–1.500€/mes por consorcio.</p>
+      <p><strong>Cliente paga del grant</strong>, no de bolsillo — venta sin fricción. Línea "project management" del Horizon ya cubre.</p>
+      <p><strong>Defensibilidad:</strong> experiencia + red + agentes IA propietarios.</p>
+      <p><strong>Ingresos año 1:</strong> 150–280k€.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Por qué las 15 restantes quedan fuera</summary>
+    <div>
+      <table>
+        <tr><th>#</th><th>Idea</th><th>Por qué fuera del top 3</th></tr>
+        <tr><td>A3</td><td>Oncology Trials Insights</td><td>Menos margen vs MedCases. Dependencia alta de Mariam.</td></tr>
+        <tr><td>A4</td><td>AI Governance Bootcamp</td><td>Bueno como complemento de A1. Ingreso puntual no recurrente.</td></tr>
+        <tr><td>A5</td><td>Healthtech Due Diligence</td><td>Cliente VC/PE difícil sin red previa. Volumen bajo.</td></tr>
+        <tr><td>A6</td><td>EU Tender Strategist</td><td>Margen bajo, mucho trabajo, fee fijo.</td></tr>
+        <tr><td>B2</td><td>Compliance Copilot</td><td>Subset de A1. Ataca individuales (menos presupuesto). Fold dentro de A1.</td></tr>
+        <tr><td>B3</td><td>Tumor Board AI</td><td>Riesgo regulatorio alto (decisión clínica). CE marking. &gt;18m + 200k€.</td></tr>
+        <tr><td>B4</td><td>Patient Journey OS</td><td>Mercado fragmentado. Ciclo venta &gt;12m.</td></tr>
+        <tr><td>B5</td><td>Regulatory Watch</td><td>Cross-sell de A1. Commodities en monitoreo.</td></tr>
+        <tr><td>B6</td><td>Scientific Writing Studio</td><td>Margen bajo, mucha competencia (medical writers freelance).</td></tr>
+        <tr><td>C1</td><td>AI Audit Trail</td><td>Evolución natural de A1. Mismo cliente, fase 2.</td></tr>
+        <tr><td>C2</td><td>TrialMatcher</td><td>Marketplace clásico (chicken-and-egg). Riesgo regulatorio B2C. &gt;24m.</td></tr>
+        <tr><td>C3</td><td>Pharma Knowledge Vault</td><td>IQVIA / Veeva ya dominan.</td></tr>
+        <tr><td>C4</td><td>Hospital Innovation OS</td><td>Cliente lento (público) + customización + enterprise sales.</td></tr>
+        <tr><td>C5</td><td>Biomarker Insights Engine</td><td>Requiere acceso a datos clínicos a escala. &gt;18m + alianzas.</td></tr>
+        <tr><td>C6</td><td>Predictive Health Survivors</td><td>B2C consumer = CAC altísimo + ético + regulatorio.</td></tr>
+      </table>
+      <p style="margin-top: 12px;"><strong>Sobre las predictivas consumer del v1 (apéndice B.2):</strong> se descartan en horizonte 12m porque (1) freemium B2C requiere CAC altísimo, (2) riesgo ético/regulatorio en salud mental/biomarkers, (3) equipo no tiene perfil consumer/growth, (4) cashflow lento. Re-evaluables al año 2 post-tracción A1+B1.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ====================== FLUJO ====================== -->
+<section id="flujo">
+  <h2>Diagrama de decisión — flujo del usuario fundador</h2>
+  <div class="flow">
+<pre>
+                      [INICIO — mes 0]
+                            │
+                            ▼
+    ¿Equipo ratifica gobernanza y elige modelo equity (A/B/C)?
+                            │
+              ┌─────────────┴─────────────┐
+            NO                            SÍ
+              │                            │
+              ▼                            ▼
+       [STOP — alinear]          ¿Modelo elegido?
+       — volver a Parte 2                   │
+                          ┌─────────────────┼─────────────────┐
+                          │                 │                 │
+                       Slicing            Vesting          Token Pool
+                         Pie               25/25            mensual
+                          │                 │                 │
+                          └────────┬────────┴────────┬────────┘
+                                   ▼                 ▼
+                            [Tracking semanal activo desde día 1]
+                                   │
+                                   ▼
+                  ¿Lanzamos A1 Aura Compliance como spearhead?
+                                   │
+                          ┌────────┴────────┐
+                         SÍ                NO
+                          │                 │
+                          ▼                 ▼
+              Mes 1: plantillas       Re-evaluar top 3
+              + landing + 5 calls     (B1 o A2 primero)
+                          │
+                          ▼
+              ¿Cliente piloto firmado mes 2?
+                          │
+                  ┌───────┴───────┐
+                 SÍ              NO
+                  │               │
+                  ▼               ▼
+       Mes 3–6: escalar      Mes 3: revisar oferta
+       servicio. Métricas:   + 5 conversaciones más
+       5 audits, 2 retainers       │
+                  │                ▼
+                  ▼          ¿Cliente firmado mes 4?
+       ¿125k€ ingresos              │
+        mes 6?               ┌──────┴──────┐
+                  │         SÍ           NO
+        ┌─────────┴────────┐ │            │
+       SÍ                  NO ▼            ▼
+        │                   │  Pivote     PIVOTE FUERTE
+        ▼                   ▼  (B1)        a B1 o A2
+   Mes 7: arrancar      Re-evaluar         │
+   B1 MedCases EU       continuar A1       ▼
+   en paralelo          o pivotar       Reset 60 días
+        │                   │
+        ▼                   ▼
+   ¿200k€ acumulados    Plan B/C
+    mes 9?
+        │
+   ┌────┴────┐
+  SÍ        NO
+   │         │
+   ▼         ▼
+Mes 10:   Mantener A1
+arrancar  + cross-sell
+A2        (Reg Watch)
+GrantOps
+   │
+   ▼
+[Mes 12: trigger constitución]
+   │
+   ▼
+Pacto socios + estructura jurídica UE
++ split equity calculado de slices/tokens/horas
++ vesting 4y desde aquí
++ línea deuda 120k€ activable
++ plan año 2: SaaS-light scaling
+</pre>
+  </div>
+</section>
+
+<!-- ====================== 14 días ====================== -->
+<section id="proximos14">
+  <h2>Próximos 14 días — acción concreta</h2>
+  <table>
+    <tr><th>Día</th><th>Acción</th><th>Owner</th></tr>
+    <tr><td>1</td><td>Reunión: ratificar gobernanza + elegir modelo equity (A/B/C)</td><td>Todos</td></tr>
+    <tr><td>2</td><td>Lista de 10 contactos hospital/farma para descubrimiento</td><td>Mariam</td></tr>
+    <tr><td>2</td><td>Lista de 10 contactos Horizon/healthtech para descubrimiento</td><td>Bastien</td></tr>
+    <tr><td>3</td><td>Landing page Aura Compliance (Next.js + Vercel)</td><td>Danilo</td></tr>
+    <tr><td>3</td><td>Setup operativo Notion + sheet tracking semanal</td><td>Joseph</td></tr>
+    <tr><td>4–6</td><td>5 conversaciones de descubrimiento</td><td>Mariam, Bastien</td></tr>
+    <tr><td>7</td><td>Reunión semanal: hipótesis validadas/invalidadas</td><td>Todos</td></tr>
+    <tr><td>8–9</td><td>Plantillas Audit Sprint v1 (Notion + Claude agent)</td><td>Danilo + Bastien</td></tr>
+    <tr><td>10–12</td><td>5 conversaciones más + 1ra propuesta de pre-piloto (12k€)</td><td>Mariam, Bastien</td></tr>
+    <tr><td>13</td><td>Pacto verbal con abogado externo UE referidor</td><td>Bastien</td></tr>
+    <tr><td>14</td><td>Reunión: ¿cliente piloto cerrado mes 1 o pasamos a mes 2?</td><td>Todos</td></tr>
+  </table>
+
+  <blockquote style="margin-top: 32px;">
+    <strong>Cierre.</strong> La mejor apuesta para este equipo, con este capital, en este timing regulatorio europeo, es <strong>Aura Compliance</strong> como spearhead, con MedCases y GrantOps como expansiones cross-sell consecutivas. Los 4 perfiles son necesarios. La ventaja injusta es real: nadie más en la UE combina oncología + AI Act + Horizon + producto IA con esta velocidad y este precio.
+    <br><br>
+    Decisión recomendada: <strong>GO en A1 al cierre de las próximas 2 semanas</strong>, condicional a 1 cliente piloto firmado al mes 2.
+  </blockquote>
+</section>
+
+</div>
+</body>
+</html>
