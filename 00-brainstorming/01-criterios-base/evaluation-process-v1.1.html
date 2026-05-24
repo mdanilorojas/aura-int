@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aura Business Operations — Proceso de Evaluación</title>
+<style>
+  :root {
+    --gray-100: #161616;
+    --gray-90: #262626;
+    --gray-80: #393939;
+    --gray-70: #525252;
+    --gray-60: #6f6f6f;
+    --gray-30: #c6c6c6;
+    --gray-20: #e0e0e0;
+    --gray-10: #f4f4f4;
+    --white: #ffffff;
+    --blue-60: #0f62fe;
+    --blue-50: #4589ff;
+    --green-50: #24a148;
+    --yellow-30: #f1c21b;
+    --red-50: #da1e28;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--gray-100);
+    color: var(--gray-10);
+    font-family: "IBM Plex Sans", "IBM Plex Sans Condensed", "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  a { color: var(--blue-50); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .shell { display: grid; grid-template-columns: 17rem minmax(0, 1fr); min-height: 100vh; }
+  .rail {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 1rem;
+    background: #0f0f0f;
+    border-right: 1px solid var(--gray-80);
+    overflow: auto;
+  }
+  .rail__brand {
+    padding: 1rem 0 1.5rem;
+    border-bottom: 1px solid var(--gray-80);
+    margin-bottom: 1rem;
+  }
+  .eyebrow {
+    display: inline-block;
+    color: var(--blue-50);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .rail h1 { margin: .35rem 0 0; font-size: 1.5rem; line-height: 1.05; letter-spacing: -.03em; }
+  .rail p { color: var(--gray-30); font-size: .875rem; }
+  .rail nav { display: grid; gap: .125rem; }
+  .rail nav a {
+    display: block;
+    padding: .625rem .75rem;
+    color: var(--gray-20);
+    border-left: 3px solid transparent;
+  }
+  .rail nav a:hover { background: var(--gray-90); border-left-color: var(--blue-60); text-decoration: none; }
+  main { min-width: 0; }
+  .hero {
+    min-height: 68vh;
+    display: grid;
+    align-content: end;
+    padding: 6rem clamp(1rem, 4vw, 4rem) 3rem;
+    background:
+      linear-gradient(135deg, rgba(15,98,254,.24), transparent 34rem),
+      linear-gradient(180deg, #1f1f1f 0%, var(--gray-100) 72%);
+    border-bottom: 1px solid var(--gray-80);
+  }
+  .hero h2 {
+    max-width: 1040px;
+    margin: .75rem 0 1rem;
+    font-size: clamp(3rem, 8vw, 7.25rem);
+    line-height: .9;
+    letter-spacing: -.06em;
+    font-weight: 400;
+  }
+  .hero .lede { max-width: 900px; color: var(--gray-20); font-size: clamp(1.1rem, 1.7vw, 1.55rem); }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid var(--gray-70);
+    border-left: 1px solid var(--gray-70);
+    margin-top: 2.5rem;
+    max-width: 1040px;
+  }
+  .meta-grid div { padding: 1rem; border-right: 1px solid var(--gray-70); border-bottom: 1px solid var(--gray-70); }
+  .meta-grid span { display: block; color: var(--gray-30); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+  .meta-grid strong { display: block; margin-top: .25rem; font-weight: 400; }
+  section { padding: 4rem clamp(1rem, 4vw, 4rem); border-bottom: 1px solid var(--gray-80); }
+  .section-head { max-width: 1040px; margin-bottom: 2rem; }
+  .section-head h2 { margin: .25rem 0 .75rem; font-size: clamp(2rem, 4vw, 4.5rem); line-height: .95; letter-spacing: -.05em; font-weight: 400; }
+  .section-head p { max-width: 860px; color: var(--gray-20); font-size: 1.125rem; }
+  .grid-2, .grid-3, .grid-4 { display: grid; gap: 1px; background: var(--gray-80); border: 1px solid var(--gray-80); }
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .tile {
+    background: var(--gray-90);
+    padding: 1.25rem;
+    min-height: 100%;
+  }
+  .tile--light { background: var(--gray-10); color: var(--gray-100); }
+  .tile--blue { background: var(--blue-60); color: var(--white); }
+  .tile h3, .tile h4 { margin: 0 0 .75rem; font-weight: 400; letter-spacing: -.02em; }
+  .tile h3 { font-size: 1.5rem; }
+  .tile h4 { font-size: 1.15rem; }
+  .tile p, .tile li { color: inherit; }
+  .tile ul { margin: .75rem 0 0; padding-left: 1.1rem; }
+  .kpi { font-size: 2.5rem; line-height: 1; letter-spacing: -.04em; }
+  table { width: 100%; border-collapse: collapse; background: var(--gray-90); border: 1px solid var(--gray-80); }
+  th, td { padding: .875rem 1rem; border-bottom: 1px solid var(--gray-80); vertical-align: top; text-align: left; }
+  th { color: var(--gray-30); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  .score { color: var(--blue-50); font-variant-numeric: tabular-nums; }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    min-height: 1.5rem;
+    padding: .125rem .5rem;
+    background: var(--gray-80);
+    color: var(--gray-10);
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  .tag--blue { background: var(--blue-60); }
+  .tag--green { background: var(--green-50); }
+  .tag--yellow { background: var(--yellow-30); color: var(--gray-100); }
+  .tag--red { background: var(--red-50); }
+  .formula {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #0f0f0f;
+    border-left: 4px solid var(--blue-60);
+    color: var(--gray-20);
+    font-family: "IBM Plex Mono", Consolas, monospace;
+    overflow-x: auto;
+  }
+  .process-map {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(11rem, 1fr));
+    gap: 1px;
+    background: var(--gray-80);
+    border: 1px solid var(--gray-80);
+    overflow-x: auto;
+  }
+  .step {
+    position: relative;
+    min-width: 12rem;
+    padding: 1.25rem;
+    background: var(--gray-90);
+  }
+  .step::after {
+    content: "→";
+    position: absolute;
+    right: .75rem;
+    top: .75rem;
+    color: var(--blue-50);
+    font-size: 1.25rem;
+  }
+  .step:last-child::after { content: ""; }
+  .step strong { display: block; margin: .35rem 0 .5rem; font-size: 1.3rem; font-weight: 400; letter-spacing: -.03em; }
+  .step p { margin: 0; color: var(--gray-20); font-size: .95rem; }
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(11rem, 1fr));
+    gap: 1px;
+    background: var(--gray-80);
+    border: 1px solid var(--gray-80);
+  }
+  .metric {
+    background: var(--gray-90);
+    padding: 1rem;
+    min-height: 10rem;
+  }
+  .metric .weight { color: var(--blue-50); font-size: 2.25rem; line-height: 1; letter-spacing: -.05em; }
+  .metric strong { display: block; margin: .75rem 0 .35rem; font-weight: 400; font-size: 1.05rem; line-height: 1.1; }
+  .metric small { color: var(--gray-30); }
+  .flow {
+    background: #0f0f0f;
+    border: 1px solid var(--gray-80);
+    padding: 1.25rem;
+    overflow-x: auto;
+  }
+  .flow pre {
+    margin: 0;
+    color: var(--gray-20);
+    font-family: "IBM Plex Mono", Consolas, monospace;
+    font-size: .875rem;
+    line-height: 1.45;
+  }
+  .callout {
+    border-left: 4px solid var(--yellow-30);
+    background: var(--gray-90);
+    padding: 1.25rem;
+    max-width: 1040px;
+  }
+  .callout strong { color: var(--yellow-30); font-weight: 600; }
+  .mobile-menu {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3.5rem;
+    width: 100vw;
+    padding: 0 .75rem 0 1rem;
+    background: #0f0f0f;
+    border-bottom: 1px solid var(--gray-80);
+  }
+  .mobile-menu strong { font-weight: 400; letter-spacing: -.02em; }
+  .menu-toggle {
+    min-width: 5.5rem;
+    min-height: 2.5rem;
+    border: 1px solid var(--gray-70);
+    background: var(--blue-60);
+    color: var(--white);
+    font: inherit;
+    flex: 0 0 auto;
+    cursor: pointer;
+  }
+  .menu-toggle:hover { background: var(--blue-50); }
+  .rail__close {
+    display: none;
+    width: 100%;
+    min-height: 2.75rem;
+    margin: 0 0 1rem;
+    border: 1px solid var(--gray-70);
+    background: transparent;
+    color: var(--gray-10);
+    font: inherit;
+    cursor: pointer;
+  }
+  @media (max-width: 1100px) {
+    .shell { grid-template-columns: 1fr; }
+    .mobile-menu { display: flex; }
+    .rail {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 11;
+      width: min(22rem, 86vw);
+      height: 100vh;
+      transform: translateX(-100%);
+      transition: transform .18s ease;
+      box-shadow: 1.5rem 0 3rem rgba(0,0,0,.45);
+    }
+    .rail::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      left: 100%;
+      width: 100vw;
+      background: rgba(0,0,0,.52);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease;
+    }
+    body.menu-open { overflow: hidden; }
+    body.menu-open .rail { transform: translateX(0); }
+    body.menu-open .rail::after { opacity: 1; pointer-events: auto; }
+    .rail__close { display: block; }
+    .grid-3, .grid-4, .meta-grid, .metric-grid { grid-template-columns: 1fr 1fr; }
+    .process-map { grid-template-columns: repeat(7, minmax(12rem, 1fr)); }
+  }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3, .grid-4, .meta-grid, .metric-grid { grid-template-columns: 1fr; }
+    .hero { min-height: auto; padding-top: 3rem; }
+    section { padding: 3rem 1rem; }
+    .tile { padding: 1rem; }
+    table { display: block; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="mobile-menu">
+  <strong>Proyecto Aura</strong>
+  <button class="menu-toggle" type="button" aria-controls="siteMenu" aria-expanded="false">Menú</button>
+</div>
+<div class="shell">
+  <aside class="rail" id="siteMenu">
+    <button class="rail__close" type="button">Cerrar menú</button>
+    <div class="rail__brand">
+      <span class="eyebrow">Aura Business Operations</span>
+      <h1>Proceso de evaluación</h1>
+      <p>Sistema visual para transformar criterios base en ideas evaluadas.</p>
+    </div>
+    <nav aria-label="Tabla de contenido">
+      <a href="#tesis">Proceso v1.1</a>
+      <a href="#capas">Capas del sistema</a>
+      <a href="#mapa">Mapa del proceso</a>
+      <a href="#base">Criterios base</a>
+      <a href="#criterios40">40 criterios</a>
+      <a href="#evaluacion">Criterios evaluación</a>
+      <a href="#filtros">Filtros</a>
+      <a href="#competencia">Análisis detallado de competencia</a>
+      <a href="#ideas">Ideas</a>
+      <a href="#decision">Decisión</a>
+      <a href="#siguiente">Siguiente paso</a>
+    </nav>
+  </aside>
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">Aura Business Operations · proceso estructurado</span>
+      <h2>Aura Business Operations.</h2>
+      <p class="lede">Un sistema claro para tomar criterios base, aplicar filtros de descarte, crear ideas, evaluarlas y puntuarlas antes de decidir qué negocio merece validación comercial.</p>
+      <div class="meta-grid">
+        <div><span>Documento</span><strong>Visual del proceso</strong></div>
+        <div><span>Input editable</span><strong>Criterios base</strong></div>
+        <div><span>Evaluación</span><strong>40 + 10 + competencia</strong></div>
+        <div><span>Objetivo</span><strong>Cashflow rápido</strong></div>
+      </div>
+    </header>
+
+    <section id="tesis">
+      <div class="section-head">
+        <span class="eyebrow">Cambio de enfoque</span>
+        <h2>La evaluación inicial encontró una recomendación. Este proceso define cómo repetirla mejor.</h2>
+        <p>La primera evaluación favorecía el encaje completo con los 4 perfiles y la narrativa estratégica. Esta versión recalibra el sistema hacia rentabilidad temprana, margen, velocidad de venta y suficiente encaje del equipo.</p>
+      </div>
+      <div class="grid-3">
+        <article class="tile">
+          <span class="tag">Antes</span>
+          <h3>V1.1</h3>
+          <p>Qué idea aprovecha mejor a Danilo, Mariam, Bastien y Joseph, y tiene una ventaja estratégica defendible.</p>
+        </article>
+        <article class="tile tile--blue">
+          <span class="tag">Ahora</span>
+          <h3>Proceso v1.1</h3>
+          <p>Qué idea puede generar más dinero, más rápido, con margen alto, riesgo controlado y encaje suficiente.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">Hipótesis</span>
+          <h3>Aura Compliance sigue fuerte</h3>
+          <p>Pero ahora debe ganar por cashflow, urgencia, ticket y riesgo manejable, no por usar a los 4 roles.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="capas">
+      <div class="section-head">
+        <span class="eyebrow">Arquitectura del análisis</span>
+        <h2>Cinco capas que separan lo editable, lo que se revisa y lo que se decide.</h2>
+        <p>El sistema separa objetivos, checklist profundo, scoring ejecutivo, análisis competitivo e ideas. Así los stakeholders pueden discutir prioridades sin mezclar la entrada editable con el ranking final.</p>
+      </div>
+      <div class="grid-3">
+        <article class="tile tile--light">
+          <span class="tag tag--blue">Entrada</span>
+          <h3>1. Criterios base</h3>
+          <p>Lo que el equipo quiere maximizar o evitar: dinero rápido, riesgo, largo plazo, encaje, capital y filtros duros.</p>
+          <p><strong>Archivo:</strong><br>01-criterios-base/criterios-base-ideas.md</p>
+        </article>
+        <article class="tile">
+          <span class="tag">Checklist</span>
+          <h3>2. 40 criterios</h3>
+          <p>La revisión completa de cada idea: cliente, dolor, mercado, precio, CAC, legal, operaciones, riesgos y visión.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">Scoring</span>
+          <h3>3. 10 criterios ponderados</h3>
+          <p>La síntesis ejecutiva de los 40 criterios para generar un score comparable y ordenar el ranking.</p>
+        </article>
+        <article class="tile">
+          <span class="tag tag--yellow">Evidencia</span>
+          <h3>4. Análisis de competencia</h3>
+          <p>Obligatorio para el top 5: competidores directos, indirectos, alternativa interna, defensibilidad y riesgo competitivo.</p>
+        </article>
+        <article class="tile">
+          <span class="tag tag--green">Salida</span>
+          <h3>5. Ideas evaluadas</h3>
+          <p>Cada idea pasa filtros, recibe notas, obtiene ranking y termina en decisión: lanzar, validar, pausar o pivotar.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">Iteración</span>
+          <h3>Repetir</h3>
+          <p>Cuando cambien los criterios base, se regenera el ranking aplicando todas las capas otra vez.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="mapa">
+      <div class="section-head">
+        <span class="eyebrow">Mapa del proceso</span>
+        <h2>De objetivos editables a una recomendación accionable.</h2>
+        <p>Este es el flujo que usaremos cada vez que se regenere una versión visual del brainstorming.</p>
+      </div>
+      <div class="process-map" aria-label="Mapa visual del proceso de evaluacion">
+        <div class="step">
+          <span class="eyebrow">01</span>
+          <strong>Criterios base</strong>
+          <p>Se ajustan prioridades: cashflow, riesgo, equipo, largo plazo.</p>
+        </div>
+        <div class="step">
+          <span class="eyebrow">02</span>
+          <strong>40 criterios</strong>
+          <p>Se revisa cada idea con el checklist completo de evaluación.</p>
+        </div>
+        <div class="step">
+          <span class="eyebrow">03</span>
+          <strong>Filtros</strong>
+          <p>Se descartan o pausan ideas con bloqueos críticos.</p>
+        </div>
+        <div class="step">
+          <span class="eyebrow">04</span>
+          <strong>Crear ideas</strong>
+          <p>Se crean o revisan ideas en servicios, híbridos y plataformas.</p>
+        </div>
+        <div class="step">
+          <span class="eyebrow">05</span>
+          <strong>Análisis de competencia</strong>
+          <p>Top 5 recibe análisis detallado: directos, indirectos, alternativa interna, riesgo.</p>
+        </div>
+        <div class="step">
+          <span class="eyebrow">06</span>
+          <strong>Evaluar y puntuar</strong>
+          <p>Los 40 criterios se sintetizan en 10 métricas ponderadas.</p>
+        </div>
+        <div class="step">
+          <span class="eyebrow">07</span>
+          <strong>Decidir</strong>
+          <p>Se produce ranking, top 3, plan de validación y criterios de pivot.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="base">
+      <div class="section-head">
+        <span class="eyebrow">Capa 1</span>
+        <h2>Criterios base: la entrada editable.</h2>
+        <p>Este archivo funciona como panel de control. No es el ranking. Es el lugar donde el equipo define qué quiere optimizar antes de pedir una nueva versión.</p>
+      </div>
+      <div class="grid-4">
+        <article class="tile">
+          <div class="kpi">100%</div>
+          <h3>Pesos editables</h3>
+          <p>La suma de prioridades debe cerrar en 100% para mantener comparabilidad.</p>
+        </article>
+        <article class="tile">
+          <div class="kpi">10</div>
+          <h3>Criterios principales</h3>
+          <p>Cashflow, urgencia, velocidad, margen, MVP, riesgo, defensibilidad, equipo, expansión y timing.</p>
+        </article>
+        <article class="tile">
+          <div class="kpi">6</div>
+          <h3>Filtros duros</h3>
+          <p>Reglas de descarte que pueden pausar una idea aunque tenga buen puntaje.</p>
+        </article>
+        <article class="tile tile--blue">
+          <div class="kpi">1</div>
+          <h3>Archivo fuente</h3>
+          <p>Solo se edita un archivo base para regenerar futuras versiones.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="criterios40">
+      <div class="section-head">
+        <span class="eyebrow">Capa 2 · checklist completo</span>
+        <h2>40 criterios de evaluación: la revisión profunda antes del score.</h2>
+        <p>Estos criterios no desaparecen. Son el checklist completo para analizar una idea sin saltarnos partes importantes. Después se agrupan en 10 criterios ponderados para poder comparar y rankear.</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Área</th><th>Criterios incluidos</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Problema y cliente</td><td>1. Problema real · 2. Cliente objetivo · 3. Necesidad y dolor · 4. Poder adquisitivo · 5. Urgencia de compra</td></tr>
+          <tr><td>Mercado y demanda</td><td>6. Tamaño del mercado · 7. Demanda real · 8. Competencia · 9. Diferenciación · 10. Propuesta de valor</td></tr>
+          <tr><td>Monetización</td><td>11. Oferta inicial · 12. Modelo de negocio · 13. Precio · 14. Rentabilidad · 15. Coste de adquisición</td></tr>
+          <tr><td>Ventas y ejecución</td><td>16. Canales de venta · 17. Ciclo de venta · 18. Capacidad de ejecución · 19. Equipo y socios · 20. Credibilidad</td></tr>
+          <tr><td>Validación y posicionamiento</td><td>21. MVP · 22. Validación de mercado · 23. Posicionamiento · 24. Marca y comunicación · 25. Legal y administrativo</td></tr>
+          <tr><td>Riesgo y operaciones</td><td>26. Riesgo regulatorio · 27. Propiedad intelectual · 28. Operaciones · 29. Escalabilidad · 30. Tesorería</td></tr>
+          <tr><td>Entrada al mercado</td><td>31. Riesgos principales · 32. Timing · 33. Estrategia de entrada · 34. Primeros clientes · 35. Prueba social</td></tr>
+          <tr><td>Recurrencia y visión</td><td>36. Retención y recurrencia · 37. Satisfacción · 38. Métricas · 39. Compatibilidad personal · 40. Visión a largo plazo</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="evaluacion">
+      <div class="section-head">
+        <span class="eyebrow">Capa 3 · síntesis ponderada</span>
+        <h2>10 criterios ponderados: la versión ejecutiva para rankear.</h2>
+        <p>Los 10 criterios no reemplazan a los 40. Los condensan para convertir el análisis profundo en una puntuación comparable. El peso alto ya no está en “encaje con los 4 roles”, sino en capacidad de monetización temprana.</p>
+      </div>
+      <div class="metric-grid">
+        <article class="metric"><div class="weight">18%</div><strong>Ingresos rápidos</strong><small>Ticket, preventa, piloto pagado, cashflow 30-180 días.</small></article>
+        <article class="metric"><div class="weight">14%</div><strong>Urgencia + presupuesto</strong><small>Dolor caro, deadline, comprador y línea presupuestaria.</small></article>
+        <article class="metric"><div class="weight">13%</div><strong>Velocidad de venta</strong><small>Ciclo corto, acceso por red, propuesta entendible.</small></article>
+        <article class="metric"><div class="weight">12%</div><strong>Margen operativo</strong><small>Entrega repetible, bajo soporte, IA reduce horas.</small></article>
+        <article class="metric"><div class="weight">10%</div><strong>MVP vendible</strong><small>Auditoría, sprint, workshop, template o piloto manual.</small></article>
+        <article class="metric"><div class="weight">9%</div><strong>Riesgo controlado</strong><small>Legal, médico, técnico y reputacional manejables.</small></article>
+        <article class="metric"><div class="weight">8%</div><strong>Diferenciación</strong><small>Expertise, método, datos, red o marca difícil de copiar.</small></article>
+        <article class="metric"><div class="weight">6%</div><strong>Encaje suficiente</strong><small>1-2 perfiles fuertes bastan si el resto no bloquea.</small></article>
+        <article class="metric"><div class="weight">5%</div><strong>Expansión</strong><small>Retainer, cross-sell, SaaS-light, datos o formación.</small></article>
+        <article class="metric"><div class="weight">5%</div><strong>Timing</strong><small>Regulación, presupuesto, cambio tecnológico o urgencia institucional.</small></article>
+      </div>
+      <div class="formula">
+        score final = Σ(nota 1-10 del criterio × peso del criterio)
+      </div>
+    </section>
+
+    <section id="filtros">
+      <div class="section-head">
+        <span class="eyebrow">Capa 4</span>
+        <h2>Filtros de descarte: lo que no se negocia.</h2>
+        <p>Los filtros son distintos a los pesos. Una idea puede ser atractiva, pero si falla en una regla dura, queda pausada o fuera de la primera fase.</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Filtro</th><th>Pregunta</th><th>Regla práctica</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Comprador claro</td><td>¿Quién firma y de qué presupuesto sale?</td><td>Sin comprador identificable, no entra al top 5.</td></tr>
+          <tr><td>Primera oferta vendible</td><td>¿Qué se puede vender en menos de 60 días?</td><td>Si exige software antes de vender, baja prioridad.</td></tr>
+          <tr><td>Riesgo clínico alto</td><td>¿Influye en decisiones clínicas?</td><td>Evitar salvo que sea informativa, no diagnóstica ni terapéutica.</td></tr>
+          <tr><td>CAC incierto o alto</td><td>¿Cómo llegamos sin gastar demasiado?</td><td>Ads B2C, volumen masivo o viralidad bajan prioridad.</td></tr>
+          <tr><td>Margen artesanal</td><td>¿Crece solo sumando horas humanas?</td><td>Si no se puede productizar, solo sirve como puente táctico.</td></tr>
+          <tr><td>Capital excesivo</td><td>¿Necesita más de 30k antes de validar?</td><td>Queda fuera de la fase inicial.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="competencia">
+      <div class="section-head">
+        <span class="eyebrow">Capa 5 · análisis de competencia</span>
+        <h2>Análisis detallado de competencia: obligatorio en cada iteración.</h2>
+        <p>Para cada idea del top 5 (y cualquier candidata a #1) se produce un análisis estructurado. Sirve para justificar la nota del criterio 4.7 con evidencia concreta, no con discurso.</p>
+      </div>
+      <div class="grid-3">
+        <article class="tile">
+          <span class="tag">6.1</span>
+          <h3>Competidores directos</h3>
+          <p>Quién vende exactamente lo mismo o algo muy cercano. Nombre, modelo, ticket aproximado.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">6.2</span>
+          <h3>Indirectos / sustitutos</h3>
+          <p>Quién resuelve el mismo dolor con otro enfoque: despachos legales, consultoras generalistas, freelancers.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">6.3</span>
+          <h3>Alternativa interna</h3>
+          <p>Qué hace el cliente hoy sin nosotros: persona in-house, herramienta interna, plantilla, no hacer nada.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">6.4</span>
+          <h3>Posición de Aura</h3>
+          <p>Una frase por competidor: dónde ganamos, dónde perdemos. Sin discurso. Concreto.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">6.5</span>
+          <h3>Defensibilidad concreta</h3>
+          <p>Qué tenemos que el competidor no puede copiar en 3-6 meses: red, expertise, datos, casos, velocidad.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">6.6</span>
+          <h3>Riesgo competitivo</h3>
+          <p>Escenarios: Big4 baja precios, incumbente lanza módulo, farma desarrolla in-house. Y cómo mitigamos.</p>
+        </article>
+      </div>
+      <div class="callout" style="margin-top:2rem;">
+        <p><strong>Regla:</strong> si una idea no puede sostener este análisis con nombres concretos, su nota en <strong>Diferenciación y defensibilidad</strong> debe bajar. El análisis aplicado vive en cada visual de ranking de la iteración.</p>
+      </div>
+    </section>
+
+    <section id="ideas">
+      <div class="section-head">
+        <span class="eyebrow">Capa 6</span>
+        <h2>Generación de ideas: comparar por tipo, no por entusiasmo.</h2>
+        <p>Las ideas se organizan en grupos para no comparar una consultoría vendible en 30 días contra una plataforma que requiere 18 meses.</p>
+      </div>
+      <div class="grid-3">
+        <article class="tile tile--light">
+          <span class="tag tag--green">Grupo A</span>
+          <h3>Servicio o consultoría</h3>
+          <p>Objetivo: cashflow rápido. Ejemplos: auditorías, sprints, workshops, due diligence, paquetes premium.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">Grupo B</span>
+          <h3>Híbrido servicio + producto</h3>
+          <p>Objetivo: vender mientras se aprende y convertir entregables en activos reutilizables.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">Grupo C</span>
+          <h3>Plataforma o SaaS</h3>
+          <p>Objetivo: mantener apuestas de escala, pero sin desplazar la fase de ingresos tempranos.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="decision">
+      <div class="section-head">
+        <span class="eyebrow">Salida</span>
+        <h2>El resultado no es solo un ranking: es una decisión con condiciones.</h2>
+        <p>Cada versión generada debe decir qué lanzar, por qué, qué validar, qué nos haría abandonar y qué alternativa queda lista si la primera falla.</p>
+      </div>
+      <div class="grid-4">
+        <article class="tile">
+          <span class="tag tag--blue">8.5-10</span>
+          <h3>Prioridad inmediata</h3>
+          <p>Diseñar oferta, landing, lista de prospectos y validación con clientes reales.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">7.5-8.4</span>
+          <h3>Candidata fuerte</h3>
+          <p>Comparar contra la prioridad principal y mantener como alternativa cercana.</p>
+        </article>
+        <article class="tile">
+          <span class="tag">6.5-7.4</span>
+          <h3>Backup</h3>
+          <p>Conservar como expansión posterior, pero no distraer la fase inicial.</p>
+        </article>
+        <article class="tile">
+          <span class="tag tag--red">&lt; 6.5</span>
+          <h3>Pausar</h3>
+          <p>Solo reabrir si aparece evidencia externa nueva o cambia el objetivo base.</p>
+        </article>
+      </div>
+      <div class="callout" style="margin-top:2rem;">
+        <p><strong>Hipótesis actual:</strong> Aura Compliance sigue siendo la candidata líder, pero debe demostrar que puede producir el primer contrato pagado más rápido y con mejor margen que MedCases EU, GrantOps u otra idea nueva.</p>
+      </div>
+    </section>
+
+    <section id="siguiente">
+      <div class="section-head">
+        <span class="eyebrow">Siguiente entregable</span>
+        <h2>Después de aprobar este sistema, se regenera el ranking de ideas.</h2>
+        <p>Este HTML explica el mecanismo. El próximo HTML debe aplicar el mecanismo: re-evaluar las ideas existentes, ajustar scores y producir una recomendación actualizada.</p>
+      </div>
+      <div class="flow">
+<pre>01 Editar criterios base
+   |
+   v
+02 Revisar 40 criterios
+   |
+   v
+03 Confirmar pesos + filtros
+   |
+   v
+04 Re-evaluar 18 ideas existentes
+   |
+   +--> ¿Agregar nuevas ideas?
+   |        |
+   |        v
+   |     Incluir candidatas
+   |
+   v
+05 Análisis detallado de competencia (top 5)
+   |
+   v
+06 Calcular score ponderado
+   |
+   v
+07 Generar ranking de ideas
+   |
+   v
+08 Decidir: lanzar, validar, pausar o pivotar</pre>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+const body = document.body;
+const toggle = document.querySelector('.menu-toggle');
+const closeButton = document.querySelector('.rail__close');
+const navLinks = document.querySelectorAll('.rail nav a');
+
+function setMenu(open) {
+  body.classList.toggle('menu-open', open);
+  if (toggle) toggle.setAttribute('aria-expanded', String(open));
+}
+
+if (toggle) toggle.addEventListener('click', () => setMenu(!body.classList.contains('menu-open')));
+if (closeButton) closeButton.addEventListener('click', () => setMenu(false));
+navLinks.forEach(link => link.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') setMenu(false);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aura Business Operations — Ranking de Ideas v1.1</title>
+<style>
+  :root {
+    --gray-100: #161616;
+    --gray-90: #262626;
+    --gray-80: #393939;
+    --gray-70: #525252;
+    --gray-60: #6f6f6f;
+    --gray-30: #c6c6c6;
+    --gray-20: #e0e0e0;
+    --gray-10: #f4f4f4;
+    --white: #ffffff;
+    --blue-60: #0f62fe;
+    --blue-50: #4589ff;
+    --green-50: #24a148;
+    --yellow-30: #f1c21b;
+    --red-50: #da1e28;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--gray-100);
+    color: var(--gray-10);
+    font-family: "IBM Plex Sans", "IBM Plex Sans Condensed", "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  a { color: var(--blue-50); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .shell { display: grid; grid-template-columns: 17rem minmax(0, 1fr); min-height: 100vh; }
+  .rail {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 1rem;
+    background: #0f0f0f;
+    border-right: 1px solid var(--gray-80);
+    overflow: auto;
+  }
+  .rail__brand {
+    padding: 1rem 0 1.5rem;
+    border-bottom: 1px solid var(--gray-80);
+    margin-bottom: 1rem;
+  }
+  .eyebrow {
+    display: inline-block;
+    color: var(--blue-50);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .rail h1 { margin: .35rem 0 0; font-size: 1.5rem; line-height: 1.05; letter-spacing: -.03em; }
+  .rail p { color: var(--gray-30); font-size: .875rem; }
+  .rail nav { display: grid; gap: .125rem; }
+  .rail nav a {
+    display: block;
+    padding: .625rem .75rem;
+    color: var(--gray-20);
+    border-left: 3px solid transparent;
+  }
+  .rail nav a:hover { background: var(--gray-90); border-left-color: var(--blue-60); text-decoration: none; }
+  main { min-width: 0; }
+  .hero {
+    min-height: 68vh;
+    display: grid;
+    align-content: end;
+    padding: 6rem clamp(1rem, 4vw, 4rem) 3rem;
+    background:
+      linear-gradient(135deg, rgba(15,98,254,.24), transparent 34rem),
+      linear-gradient(180deg, #1f1f1f 0%, var(--gray-100) 72%);
+    border-bottom: 1px solid var(--gray-80);
+  }
+  .hero h2 {
+    max-width: 1040px;
+    margin: .75rem 0 1rem;
+    font-size: clamp(3rem, 8vw, 7.25rem);
+    line-height: .9;
+    letter-spacing: -.06em;
+    font-weight: 400;
+  }
+  .hero .lede { max-width: 900px; color: var(--gray-20); font-size: clamp(1.1rem, 1.7vw, 1.55rem); }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid var(--gray-70);
+    border-left: 1px solid var(--gray-70);
+    margin-top: 2.5rem;
+    max-width: 1040px;
+  }
+  .meta-grid div { padding: 1rem; border-right: 1px solid var(--gray-70); border-bottom: 1px solid var(--gray-70); }
+  .meta-grid span { display: block; color: var(--gray-30); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+  .meta-grid strong { display: block; margin-top: .25rem; font-weight: 400; }
+  section { padding: 4rem clamp(1rem, 4vw, 4rem); border-bottom: 1px solid var(--gray-80); }
+  .section-head { max-width: 1040px; margin-bottom: 2rem; }
+  .section-head h2 { margin: .25rem 0 .75rem; font-size: clamp(2rem, 4vw, 4.5rem); line-height: .95; letter-spacing: -.05em; font-weight: 400; }
+  .section-head p { max-width: 860px; color: var(--gray-20); font-size: 1.125rem; }
+  .grid-2, .grid-3, .grid-4 { display: grid; gap: 1px; background: var(--gray-80); border: 1px solid var(--gray-80); }
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .tile {
+    background: var(--gray-90);
+    padding: 1.25rem;
+    min-height: 100%;
+  }
+  .tile--light { background: var(--gray-10); color: var(--gray-100); }
+  .tile--blue { background: var(--blue-60); color: var(--white); }
+  .tile h3, .tile h4 { margin: 0 0 .75rem; font-weight: 400; letter-spacing: -.02em; }
+  .tile h3 { font-size: 1.5rem; }
+  .tile h4 { font-size: 1.15rem; }
+  .tile p, .tile li { color: inherit; }
+  .tile ul { margin: .75rem 0 0; padding-left: 1.1rem; }
+  .kpi { font-size: 2.5rem; line-height: 1; letter-spacing: -.04em; }
+  table { width: 100%; border-collapse: collapse; background: var(--gray-90); border: 1px solid var(--gray-80); }
+  th, td { padding: .75rem 1rem; border-bottom: 1px solid var(--gray-80); vertical-align: top; text-align: left; }
+  th { color: var(--gray-30); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  .score { color: var(--blue-50); font-variant-numeric: tabular-nums; }
+  .score--top { color: var(--white); background: var(--blue-60); padding: .15rem .55rem; border-radius: 2px; }
+  .delta-up { color: var(--green-50); font-weight: 600; }
+  .delta-down { color: var(--red-50); font-weight: 600; }
+  .delta-flat { color: var(--gray-30); }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    min-height: 1.5rem;
+    padding: .125rem .5rem;
+    background: var(--gray-80);
+    color: var(--gray-10);
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  .tag--blue { background: var(--blue-60); }
+  .tag--green { background: var(--green-50); }
+  .tag--yellow { background: var(--yellow-30); color: var(--gray-100); }
+  .tag--red { background: var(--red-50); }
+  .top-strip { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 1px; background: var(--gray-80); border: 1px solid var(--gray-80); }
+  .top-card { background: var(--gray-90); padding: 1.5rem; }
+  .top-card:first-child { background: var(--blue-60); color: var(--white); }
+  .top-card h3 { margin: 0 0 .5rem; font-size: 2rem; font-weight: 400; letter-spacing: -.04em; }
+  .top-card .score-big { font-size: 3rem; line-height: 1; letter-spacing: -.05em; font-weight: 400; margin: .5rem 0 1rem; }
+  .top-card .label { color: var(--gray-30); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+  .top-card:first-child .label { color: rgba(255,255,255,.7); }
+  .rank-row {
+    display: grid;
+    grid-template-columns: 3rem 4rem 1fr 5rem 6rem 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: .9rem 1rem;
+    border-bottom: 1px solid var(--gray-80);
+    background: var(--gray-90);
+  }
+  .rank-row:first-child { border-top: 1px solid var(--gray-80); }
+  .rank-row.top { background: #1c2839; }
+  .rank-row .pos { color: var(--blue-50); font-variant-numeric: tabular-nums; font-size: 1.25rem; }
+  .rank-row .code-pill { background: var(--gray-80); padding: .15rem .5rem; color: var(--gray-20); font-size: .75rem; letter-spacing: .08em; text-align: center; }
+  .rank-row .name { font-size: 1.05rem; }
+  .rank-row .score-val { color: var(--blue-50); font-variant-numeric: tabular-nums; font-size: 1.15rem; }
+  .rank-row .status { color: var(--gray-30); font-size: .875rem; }
+  .rank-row .move { font-size: .875rem; font-variant-numeric: tabular-nums; }
+  .breakdown table th { font-size: .7rem; }
+  .competition-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--gray-80); border: 1px solid var(--gray-80); }
+  .comp-card { background: var(--gray-90); padding: 1.5rem; display: grid; grid-template-columns: 16rem 1fr; gap: 1.5rem; }
+  .comp-card__header { border-right: 1px solid var(--gray-80); padding-right: 1.5rem; }
+  .comp-card__header .code-pill { background: var(--blue-60); color: var(--white); padding: .15rem .55rem; font-size: .75rem; letter-spacing: .08em; }
+  .comp-card__header h3 { margin: .75rem 0 .25rem; font-size: 1.6rem; font-weight: 400; letter-spacing: -.03em; }
+  .comp-card__header .score-mini { color: var(--blue-50); font-size: 1rem; font-variant-numeric: tabular-nums; }
+  .comp-card__header .pitch { color: var(--gray-30); font-size: .9rem; margin-top: .75rem; }
+  .comp-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .comp-block { background: #1c1c1c; padding: 1rem; border-left: 3px solid var(--gray-70); }
+  .comp-block h4 { margin: 0 0 .5rem; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--gray-30); font-weight: 600; }
+  .comp-block ul { margin: 0; padding-left: 1.1rem; color: var(--gray-20); font-size: .9rem; }
+  .comp-block ul li { margin-bottom: .25rem; }
+  .comp-block p { margin: 0; color: var(--gray-20); font-size: .9rem; }
+  .comp-block--blue { border-left-color: var(--blue-60); }
+  .comp-block--yellow { border-left-color: var(--yellow-30); }
+  .comp-block--green { border-left-color: var(--green-50); }
+  .comp-block--red { border-left-color: var(--red-50); }
+  @media (max-width: 900px) {
+    .comp-card { grid-template-columns: 1fr; gap: 1rem; }
+    .comp-card__header { border-right: 0; border-bottom: 1px solid var(--gray-80); padding-right: 0; padding-bottom: 1rem; }
+    .comp-body { grid-template-columns: 1fr; }
+  }
+  .breakdown td:first-child { color: var(--gray-20); }
+  .breakdown td.weight { color: var(--gray-30); font-variant-numeric: tabular-nums; }
+  .breakdown td.note { font-variant-numeric: tabular-nums; }
+  .breakdown td.contrib { color: var(--blue-50); font-variant-numeric: tabular-nums; }
+  .callout {
+    border-left: 4px solid var(--yellow-30);
+    background: var(--gray-90);
+    padding: 1.25rem;
+    max-width: 1040px;
+  }
+  .callout strong { color: var(--yellow-30); font-weight: 600; }
+  .callout--blue { border-left-color: var(--blue-60); }
+  .callout--blue strong { color: var(--blue-50); }
+  .callout--green { border-left-color: var(--green-50); }
+  .callout--green strong { color: var(--green-50); }
+  .flow {
+    background: #0f0f0f;
+    border: 1px solid var(--gray-80);
+    padding: 1.25rem;
+    overflow-x: auto;
+  }
+  .flow pre {
+    margin: 0;
+    color: var(--gray-20);
+    font-family: "IBM Plex Mono", Consolas, monospace;
+    font-size: .875rem;
+    line-height: 1.45;
+  }
+  .mobile-menu {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3.5rem;
+    width: 100vw;
+    padding: 0 .75rem 0 1rem;
+    background: #0f0f0f;
+    border-bottom: 1px solid var(--gray-80);
+  }
+  .mobile-menu strong { font-weight: 400; letter-spacing: -.02em; }
+  .menu-toggle {
+    min-width: 5.5rem;
+    min-height: 2.5rem;
+    border: 1px solid var(--gray-70);
+    background: var(--blue-60);
+    color: var(--white);
+    font: inherit;
+    flex: 0 0 auto;
+    cursor: pointer;
+  }
+  .menu-toggle:hover { background: var(--blue-50); }
+  .rail__close {
+    display: none;
+    width: 100%;
+    min-height: 2.75rem;
+    margin: 0 0 1rem;
+    border: 1px solid var(--gray-70);
+    background: transparent;
+    color: var(--gray-10);
+    font: inherit;
+    cursor: pointer;
+  }
+  @media (max-width: 1100px) {
+    .shell { grid-template-columns: 1fr; }
+    .mobile-menu { display: flex; }
+    .rail {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 11;
+      width: min(22rem, 86vw);
+      height: 100vh;
+      transform: translateX(-100%);
+      transition: transform .18s ease;
+      box-shadow: 1.5rem 0 3rem rgba(0,0,0,.45);
+    }
+    .rail::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      left: 100%;
+      width: 100vw;
+      background: rgba(0,0,0,.52);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease;
+    }
+    body.menu-open { overflow: hidden; }
+    body.menu-open .rail { transform: translateX(0); }
+    body.menu-open .rail::after { opacity: 1; pointer-events: auto; }
+    .rail__close { display: block; }
+    .grid-3, .grid-4, .meta-grid, .top-strip { grid-template-columns: 1fr 1fr; }
+    .rank-row { grid-template-columns: 2.5rem 3.5rem 1fr 4.5rem 5rem; }
+    .rank-row .status { grid-column: 2 / 6; color: var(--gray-30); }
+  }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3, .grid-4, .meta-grid, .top-strip { grid-template-columns: 1fr; }
+    .hero { min-height: auto; padding-top: 3rem; }
+    section { padding: 3rem 1rem; }
+    .tile, .top-card { padding: 1rem; }
+    table { display: block; overflow-x: auto; }
+    .rank-row { grid-template-columns: 2.5rem 1fr 4.5rem; row-gap: .25rem; }
+    .rank-row .code-pill { display: none; }
+    .rank-row .move, .rank-row .status { grid-column: 1 / 4; color: var(--gray-30); }
+  }
+</style>
+</head>
+<body>
+<div class="mobile-menu">
+  <strong>Aura Business Operations</strong>
+  <button class="menu-toggle" type="button" aria-controls="siteMenu" aria-expanded="false">Menú</button>
+</div>
+<div class="shell">
+  <aside class="rail" id="siteMenu">
+    <button class="rail__close" type="button">Cerrar menú</button>
+    <div class="rail__brand">
+      <span class="eyebrow">Aura Business Operations</span>
+      <h1>Ranking de ideas v1.1</h1>
+      <p>Aplicación del Evaluation Process v1.1 a las 18 ideas del Kickoff.</p>
+    </div>
+    <nav aria-label="Tabla de contenido">
+      <a href="#resumen">Resumen</a>
+      <a href="#top3">Top 3</a>
+      <a href="#ranking">Ranking 18</a>
+      <a href="#cambios">Cambios v1.1</a>
+      <a href="#filtros">Filtros aplicados</a>
+      <a href="#breakdown">Detalle por criterio</a>
+      <a href="#competencia">Análisis detallado de competencia</a>
+      <a href="#estrategia">Estrategia</a>
+      <a href="#pivot">Criterios de pivot</a>
+    </nav>
+  </aside>
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">Estudio aplicado · scoring · cashflow · decisión</span>
+      <h2>Aura Compliance sigue líder.</h2>
+      <p class="lede">Las 18 ideas del Kickoff fueron re-evaluadas con los 10 criterios ponderados del Evaluation Process v1.1. El resultado confirma a Aura Compliance como spearhead, eleva a AI Governance Bootcamp como cash táctico y reposiciona MedCases EU como apuesta de mediano plazo.</p>
+      <div class="meta-grid">
+        <div><span>Fecha</span><strong>2026-05-23</strong></div>
+        <div><span>Ideas evaluadas</span><strong>18 · 100% revisadas</strong></div>
+        <div><span>Idea #1</span><strong>A1 · 8.98</strong></div>
+        <div><span>Objetivo</span><strong>Cashflow rápido</strong></div>
+      </div>
+    </header>
+
+    <section id="resumen">
+      <div class="section-head">
+        <span class="eyebrow">Resumen</span>
+        <h2>Una hipótesis confirmada, pero por razones distintas.</h2>
+        <p>El ranking v1.1 favorecía el encaje completo con los 4 perfiles. Esta nueva evaluación premia ticket alto, urgencia, velocidad de venta y margen. A1 sigue ganando, pero ahora porque vende rápido y caro, no porque active al equipo entero.</p>
+      </div>
+      <div class="grid-3">
+        <article class="tile">
+          <span class="tag tag--blue">Hipótesis confirmada</span>
+          <h3>A1 mantiene #1</h3>
+          <p>Audit Sprint 25k€ + retainer 6k€/trimestre = cashflow desde mes 2 con margen 65-75%.</p>
+        </article>
+        <article class="tile">
+          <span class="tag tag--green">Cambio fuerte</span>
+          <h3>A4 sube de #5 a #2</h3>
+          <p>Workshops AI Governance 4-8k€ en 1-2 días. Cash táctico inmediato y lead gen para A1.</p>
+        </article>
+        <article class="tile">
+          <span class="tag tag--yellow">Reposicionada</span>
+          <h3>B1 baja de #2 a #5</h3>
+          <p>Ciclo farma lento (3-6 meses) y bandwidth limitada de Mariam. Sigue defensible, pero no es cashflow rápido.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="top3">
+      <div class="section-head">
+        <span class="eyebrow">Decisión</span>
+        <h2>Top 3 bajo el nuevo scoring.</h2>
+        <p>El top 3 combina cashflow inmediato, ticket alto y posibilidad de cross-sell. Las tres ideas se refuerzan dentro del mismo customer journey institucional UE.</p>
+      </div>
+      <div class="top-strip">
+        <article class="top-card">
+          <span class="tag">#1 · Spearhead</span>
+          <h3>A1 Aura Compliance</h3>
+          <div class="score-big">8.98</div>
+          <p class="label">Audit Sprint 25k€ + roadmap continuo</p>
+          <p>Auditoría + plataforma SaaS-light para AI Act, RGPD y datos sanitarios. Cliente con presupuesto y deadline regulatorio externo.</p>
+          <p><span class="label">Cashflow primer cliente:</span> mes 2.</p>
+        </article>
+        <article class="top-card">
+          <span class="tag">#2 · Cash táctico</span>
+          <h3>A4 AI Governance Bootcamp</h3>
+          <div class="score-big">7.93</div>
+          <p class="label">Workshop 1-2 días · 4-8k€</p>
+          <p>Formación ejecutiva AI Act + RGPD. Generador de leads para A1 y cashflow rápido sin construir software.</p>
+          <p><span class="label">Cashflow primer cliente:</span> mes 1-2.</p>
+        </article>
+        <article class="top-card">
+          <span class="tag">#3 · Expansión</span>
+          <h3>A2 GrantOps</h3>
+          <div class="score-big">7.78</div>
+          <p class="label">Setup 8k€ + retainer 2k€/mes</p>
+          <p>Gestión de consorcios Horizon Europe con asistentes IA. Cliente con presupuesto del propio grant, venta de baja fricción.</p>
+          <p><span class="label">Cashflow primer cliente:</span> mes 2.</p>
+        </article>
+      </div>
+      <div class="callout callout--blue" style="margin-top:2rem;">
+        <p><strong>Bonus:</strong> B5 Regulatory Watch (7.59) entra como cross-sell directo de A1 con 85% de margen. Y B1 MedCases EU (7.52) queda como apuesta a activar desde el mes 4-6, cuando Mariam tenga bandwidth.</p>
+      </div>
+    </section>
+
+    <section id="ranking">
+      <div class="section-head">
+        <span class="eyebrow">Ranking completo</span>
+        <h2>Las 18 ideas re-evaluadas y ordenadas.</h2>
+        <p>Score = Σ(nota 1-10 × peso del criterio). La columna “movimiento” compara la posición actual con la del estudio v1.1.</p>
+      </div>
+      <div id="rankingList"></div>
+    </section>
+
+    <section id="cambios">
+      <div class="section-head">
+        <span class="eyebrow">Comparativa</span>
+        <h2>Qué cambió frente al ranking v1.1.</h2>
+        <p>El cambio de pesos hacia rentabilidad rápida produce movimientos significativos en el top 10. Las ideas con ciclo de venta largo o riesgo regulatorio alto pierden posiciones.</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Idea</th><th>Score v1.1</th><th>Score v2</th><th>Movimiento</th><th>Lectura</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A1 Aura Compliance</td><td>9.05</td><td><span class="score">8.98</span></td><td class="delta-flat">mantiene #1</td><td>Sigue líder, pero ahora por ticket + urgencia, no por encaje del equipo.</td></tr>
+          <tr><td>A4 AI Governance Bootcamp</td><td>7.80</td><td><span class="score">7.93</span></td><td class="delta-up">+3 puestos</td><td>Cashflow rápido, MVP de 1-2 días, urgencia regulatoria. Mejor lead gen para A1.</td></tr>
+          <tr><td>A2 GrantOps</td><td>8.45</td><td><span class="score">7.78</span></td><td class="delta-down">-1 puesto</td><td>Sigue fuerte, pero ticket más pequeño y dependencia de Bastien.</td></tr>
+          <tr><td>B5 Regulatory Watch</td><td>8.05</td><td><span class="score">7.59</span></td><td class="delta-flat">mantiene #4</td><td>Excelente cross-sell de A1, pero no standalone.</td></tr>
+          <tr><td>B1 MedCases EU</td><td>8.65</td><td><span class="score">7.52</span></td><td class="delta-down">-3 puestos</td><td>Sigue muy defensible, pero ciclo farma lento penaliza ingresos rápidos.</td></tr>
+          <tr><td>A5 Healthtech DD</td><td>7.40</td><td><span class="score">6.81</span></td><td class="delta-flat">mantiene rango medio</td><td>Buen ticket pero red VC compleja.</td></tr>
+          <tr><td>C1 AI Audit Trail</td><td>7.95</td><td><span class="score">6.45</span></td><td class="delta-down">-2 puestos</td><td>Requiere construir antes de vender. Mejor como fase 2 de A1.</td></tr>
+          <tr><td>A3 Oncology Trials Insights</td><td>7.70</td><td><span class="score">6.30</span></td><td class="delta-down">-3 puestos</td><td>Dependencia alta de Mariam y competencia de providers existentes.</td></tr>
+          <tr><td>C5 Biomarker Insights Engine</td><td>7.45</td><td><span class="score">4.71</span></td><td class="delta-down">-fuerte</td><td>Capital alto, requiere acceso a datos a escala.</td></tr>
+          <tr><td>C2 TrialMatcher</td><td>7.05</td><td><span class="score">4.22</span></td><td class="delta-down">-fuerte</td><td>Marketplace chicken-and-egg + riesgo regulatorio B2C.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="filtros">
+      <div class="section-head">
+        <span class="eyebrow">Filtros de descarte</span>
+        <h2>Ideas pausadas por reglas duras, no por score.</h2>
+        <p>Algunas ideas tienen score parcialmente decente, pero fallan en filtros que no se negocian: capital, riesgo clínico, comprador o ciclo de venta.</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Idea</th><th>Filtro que falla</th><th>Decisión</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>B3 Tumor Board AI</td><td>Riesgo clínico alto</td><td>Pausar (requiere CE marking)</td></tr>
+          <tr><td>B4 Patient Journey OS</td><td>Sin primera oferta vendible &lt;60 días</td><td>Pausar</td></tr>
+          <tr><td>C2 TrialMatcher</td><td>Comprador incierto + CAC alto</td><td>Pausar</td></tr>
+          <tr><td>C3 Pharma Knowledge Vault</td><td>Capital inicial excesivo + incumbentes (Veeva, IQVIA)</td><td>Pausar</td></tr>
+          <tr><td>C4 Hospital Innovation OS</td><td>Venta pública lenta + capital alto</td><td>Pausar</td></tr>
+          <tr><td>C5 Biomarker Insights Engine</td><td>Capital alto + acceso a datos restringido</td><td>Pausar</td></tr>
+          <tr><td>C6 Predictive Health Survivors</td><td>CAC B2C alto + riesgo ético/regulatorio</td><td>Pausar</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="breakdown">
+      <div class="section-head">
+        <span class="eyebrow">Detalle</span>
+        <h2>Cómo se construye el score, idea por idea.</h2>
+        <p>Cada idea recibe una nota de 1 a 10 en los 10 criterios. La suma ponderada produce el score final. Aquí están los top 5.</p>
+      </div>
+      <div class="grid-2 breakdown" id="breakdownGrid"></div>
+    </section>
+
+    <section id="competencia">
+      <div class="section-head">
+        <span class="eyebrow">Análisis detallado de competencia</span>
+        <h2>Quién más juega en cada mercado del top 5.</h2>
+        <p>Para cada idea del top 5 se mapean competidores directos, indirectos, alternativa interna del cliente, posición de Aura, defensibilidad concreta y escenarios de riesgo competitivo con mitigación.</p>
+      </div>
+      <div id="competitionGrid" class="competition-grid"></div>
+    </section>
+
+    <section id="estrategia">
+      <div class="section-head">
+        <span class="eyebrow">Estrategia</span>
+        <h2>Cómo se ejecuta el top 3 en 12 meses.</h2>
+        <p>La secuencia recomendada lanza A1 + A4 simultáneamente para combinar cashflow inmediato (workshops) con ticket alto (audits). B5, B1 y A2 se activan en función de la tracción.</p>
+      </div>
+      <div class="flow">
+<pre>Mes 1-3   A1 + A4 simultáneos
+          A4 vende workshops (4-8k€) → leads para A1
+          A1 cierra primer audit piloto (12k€) mes 2
+          A1 entrega + caso de estudio
+   |
+   v
+Mes 4-6   A1 facturando audits a precio completo (25k€)
+          B5 activado como retainer cross-sell con clientes A1
+          B1 prospección con Mariam (3-6 meses ciclo)
+   |
+   v
+Mes 6-9   A2 GrantOps con Bastien si hay bandwidth
+          B1 pilotos firmados con farma
+          A4 workshops continúan como pipeline A1
+   |
+   v
+Mes 9-12  Evolución A1 → C1 (AI Audit Trail) como SaaS-light
+          B5 ampliado a más clientes
+          A2 con 3-5 consorcios activos
+          Decisión: constituir sociedad UE</pre>
+      </div>
+    </section>
+
+    <section id="pivot">
+      <div class="section-head">
+        <span class="eyebrow">Pivot</span>
+        <h2>Cuándo cambiar de rumbo.</h2>
+        <p>Reglas explícitas para detectar fallo temprano y reordenar el ranking sin perder dinero.</p>
+      </div>
+      <div class="grid-2">
+        <article class="tile">
+          <h3>Señal de pivot suave</h3>
+          <ul>
+            <li>A1 no firma piloto antes del mes 2 → revisar pitch, precio y canal.</li>
+            <li>A4 no convierte ningún workshop en lead A1 → cambiar formato o audiencia.</li>
+            <li>B5 no convierte como cross-sell → ofrecer como upgrade gratuito y reactivar.</li>
+          </ul>
+        </article>
+        <article class="tile">
+          <h3>Señal de pivot fuerte</h3>
+          <ul>
+            <li>A1 no factura 75k€ antes del mes 6 → reordenar foco hacia A2 + A4 + B5.</li>
+            <li>AI Act se debilita → pivotar A1 hacia RGPD + MDR puro.</li>
+            <li>Big4 entra con precio agresivo → tier-pricing 10-15k€ + SaaS-light 1k€/mes.</li>
+            <li>Mariam queda sin bandwidth → pausar B1 hasta el año 2.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="callout callout--green" style="margin-top:2rem;">
+        <p><strong>Hipótesis confirmada:</strong> Aura Compliance puede producir el primer contrato pagado más rápido y con mejor margen que MedCases EU, GrantOps u otra idea nueva. A1 mantiene el liderazgo por razones de cashflow, no por encaje del equipo.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+const ranking = [
+  {pos:1, code:"A1", name:"Aura Compliance", score:8.98, status:"Prioridad inmediata", move:"=", top:true},
+  {pos:2, code:"A4", name:"AI Governance Bootcamp", score:7.93, status:"Candidata fuerte", move:"+3", top:true},
+  {pos:3, code:"A2", name:"GrantOps", score:7.78, status:"Candidata fuerte", move:"-1", top:true},
+  {pos:4, code:"B5", name:"Regulatory Watch", score:7.59, status:"Candidata fuerte · cross-sell de A1", move:"="},
+  {pos:5, code:"B1", name:"MedCases EU", score:7.52, status:"Candidata fuerte · activar mes 4-6", move:"-3"},
+  {pos:6, code:"A5", name:"Healthtech DD", score:6.81, status:"Backup", move:"="},
+  {pos:7, code:"B2", name:"Compliance Copilot", score:6.57, status:"Backup · fold dentro de A1", move:"-3"},
+  {pos:8, code:"B6", name:"Scientific Writing Studio", score:6.53, status:"Backup", move:"+2"},
+  {pos:9, code:"C1", name:"AI Audit Trail", score:6.45, status:"Backup · evolución natural de A1", move:"-3"},
+  {pos:10, code:"A3", name:"Oncology Trials Insights", score:6.30, status:"Backup", move:"-3"},
+  {pos:11, code:"A6", name:"EU Tender Strategist", score:5.71, status:"Pausar", move:"-2"},
+  {pos:12, code:"B3", name:"Tumor Board AI", score:5.33, status:"Pausar · filtro clínico", move:"-1"},
+  {pos:13, code:"C5", name:"Biomarker Insights Engine", score:4.71, status:"Pausar · filtro capital", move:"-5"},
+  {pos:14, code:"B4", name:"Patient Journey OS", score:4.45, status:"Pausar · filtro oferta vendible", move:"+3"},
+  {pos:15, code:"C3", name:"Pharma Knowledge Vault", score:4.40, status:"Pausar · filtro capital", move:"-2"},
+  {pos:16, code:"C2", name:"TrialMatcher", score:4.22, status:"Pausar · filtro comprador", move:"-4"},
+  {pos:17, code:"C4", name:"Hospital Innovation OS", score:4.14, status:"Pausar · filtro venta pública", move:"-1"},
+  {pos:18, code:"C6", name:"Predictive Health Survivors", score:3.03, status:"Pausar · filtro CAC B2C", move:"="}
+];
+
+const breakdown = [
+  {
+    code:"A1",
+    name:"Aura Compliance",
+    score:8.98,
+    rows:[
+      ["Ingresos rápidos","18%",9,1.62],
+      ["Urgencia + presupuesto","14%",10,1.40],
+      ["Velocidad de venta","13%",8,1.04],
+      ["Margen operativo","12%",9,1.08],
+      ["MVP vendible","10%",10,1.00],
+      ["Riesgo controlado","9%",7,0.63],
+      ["Diferenciación","8%",9,0.72],
+      ["Encaje suficiente","6%",9,0.54],
+      ["Expansión","5%",9,0.45],
+      ["Timing","5%",10,0.50]
+    ]
+  },
+  {
+    code:"A4",
+    name:"AI Governance Bootcamp",
+    score:7.93,
+    rows:[
+      ["Ingresos rápidos","18%",7,1.26],
+      ["Urgencia + presupuesto","14%",9,1.26],
+      ["Velocidad de venta","13%",8,1.04],
+      ["Margen operativo","12%",8,0.96],
+      ["MVP vendible","10%",10,1.00],
+      ["Riesgo controlado","9%",9,0.81],
+      ["Diferenciación","8%",6,0.48],
+      ["Encaje suficiente","6%",7,0.42],
+      ["Expansión","5%",5,0.25],
+      ["Timing","5%",9,0.45]
+    ]
+  },
+  {
+    code:"A2",
+    name:"GrantOps",
+    score:7.78,
+    rows:[
+      ["Ingresos rápidos","18%",7,1.26],
+      ["Urgencia + presupuesto","14%",7,0.98],
+      ["Velocidad de venta","13%",9,1.17],
+      ["Margen operativo","12%",8,0.96],
+      ["MVP vendible","10%",9,0.90],
+      ["Riesgo controlado","9%",9,0.81],
+      ["Diferenciación","8%",8,0.64],
+      ["Encaje suficiente","6%",6,0.36],
+      ["Expansión","5%",7,0.35],
+      ["Timing","5%",7,0.35]
+    ]
+  },
+  {
+    code:"B5",
+    name:"Regulatory Watch",
+    score:7.59,
+    rows:[
+      ["Ingresos rápidos","18%",6,1.08],
+      ["Urgencia + presupuesto","14%",8,1.12],
+      ["Velocidad de venta","13%",8,1.04],
+      ["Margen operativo","12%",9,1.08],
+      ["MVP vendible","10%",9,0.90],
+      ["Riesgo controlado","9%",8,0.72],
+      ["Diferenciación","8%",6,0.48],
+      ["Encaje suficiente","6%",7,0.42],
+      ["Expansión","5%",6,0.30],
+      ["Timing","5%",9,0.45]
+    ]
+  },
+  {
+    code:"B1",
+    name:"MedCases EU",
+    score:7.52,
+    rows:[
+      ["Ingresos rápidos","18%",8,1.44],
+      ["Urgencia + presupuesto","14%",6,0.84],
+      ["Velocidad de venta","13%",6,0.78],
+      ["Margen operativo","12%",8,0.96],
+      ["MVP vendible","10%",9,0.90],
+      ["Riesgo controlado","9%",7,0.63],
+      ["Diferenciación","8%",10,0.80],
+      ["Encaje suficiente","6%",7,0.42],
+      ["Expansión","5%",8,0.40],
+      ["Timing","5%",7,0.35]
+    ]
+  }
+];
+
+const competition = [
+  {
+    code: "A1",
+    name: "Aura Compliance",
+    score: 8.98,
+    pitch: "Auditoría + plataforma SaaS-light para AI Act, RGPD y datos sanitarios en healthtech UE.",
+    directos: [
+      "Big4 (Deloitte, EY, KPMG, PwC) con prácticas AI/GRC — ticket 80-300k€, lentos, generalistas.",
+      "OneTrust, Trail y BigID — software GRC con módulos de AI governance, no verticalizados en salud.",
+      "Holistic AI, Credo AI, Saidot — AI governance startups, foco global, ticket 30-80k€."
+    ],
+    indirectos: [
+      "Despachos legales UE en healthtech (Cuatrecasas, Hogan Lovells) — venden compliance jurídico, no operativo.",
+      "Consultoras boutique RGPD locales — saben datos pero no AI Act ni salud.",
+      "Freelancers Data Protection Officer (DPO) con add-on AI Act."
+    ],
+    alternativaInterna: "Compliance officer in-house del healthtech, asesorado por su despacho legal. Hace inventario manual con Excel + Notion, sin metodología clara ni IA. Tarda 4-6 meses por cada audit interno.",
+    posicionAura: [
+      "vs Big4: Aura gana en velocidad (4 semanas vs 4-6 meses) y precio (25k€ vs 80-300k€). Pierde en marca y cobertura global.",
+      "vs OneTrust/Trail: Aura gana en verticalidad salud + IA real (no checklists), pierde si el cliente ya tiene la suite.",
+      "vs despachos legales: Aura gana en producto operativo + IA, pierde si el cliente necesita firma legal vinculante (mitigado con abogado externo).",
+      "vs in-house: Aura gana en metodología y tiempo, pierde si el cliente subestima la complejidad del AI Act."
+    ],
+    defensibilidad: [
+      "Mariam abre puertas en hospitales y biotech UE — red imposible de copiar en 6 meses.",
+      "Bastien aporta red Horizon Europe y EMBL — entrada institucional.",
+      "Biblioteca interna de auditorías acumulada por iteración (sector salud, 6-12 casos en 12 meses).",
+      "Mezcla equipo: salud + IA + UE + boutique. Big4 no entra al ticket mid-market. OneTrust no entra a salud."
+    ],
+    riesgo: [
+      "Big4 baja precios al tier 25-40k€ → tier-pricing 12-15k€ por audit lite + SaaS-light 1k€/mes.",
+      "OneTrust agrega módulo healthtech → diferenciar con casos clínicos y red sectorial, no con features.",
+      "AI Act se suaviza → pivot a RGPD + MDR + datos sanitarios (mercado idéntico, regulación ya activa)."
+    ]
+  },
+  {
+    code: "A4",
+    name: "AI Governance Bootcamp",
+    score: 7.93,
+    pitch: "Workshop ejecutivo 1-2 días sobre AI Act + RGPD para C-level healthtech.",
+    directos: [
+      "BSI, AENOR e instituciones de certificación — formación oficial, cara, lenta.",
+      "IAPP — formación global RGPD/AI con certificaciones, foco profesional individual.",
+      "Consultoras Big4 con tracks formativos C-level — bundled con auditoría.",
+      "Plataformas e-learning (Coursera, EdX) — cursos genéricos sobre AI Act, sin acción."
+    ],
+    indirectos: [
+      "Despachos legales que dan talleres comerciales como lead-gen.",
+      "Conferencias y eventos (HIMSS, Frontiers Health) con paneles AI Act.",
+      "Webinars gratuitos de software vendors (OneTrust, Vanta)."
+    ],
+    alternativaInterna: "Reuniones internas sin estructura, lectura del Reglamento, posts de LinkedIn. C-level llega a la mesa sin saber qué hacer concretamente.",
+    posicionAura: [
+      "vs Big4: Aura gana porque entrega playbook accionable (no curso), pierde en marca corporativa.",
+      "vs IAPP/BSI: Aura gana en verticalidad salud + caso real + tamaño boutique, pierde en certificación oficial.",
+      "vs e-learning: Aura gana en formato presencial/ejecutivo con discusión real, pierde en precio."
+    ],
+    defensibilidad: [
+      "Verticalidad salud — pocos formadores conectan AI Act con datos sanitarios y MDR.",
+      "Conexión directa con A1 — el workshop genera leads calificados para audit.",
+      "Bastien aporta credibilidad de Horizon + Mariam aporta credibilidad clínica.",
+      "Materiales propios basados en auditorías reales (no teoría)."
+    ],
+    riesgo: [
+      "Formación se commoditiza rápido → no vender como producto standalone, sino como lead-gen de A1.",
+      "BSI/AENOR lanza track healthtech → diferenciar con caso real + tamaño boutique.",
+      "Cliente toma el workshop pero no compra A1 → cualificar mejor a los participantes antes."
+    ]
+  },
+  {
+    code: "A2",
+    name: "GrantOps",
+    score: 7.78,
+    pitch: "Servicio + asistente IA para coordinación, reporting y compliance de consorcios Horizon Europe / IHI.",
+    directos: [
+      "Inova+, Zabala, EuroSciCon, F6S — consultoras especializadas Horizon, ticket 30-150k€ por consorcio, plantilla grande.",
+      "PNO Group — incumbente fuerte en grants UE, presencia multi-país.",
+      "Boutique freelancers Horizon — baratos, lentos, sin IA."
+    ],
+    indirectos: [
+      "Project managers internos contratados por el coordinador.",
+      "Universidades con oficinas de transferencia que ofrecen gestión a sus consorcios.",
+      "Plataformas de gestión de proyectos genéricas (Asana, Monday) sin contexto Horizon."
+    ],
+    alternativaInterna: "Coordinador del consorcio asigna a un postdoc o admin sin experiencia Horizon. Reportes tarde, deliverables desordenados, riesgo de devolver fondos.",
+    posicionAura: [
+      "vs Inova+/Zabala: Aura gana en automatización IA (reports 70% auto) y precio, pierde en presencia local.",
+      "vs PNO: Aura gana en velocidad y tamaño boutique, pierde en track record acumulado.",
+      "vs in-house postdoc: Aura gana fácilmente porque el postdoc no debería estar haciendo esto."
+    ],
+    defensibilidad: [
+      "Bastien con 35+ consorcios de experiencia y red activa en Horizon, IHI, EIT, EMBL.",
+      "Templates propios (35 consorcios → 35 plantillas reusables).",
+      "Agentes IA específicos: report writer, deliverable extractor, risk monitor.",
+      "Cliente paga del propio grant — venta de fricción mínima."
+    ],
+    riesgo: [
+      "Consultora grande lanza automatización propia → Aura debe defender con boutique + ticket mid-market.",
+      "Comisión Europea cambia reglas → arquitectura modular + foco en valor estable (M&E, comms, coordinación).",
+      "Bastien queda como cuello de botella → contratar PM junior desde cliente 4."
+    ]
+  },
+  {
+    code: "B5",
+    name: "Regulatory Watch",
+    score: 7.59,
+    pitch: "Monitoreo mensual de cambios AI Act, RGPD, MDR y datos sanitarios aplicado a clientes A1.",
+    directos: [
+      "Thomson Reuters Regulatory Intelligence — caro, generalista, no aplicado a producto cliente.",
+      "CompliancyOne, RegEd — orientados banca/farma global, no salud-UE mid-market.",
+      "LexisNexis Practice Advisor — base de datos legal pasiva."
+    ],
+    indirectos: [
+      "Newsletters gratuitos de despachos legales (Cuatrecasas, Garrigues, Hogan Lovells).",
+      "Blogs de software vendors (OneTrust, Trail).",
+      "Boletines oficiales UE leídos directamente por compliance officer."
+    ],
+    alternativaInterna: "Compliance officer suscrito a Linkedin y boletines DG SANTE. Lee mucho, traduce poco al producto del cliente.",
+    posicionAura: [
+      "vs Thomson Reuters: Aura gana en personalización por producto del cliente + tamaño boutique, pierde en cobertura global.",
+      "vs newsletters gratis: Aura gana en análisis aplicado e impacto operativo concreto.",
+      "vs in-house: Aura gana en tiempo ahorrado y traducción a acción."
+    ],
+    defensibilidad: [
+      "Conexión directa con A1 — Aura ya conoce el mapa interno del cliente.",
+      "Cliente difícil de migrar después de 6 meses de retainer (lock-in operativo).",
+      "Output curado por equipo experto, no autogenerado."
+    ],
+    riesgo: [
+      "Se commoditiza si se vende como boletín genérico → siempre acoplar a auditoría A1 o roadmap del cliente.",
+      "Despacho legal regala el servicio como lead-gen → diferenciar con análisis técnico + impacto en producto."
+    ]
+  },
+  {
+    code: "B1",
+    name: "MedCases EU",
+    score: 7.52,
+    pitch: "Biblioteca curada de casos clínicos oncológicos GI con IA para Medical Affairs farma.",
+    directos: [
+      "IQVIA Medical Affairs solutions — incumbente fuerte, ticket 200k€+, lento para innovar.",
+      "Veeva Medical — CRM medical + content, dominante en farma top 20.",
+      "ZS Associates, Within3, Impetus Digital — agencias Medical Affairs / advisory boards."
+    ],
+    indirectos: [
+      "Agencias medical writing freelance — baratas, sin curación experta.",
+      "Bases de datos médicas (PubMed, UpToDate) — datos sin aplicación operativa MSL.",
+      "Eventos y advisory boards organizados por la propia farma."
+    ],
+    alternativaInterna: "MSLs preparan casos manualmente con búsquedas PubMed. 5-8 horas semanales por MSL. Calidad variable, no estandarizada.",
+    posicionAura: [
+      "vs IQVIA/Veeva: Aura gana en verticalidad GI extrema + velocidad mensual + precio mid-market, pierde en escala global.",
+      "vs agencias medical writing: Aura gana en curación clínica real (Mariam + red oncológica) + IA, pierde en costo si la farma sólo quiere texto.",
+      "vs in-house MSL: Aura gana en tiempo ahorrado (>4h/sem por MSL) y consistencia."
+    ],
+    defensibilidad: [
+      "Mariam + red de 2-3 oncólogos GI europeos colaboradores — curación clínica imposible de copiar genéricamente.",
+      "Verticalidad GI extrema vs IQVIA generalista.",
+      "Pipeline IA propietario (normalización biomarcadores, líneas de tratamiento).",
+      "Brand de autoridad médica híbrida (Mariam firma)."
+    ],
+    riesgo: [
+      "IQVIA agrega módulo GI → Aura defiende con velocidad mensual + red clínica europea.",
+      "Farma desarrolla in-house con su propio equipo → Aura vende a las que no lo hacen (top 20 hasta 50).",
+      "Mariam queda sin bandwidth → activar 2-3 oncólogos colaboradores pagados desde mes 4."
+    ]
+  }
+];
+
+function moveClass(move) {
+  if (move.startsWith("+")) return "delta-up";
+  if (move.startsWith("-")) return "delta-down";
+  return "delta-flat";
+}
+
+function renderRanking() {
+  const list = document.getElementById("rankingList");
+  list.innerHTML = ranking.map(r => `
+    <div class="rank-row ${r.top ? "top" : ""}">
+      <span class="pos">${String(r.pos).padStart(2,"0")}</span>
+      <span class="code-pill">${r.code}</span>
+      <span class="name">${r.name}</span>
+      <span class="score-val">${r.score.toFixed(2)}</span>
+      <span class="move ${moveClass(r.move)}">${r.move}</span>
+      <span class="status">${r.status}</span>
+    </div>
+  `).join("");
+}
+
+function renderBreakdown() {
+  const grid = document.getElementById("breakdownGrid");
+  grid.innerHTML = breakdown.map(b => `
+    <div class="tile">
+      <span class="tag">${b.code}</span>
+      <h3>${b.name} · <span class="score">${b.score.toFixed(2)}</span></h3>
+      <table>
+        <thead>
+          <tr><th>Criterio</th><th>Peso</th><th>Nota</th><th>Aporte</th></tr>
+        </thead>
+        <tbody>
+          ${b.rows.map(row => `
+            <tr>
+              <td>${row[0]}</td>
+              <td class="weight">${row[1]}</td>
+              <td class="note">${row[2]}</td>
+              <td class="contrib">${row[3].toFixed(2)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `).join("");
+}
+
+const body = document.body;
+const toggle = document.querySelector('.menu-toggle');
+const closeButton = document.querySelector('.rail__close');
+const navLinks = document.querySelectorAll('.rail nav a');
+
+function setMenu(open) {
+  body.classList.toggle('menu-open', open);
+  if (toggle) toggle.setAttribute('aria-expanded', String(open));
+}
+
+if (toggle) toggle.addEventListener('click', () => setMenu(!body.classList.contains('menu-open')));
+if (closeButton) closeButton.addEventListener('click', () => setMenu(false));
+navLinks.forEach(link => link.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') setMenu(false);
+});
+
+function renderCompetition() {
+  const grid = document.getElementById("competitionGrid");
+  if (!grid) return;
+  grid.innerHTML = competition.map(c => `
+    <article class="comp-card">
+      <div class="comp-card__header">
+        <span class="code-pill">${c.code}</span>
+        <h3>${c.name}</h3>
+        <div class="score-mini">Score ${c.score.toFixed(2)}</div>
+        <p class="pitch">${c.pitch}</p>
+      </div>
+      <div class="comp-body">
+        <div class="comp-block comp-block--red">
+          <h4>Competidores directos</h4>
+          <ul>${c.directos.map(x => `<li>${x}</li>`).join("")}</ul>
+        </div>
+        <div class="comp-block comp-block--yellow">
+          <h4>Indirectos / sustitutos</h4>
+          <ul>${c.indirectos.map(x => `<li>${x}</li>`).join("")}</ul>
+        </div>
+        <div class="comp-block">
+          <h4>Alternativa interna del cliente</h4>
+          <p>${c.alternativaInterna}</p>
+        </div>
+        <div class="comp-block comp-block--blue">
+          <h4>Posición de Aura</h4>
+          <ul>${c.posicionAura.map(x => `<li>${x}</li>`).join("")}</ul>
+        </div>
+        <div class="comp-block comp-block--green">
+          <h4>Defensibilidad concreta</h4>
+          <ul>${c.defensibilidad.map(x => `<li>${x}</li>`).join("")}</ul>
+        </div>
+        <div class="comp-block comp-block--red">
+          <h4>Riesgo competitivo y mitigación</h4>
+          <ul>${c.riesgo.map(x => `<li>${x}</li>`).join("")}</ul>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+renderRanking();
+renderBreakdown();
+renderCompetition();
+</script>
+</body>
+</html>
