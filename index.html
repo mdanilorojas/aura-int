@@ -1,23 +1,259 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Proyecto Aura — Ranking de ideas v1.1</title>
-<meta http-equiv="refresh" content="0; url=00-brainstorming/02-visuales-generados/ranking-ideas-v1.1.html">
-<link rel="canonical" href="00-brainstorming/02-visuales-generados/ranking-ideas-v1.1.html">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proyecto Aura — Histórico de versiones</title>
 <style>
-  body { font-family: system-ui, sans-serif; background: #0c0e12; color: #e2e8f0; padding: 3rem; max-width: 640px; margin: 0 auto; }
-  a { color: #7dd3fc; }
+  :root {
+    --gray-100: #161616;
+    --gray-90: #262626;
+    --gray-80: #393939;
+    --gray-70: #525252;
+    --gray-60: #6f6f6f;
+    --gray-30: #c6c6c6;
+    --gray-20: #e0e0e0;
+    --gray-10: #f4f4f4;
+    --white: #ffffff;
+    --blue-60: #0f62fe;
+    --blue-50: #4589ff;
+    --green-50: #24a148;
+    --yellow-30: #f1c21b;
+    --red-50: #da1e28;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--gray-100);
+    color: var(--gray-10);
+    font-family: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  a { color: var(--blue-50); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .page { max-width: 1200px; margin: 0 auto; padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem); }
+  .eyebrow {
+    display: inline-block;
+    color: var(--blue-50);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  h1 { margin: .75rem 0 1rem; font-size: clamp(2.5rem, 6vw, 5rem); line-height: .95; letter-spacing: -.05em; font-weight: 400; }
+  .lede { max-width: 720px; color: var(--gray-20); font-size: clamp(1.05rem, 1.5vw, 1.35rem); margin: 0 0 3rem; }
+  h2 { margin: 3rem 0 1rem; font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -.03em; font-weight: 400; }
+  h2:first-of-type { margin-top: 0; }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid var(--gray-70);
+    border-left: 1px solid var(--gray-70);
+    margin: 0 0 3rem;
+    max-width: 980px;
+  }
+  .meta div { padding: .9rem 1rem; border-right: 1px solid var(--gray-70); border-bottom: 1px solid var(--gray-70); }
+  .meta span { display: block; color: var(--gray-30); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; }
+  .meta strong { display: block; margin-top: .25rem; font-weight: 400; font-size: .95rem; }
+  .grid { display: grid; gap: 1px; background: var(--gray-80); border: 1px solid var(--gray-80); }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card {
+    background: var(--gray-90);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  .card--featured { background: var(--blue-60); color: var(--white); }
+  .card--featured .eyebrow { color: rgba(255,255,255,.7); }
+  .card--featured a { color: var(--white); }
+  .card--featured a:hover { color: var(--gray-10); }
+  .card--light { background: var(--gray-10); color: var(--gray-100); }
+  .card--light .eyebrow { color: var(--blue-60); }
+  .card h3 { margin: .35rem 0 .75rem; font-size: 1.5rem; font-weight: 400; letter-spacing: -.02em; }
+  .card--featured h3 { font-size: 2rem; }
+  .card p { margin: 0 0 1rem; color: inherit; opacity: .85; font-size: .95rem; }
+  .card ul { margin: 0 0 1rem; padding-left: 1.1rem; font-size: .9rem; }
+  .card ul li { margin-bottom: .35rem; }
+  .card .actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: .5rem; padding-top: 1rem; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: .3rem .9rem;
+    background: var(--gray-80);
+    color: var(--gray-10);
+    border: 1px solid var(--gray-70);
+    font-size: .85rem;
+    text-decoration: none;
+    letter-spacing: .02em;
+  }
+  .btn:hover { background: var(--gray-100); border-color: var(--blue-50); text-decoration: none; }
+  .btn--primary { background: var(--blue-60); color: var(--white); border-color: var(--blue-60); }
+  .btn--primary:hover { background: var(--blue-50); border-color: var(--blue-50); color: var(--white); }
+  .card--featured .btn { background: rgba(255,255,255,.18); color: var(--white); border-color: rgba(255,255,255,.4); }
+  .card--featured .btn:hover { background: var(--white); color: var(--blue-60); }
+  .card--featured .btn--primary { background: var(--white); color: var(--blue-60); border-color: var(--white); }
+  .card--featured .btn--primary:hover { background: var(--gray-10); color: var(--blue-60); }
+  .card--light .btn { background: var(--white); color: var(--gray-100); border-color: var(--gray-30); }
+  .card--light .btn:hover { background: var(--gray-100); color: var(--white); border-color: var(--gray-100); }
+  .tag {
+    display: inline-block;
+    padding: .15rem .55rem;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    background: var(--gray-80);
+    color: var(--gray-10);
+    margin-bottom: .5rem;
+  }
+  .tag--current { background: var(--green-50); }
+  .tag--legacy { background: var(--gray-70); color: var(--gray-20); }
+  .tag--asset { background: var(--yellow-30); color: var(--gray-100); }
+  .card--featured .tag { background: rgba(255,255,255,.2); color: var(--white); }
+  .card--featured .tag--current { background: var(--white); color: var(--blue-60); font-weight: 600; }
+  .card--light .tag { background: var(--gray-100); color: var(--white); }
+  footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--gray-80); color: var(--gray-30); font-size: .85rem; }
+  footer a { color: var(--blue-50); }
+  @media (max-width: 900px) {
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    .meta { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
-<h1>Proyecto Aura</h1>
-<p>Redirigiendo al ranking de ideas...</p>
-<p>Si no carga: <a href="00-brainstorming/02-visuales-generados/ranking-ideas-v1.1.html">Ranking de ideas v1.1</a></p>
-<p style="margin-top:1.5rem;font-size:.85rem;color:#94a3b8;">Otros documentos:</p>
-<ul style="font-size:.85rem;color:#94a3b8;">
-  <li><a href="00-brainstorming/01-criterios-base/evaluation-process-v1.1.html">Evaluation Process v1.1</a></li>
-  <li><a href="00-brainstorming/02-visuales-generados/Kickoff%20doc%20v1.1.html">Kickoff doc v1.1 (histórico)</a></li>
-</ul>
+<main class="page">
+  <header>
+    <span class="eyebrow">Aura Business Operations</span>
+    <h1>Histórico de versiones.</h1>
+    <p class="lede">Cada iteración del análisis vive en su propia versión. Aquí se mantienen todas accesibles para auditoría y comparación. El sistema activo es la versión más alta; las anteriores se conservan como referencia.</p>
+    <div class="meta">
+      <div><span>Versión activa</span><strong>v2.0 · 2026-05-24</strong></div>
+      <div><span>Iteraciones del sistema</span><strong>2 (v1.1 · v2.0)</strong></div>
+      <div><span>Idea líder actual</span><strong>A1 Aura Compliance · 8.92</strong></div>
+      <div><span>Próximo re-ranking</span><strong>24 agosto 2026</strong></div>
+    </div>
+  </header>
+
+  <h2>Versión activa — v2.0</h2>
+  <div class="grid grid-3">
+    <article class="card card--featured">
+      <span class="tag tag--current">Documento principal</span>
+      <h3>Ranking de ideas v2.0</h3>
+      <p>Re-evaluación de las 18 ideas con palancas comerciales activadas (ticket A1 reformado a 29.5k€), filtros nuevos (5.7 jurisdicción y 5.8 lista de prospects), análisis competitivo del top 5 y plan de 14 días para arrancar.</p>
+      <ul>
+        <li>Top 3: A1 (8.92) · A4 (7.93) · A2 (7.72)</li>
+        <li>30 prospects nominales priorizados</li>
+        <li>Estrategia 12 meses con umbrales numéricos</li>
+      </ul>
+      <div class="actions">
+        <a href="00-brainstorming/02-visuales-generados/ranking-ideas-v2.0.html" class="btn btn--primary">Abrir ranking</a>
+        <a href="00-brainstorming/03-documentos-fuente/ranking-ideas-v2.0.md" class="btn">Ver fuente MD</a>
+      </div>
+    </article>
+    <article class="card">
+      <span class="tag tag--current">Proceso</span>
+      <h3>Evaluation Process v2.0</h3>
+      <p>Sistema visual del proceso de evaluación: criterios base, 40 criterios, 10 ponderados, filtros, análisis de competencia, monitoreo semanal (Capa 8) y cadencia de re-evaluación (Capa 9).</p>
+      <div class="actions">
+        <a href="00-brainstorming/01-criterios-base/evaluation-process-v2.0.html" class="btn btn--primary">Abrir proceso</a>
+        <a href="00-brainstorming/01-criterios-base/evaluation-process-v2.0.md" class="btn">Ver fuente MD</a>
+      </div>
+    </article>
+    <article class="card">
+      <span class="tag tag--current">Criterios</span>
+      <h3>Criterios base (v2.0)</h3>
+      <p>Panel de control editable del sistema. Incluye los 10 criterios ponderados con sub-criterios (4.8.a encaje funcional y 4.8.b concentración de riesgo), 8 filtros de descarte, escala de puntuación, gobierno del modelo.</p>
+      <div class="actions">
+        <a href="00-brainstorming/01-criterios-base/criterios-base-ideas.md" class="btn btn--primary">Abrir criterios</a>
+      </div>
+    </article>
+  </div>
+
+  <h2>Documentos de iteración 1</h2>
+  <div class="grid grid-2">
+    <article class="card card--light">
+      <span class="tag tag--asset">Documento fuente</span>
+      <h3>Mejoras iteración 1</h3>
+      <p>Bitácora del loop de 5 pasadas que produjo los cambios de v1.1 a v2.0. Diagnóstico de 12 palancas comerciales, 8 gaps al sistema, validación externa, lista de clientes y playbook de venta sin empresa. Recomendación #1 con plan de 14 días.</p>
+      <div class="actions">
+        <a href="00-brainstorming/01-criterios-base/mejoras-iteracion-1.md" class="btn btn--primary">Abrir documento</a>
+      </div>
+    </article>
+    <article class="card">
+      <span class="tag tag--asset">Assets crudos</span>
+      <h3>Subagentes pasada 1</h3>
+      <p>Salidas auditables de los 5 subagentes que produjeron las mejoras: validación externa (Subagente C), lista nominal de clientes (Subagente D) y playbook de venta sin empresa con restricciones legales y framing seguro para Mariam (Subagente E).</p>
+      <div class="actions">
+        <a href="00-brainstorming/_subagentes-pasada-1/C-validacion-externa.md" class="btn">C · Validación externa</a>
+        <a href="00-brainstorming/_subagentes-pasada-1/D-clientes-potenciales.md" class="btn">D · Clientes potenciales</a>
+        <a href="00-brainstorming/_subagentes-pasada-1/E-playbook-venta-sin-empresa.md" class="btn">E · Playbook venta sin empresa</a>
+      </div>
+    </article>
+  </div>
+
+  <h2>Versiones anteriores</h2>
+  <div class="grid grid-3">
+    <article class="card">
+      <span class="tag tag--legacy">v1.1 · histórica</span>
+      <h3>Ranking de ideas v1.1</h3>
+      <p>Primera aplicación del Evaluation Process v1.1 a las 18 ideas del Kickoff. Top 3: A1 (9.05) · A4 (7.93) · A2 (8.45). Conservada como referencia auditable.</p>
+      <div class="actions">
+        <a href="00-brainstorming/02-visuales-generados/ranking-ideas-v1.1.html" class="btn">Abrir v1.1</a>
+        <a href="00-brainstorming/03-documentos-fuente/ranking-ideas-v1.1.md" class="btn">Fuente MD</a>
+      </div>
+    </article>
+    <article class="card">
+      <span class="tag tag--legacy">v1.1 · histórica</span>
+      <h3>Evaluation Process v1.1</h3>
+      <p>Versión previa del proceso, sin Capa 8 (monitoreo semanal) ni Capa 9 (cadencia de re-evaluación). Útil para comparar la evolución del sistema.</p>
+      <div class="actions">
+        <a href="00-brainstorming/01-criterios-base/evaluation-process-v1.1.html" class="btn">Abrir v1.1</a>
+        <a href="00-brainstorming/01-criterios-base/evaluation-process-v1.1.md" class="btn">Fuente MD</a>
+      </div>
+    </article>
+    <article class="card">
+      <span class="tag tag--legacy">v1.1 · histórica</span>
+      <h3>Kickoff doc v1.1</h3>
+      <p>Documento de proyecto original con contexto del equipo, gobernanza, equity, 40 criterios y 18 ideas. Punto de partida del análisis.</p>
+      <div class="actions">
+        <a href="00-brainstorming/02-visuales-generados/Kickoff%20doc%20v1.1.html" class="btn">Abrir kickoff</a>
+        <a href="00-brainstorming/03-documentos-fuente/Kickoff%20doc%20v1.1.md" class="btn">Fuente MD</a>
+      </div>
+    </article>
+  </div>
+
+  <h2>Convenciones de versionado</h2>
+  <div class="grid grid-2">
+    <article class="card">
+      <h3>Cuándo sube la versión</h3>
+      <ul>
+        <li><strong>Sub-versión (v2.0 → v2.1):</strong> ajustes al ranking sin cambiar criterios base ni proceso.</li>
+        <li><strong>Versión mayor (v2.0 → v3.0):</strong> cambios en criterios base, pesos del scoring o capas del proceso.</li>
+        <li><strong>Cadencia natural:</strong> re-ranking trimestral (cada 3 meses) o trigger especial (cambio regulatorio, cierre de cliente).</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h3>Qué se conserva</h3>
+      <ul>
+        <li>Cada versión del ranking se mantiene accesible en su URL específica.</li>
+        <li>Los documentos fuente en Markdown se mantienen junto al HTML.</li>
+        <li>El historial completo vive además en git (commits por versión).</li>
+        <li>Las ideas pasadas a estado "muerta" se documentan en el ranking activo de ese trimestre.</li>
+      </ul>
+    </article>
+  </div>
+
+  <footer>
+    <p>Proyecto Aura · Histórico mantenido en <a href="https://github.com/mdanilorojas/aura-int">github.com/mdanilorojas/aura-int</a> · Publicado vía GitHub Pages.</p>
+  </footer>
+</main>
 </body>
 </html>

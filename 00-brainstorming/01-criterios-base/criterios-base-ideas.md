@@ -1,7 +1,8 @@
 # Criterios base para generar y evaluar ideas de negocio
 
-> **Estado:** editable  
-> **Uso:** este es el unico archivo que debes editar cuando quieras recalibrar el brainstorming y regenerar un nuevo HTML.
+> **Estado:** editable · v2.0 · 2026-05-24  
+> **Uso:** este es el unico archivo que debes editar cuando quieras recalibrar el brainstorming y regenerar un nuevo HTML.  
+> **Cambios v2.0 (desde v1.1):** refinamiento del criterio 4.8 con sub-criterio de concentracion de riesgo · dos filtros nuevos (5.7 jurisdiccion del comprador y 5.8 lista de prospectos nombrada) · estado "muerta" en lectura del resultado · nueva seccion 9 "Gobierno del modelo" con cadencia semanal, mensual y trimestral.
 
 ## 1. Objetivo dominante
 
@@ -185,9 +186,9 @@ Regla practica:
 
 ### 4.8 Encaje suficiente con el equipo
 
-**Peso:** 6%
+**Peso:** 6% (compuesto por dos sub-criterios)
 
-**Objetivo:** medir si el equipo puede vender, entregar y aprender rapido.
+**Objetivo:** medir si el equipo puede vender, entregar y aprender rapido sin concentrar todo en una persona.
 
 **Puntuacion alta significa:**
 
@@ -196,9 +197,19 @@ Regla practica:
 - no requiere contratar demasiado antes de facturar;
 - el equipo puede sostenerlo durante la fase inicial.
 
-**Importante:** este criterio no exige que los 4 roles sean igualmente indispensables.
+**Sub-criterio 4.8.a - Encaje funcional (mitad del peso):** la idea aprovecha al menos uno o dos perfiles del equipo de forma material; nadie sobra.
 
-**Criterios relacionados del kickoff v1.1:** equipo/socios, credibilidad, compatibilidad personal.
+**Sub-criterio 4.8.b - Concentracion de riesgo de entrega (mitad del peso):** mide cuanto de la entrega depende de un solo fundador con bandwidth limitada (Mariam 5-6h/sem, Bastien 10h/sem, Joseph 5h/sem, Danilo 15-30h/sem).
+
+- **10 = riesgo distribuido:** ningun fundador concentra mas del 40% de las horas requeridas.
+- **5 = riesgo moderado:** un fundador concentra 50-70%, hay backup parcial.
+- **1 = riesgo critico:** un fundador concentra mas del 70%, sin backup viable.
+
+La nota final del criterio 4.8 es el promedio de 4.8.a y 4.8.b.
+
+**Importante:** este criterio no exige que los 4 roles sean igualmente indispensables, pero penaliza fuerte cuando una idea depende de la bandwidth de un solo fundador con tiempo limitado.
+
+**Criterios relacionados del kickoff v1.1:** equipo/socios, credibilidad, compatibilidad personal, dependencias.
 
 ### 4.9 Potencial de expansion
 
@@ -271,6 +282,18 @@ Estos filtros no son pesos. Son reglas para pausar una idea aunque tenga partes 
 
 **Regla:** si requiere inversion fuerte pre-ingreso, queda fuera de la fase inicial.
 
+### 5.7 Jurisdiccion del comprador incompatible
+
+**Pregunta:** el comprador exige un vehiculo legal, una licencia profesional o una representacion local que el equipo no tiene hoy y no puede conseguir en menos de 60 dias?
+
+**Regla:** si vender requiere ser abogado colegiado UE, tener filial en pais especifico, ostentar acreditacion sanitaria que el equipo no posee, o emitir dictamen jurídico vinculante UE (Joseph no puede), la idea se pausa. Excepcion: si se puede operar via partner externo a coste razonable y mantener el margen (ver Asset E - playbook venta sin empresa).
+
+### 5.8 Sin lista de prospectos nombrada
+
+**Pregunta:** existen al menos 10 prospectos nombrados (organizacion + comprador estimado + dolor especifico) accesibles por la red del equipo, antes de iniciar la prospeccion?
+
+**Regla:** si la idea solo tiene "healthtech series A-B en UE" como descripcion del cliente sin lista concreta, no entra al top 5. Una idea con cliente atractivo pero sin red propia pierde frente a una con red ya activable. Se puede levantar este filtro presentando lista nominal (ver Asset D).
+
 ## 6. Analisis detallado de competencia
 
 **Obligatorio en cada iteracion.** Para cada idea del top 5 (y para cualquier idea candidata a #1) se debe producir un analisis con la siguiente estructura:
@@ -341,9 +364,75 @@ Conservar, pero no distraer la fase inicial.
 
 ### Menos de 6.5: Pausar
 
-Solo reabrir si aparece evidencia externa nueva.
+Conservar como evidencia historica, pero no consume ciclos en el proximo trimestre. Solo reabrir si aparece evidencia externa nueva (regulacion, ronda de competidor, contacto warm).
 
-## 9. Hipotesis actual
+### Muerta
+
+Estado terminal. Una idea pasa a "muerta" cuando:
+
+- ha estado en estado Pausar durante **dos re-rankings trimestrales consecutivos** sin nueva evidencia,
+- o falla **dos filtros de descarte simultaneos** sin via de mitigacion,
+- o el cliente objetivo deja de existir / no tiene presupuesto.
+
+Las ideas muertas se documentan al final del archivo de ranking y no se reincorporan al universo de 18 ideas. Esto evita acumular deuda de evaluacion en cada iteracion.
+
+## 9. Gobierno del modelo
+
+El sistema se mantiene vivo con cadencia explicita en tres niveles. Cada nivel produce un output distinto y un responsable claro.
+
+### 9.1 Cadencia semanal (revision tactica)
+
+**Frecuencia:** cada viernes.  
+**Responsable:** Bastien.  
+**Tiempo:** 15 minutos.  
+**Output:** dashboard de leading indicators actualizado.
+
+**Indicadores que se revisan:**
+
+- mensajes outbound enviados (objetivo: 80/semana, repartidos por fundador);
+- tasa de respuesta cold outreach (objetivo: ≥10%);
+- reuniones de descubrimiento celebradas (objetivo: ≥4/semana);
+- propuestas enviadas (objetivo: ≥3/mes);
+- LOIs / contratos firmados (objetivo: ≥1 LOI mes 1, ≥1 contrato mes 2).
+
+**Trigger de ajuste:** si dos indicadores caen por debajo del 50% del objetivo dos semanas seguidas, se ajusta pitch, canal o ICP en la siguiente reunion semanal.
+
+### 9.2 Cadencia mensual (revision de evidencia)
+
+**Frecuencia:** primer lunes de cada mes.  
+**Responsable:** Danilo (gestiona el cambio en archivos).  
+**Tiempo:** 30 minutos.  
+**Output:** nota corta en el archivo de ranking activo con cambios materiales del mes.
+
+**Que se revisa:**
+
+- nuevas multas RGPD / AI Act publicadas;
+- rondas de competidores nuevas (Kertos, Copla, Ketryx, etc.);
+- cambios en convocatorias Horizon Europe relevantes (deadlines, sub-topics);
+- feedback acumulado de prospects (objeciones, palabras del cliente, motivos de no-cierre);
+- nuevas ideas que el equipo quiera proponer.
+
+**Trigger:** si la evidencia justifica cambio en el ranking, se re-puntua las ideas afectadas en sesion adicional.
+
+### 9.3 Cadencia trimestral (re-ranking completo)
+
+**Frecuencia:** cada 3 meses (proximos: 24 agosto 2026, 24 noviembre 2026).  
+**Responsable:** todo el equipo fundador.  
+**Tiempo:** 2 horas.  
+**Output:** archivo `ranking-ideas-vX.Y.md` y `.html` con re-puntuacion completa, version git.
+
+**Que ocurre:**
+
+1. Releer criterios base + 40 criterios + filtros (incluir nuevos si los hay).
+2. Aplicar filtros de descarte al universo activo (las 18 ideas + nuevas candidatas - ideas muertas).
+3. Re-puntuar cada idea sobreviviente con los 10 criterios ponderados.
+4. Producir analisis detallado de competencia del nuevo top 5.
+5. Reescribir estrategia recomendada y criterios de pivot con umbrales numericos.
+6. Marcar ideas pausadas que pasan a estado "muerta" si cumplen condicion.
+
+**Trigger especial:** si un cambio regulatorio mayor (AI Act enforcement empieza, multa healthtech relevante) o un cierre de cliente importante ocurre antes del trimestre, se adelanta el re-ranking.
+
+## 10. Hipotesis actual
 
 Con estos pesos, **Aura Compliance** sigue siendo una hipotesis fuerte porque combina:
 
