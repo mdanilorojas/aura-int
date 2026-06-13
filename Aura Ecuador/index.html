@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aura Ecuador — Portal v1.0</title>
+<style>
+  :root {
+    --gray-100:#161616; --gray-90:#262626; --gray-80:#393939; --gray-70:#525252;
+    --gray-30:#c6c6c6; --gray-20:#e0e0e0; --gray-10:#f4f4f4; --white:#fff;
+    --blue-60:#0f62fe; --blue-50:#4589ff; --green-50:#24a148; --yellow-30:#f1c21b; --red-50:#da1e28;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--gray-100); color:var(--gray-10); font-family:"IBM Plex Sans","Segoe UI",Arial,sans-serif; font-size:16px; line-height:1.55; }
+  a { color:var(--blue-50); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .page { max-width:1200px; margin:0 auto; padding:clamp(2rem,6vw,5rem) clamp(1rem,4vw,3rem); }
+  .eyebrow { display:inline-block; color:var(--blue-50); font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+  h1 { margin:.75rem 0 1rem; font-size:clamp(2.5rem,6vw,5rem); line-height:.95; letter-spacing:-.05em; font-weight:400; }
+  .lede { max-width:780px; color:var(--gray-20); font-size:clamp(1.05rem,1.5vw,1.35rem); margin:0 0 3rem; }
+  h2 { margin:3.5rem 0 1rem; font-size:clamp(1.75rem,3vw,2.5rem); letter-spacing:-.03em; font-weight:400; }
+  h2:first-of-type { margin-top:0; }
+  .meta { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:1px solid var(--gray-70); border-left:1px solid var(--gray-70); margin:0 0 3rem; max-width:980px; }
+  .meta div { padding:.9rem 1rem; border-right:1px solid var(--gray-70); border-bottom:1px solid var(--gray-70); }
+  .meta span { display:block; color:var(--gray-30); font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; }
+  .meta strong { display:block; margin-top:.25rem; font-weight:400; font-size:.95rem; }
+  .grid { display:grid; gap:1px; background:var(--gray-80); border:1px solid var(--gray-80); }
+  .grid-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .grid-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .card { background:var(--gray-90); padding:1.5rem; display:flex; flex-direction:column; min-height:100%; text-decoration:none; color:var(--gray-10); transition:background .15s; }
+  .card:hover { background:var(--gray-80); text-decoration:none; }
+  .card--featured { background:var(--blue-60); color:var(--white); }
+  .card--featured:hover { background:var(--blue-50); }
+  .card--light { background:var(--gray-10); color:var(--gray-100); }
+  .card--light:hover { background:var(--white); }
+  .card .num { font-size:2.25rem; line-height:1; letter-spacing:-.05em; color:var(--blue-50); margin-bottom:.5rem; }
+  .card--featured .num { color:var(--white); }
+  .card h3 { margin:0 0 .5rem; font-size:1.35rem; font-weight:400; letter-spacing:-.02em; }
+  .card--featured h3 { font-size:1.6rem; }
+  .card p { margin:0; opacity:.85; font-size:.9rem; }
+  .card .tag { display:inline-block; padding:.15rem .55rem; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; background:var(--gray-80); color:var(--gray-10); margin-bottom:.5rem; }
+  .card--featured .tag { background:rgba(255,255,255,.2); color:var(--white); }
+  .card--light .tag { background:var(--gray-100); color:var(--white); }
+  .card .score { color:var(--blue-50); font-variant-numeric:tabular-nums; font-weight:500; }
+  .card--featured .score { color:var(--white); }
+  .topnav { display:flex; align-items:center; justify-content:space-between; padding:.9rem clamp(1rem,4vw,3rem); background:#0f0f0f; border-bottom:1px solid var(--gray-80); font-size:.85rem; }
+  .topnav .brand { color:var(--gray-20); }
+  .topnav .brand strong { color:var(--white); font-weight:500; }
+  .callout { border-left:4px solid var(--blue-60); background:var(--gray-90); padding:1.25rem; margin:1.5rem 0; }
+  .callout strong { color:var(--blue-50); }
+  footer { margin-top:5rem; padding-top:2rem; border-top:1px solid var(--gray-80); color:var(--gray-30); font-size:.85rem; }
+  footer a { color:var(--blue-50); }
+  @media (max-width:900px){ .grid-3{grid-template-columns:1fr 1fr;} .meta{grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .grid-3,.grid-2{grid-template-columns:1fr;} .meta{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <span class="brand"><strong>Aura</strong> Ecuador · Portal · v1.0</span>
+  <a href="https://github.com/mdanilorojas/aura-int">GitHub ↗</a>
+</nav>
+<main class="page">
+  <header>
+    <span class="eyebrow">Aura International · Producto Ecuador · Compliance LOPDP / UAFE</span>
+    <h1>Aura Ecuador.</h1>
+    <p class="lede">Evaluación de ideas y plan de negocio para un equipo de dos personas (Danilo + socio abogado) que construye una oferta de compliance para empresas ecuatorianas, sobre tres activos: el abogado colegiado, el producto EnRegla ya construido y un canal de TikTok legal de 25k seguidores. Misma metodología que Aura International, recalibrada para Ecuador.</p>
+    <div class="meta">
+      <div><span>Versión activa</span><strong>v1.0 · 2026-06-12</strong></div>
+      <div><span>Paso actual</span><strong>1 · Selección de idea</strong></div>
+      <div><span>Idea líder</span><strong>B2 Aura Compliance EC · 8.74</strong></div>
+      <div><span>Primer ingreso objetivo</span><strong>90 días</strong></div>
+    </div>
+  </header>
+
+  <div class="callout">
+    <strong>Estado.</strong> Paso 1 (evaluación y selección de idea) listo para revisión del equipo. Los siguientes pasos —elegir la idea y armar el plan de negocio— se ejecutan después de que Danilo y el abogado revisen este ranking.
+  </div>
+
+  <h2>Documento principal</h2>
+  <div class="grid grid-2">
+    <a class="card card--featured" href="00-brainstorming/02-visuales-generados/ranking-ideas-ecuador-v1.0.html">
+      <span class="tag">Resultado · Paso 1</span>
+      <h3>Ranking de ideas v1.0</h3>
+      <p>12 ideas evaluadas, top 5, análisis de competencia del #1, segmentos de clientes, playbook de preventa, plan de 14 y 90 días. Punto de entrada para elegir la idea.</p>
+    </a>
+    <a class="card" href="00-brainstorming/01-criterios-base/evaluation-process-ecuador-v1.0.html">
+      <span class="tag">Sistema</span>
+      <h3>Evaluation Process v1.0</h3>
+      <p>El motor que produce el ranking: 5 capas, 10 criterios ponderados, 7 filtros, qué cambió frente a Aura International y por qué.</p>
+    </a>
+  </div>
+
+  <h2>Fuentes y panel de control</h2>
+  <div class="grid grid-3">
+    <a class="card card--light" href="00-brainstorming/01-criterios-base/criterios-base-ecuador-v1.0.md">
+      <div class="num">01</div>
+      <span class="tag">Editable</span>
+      <h3>Criterios base Ecuador</h3>
+      <p>Panel de control del scoring: pesos, filtros, mapeo desde Aura International. Edita este archivo para recalibrar.</p>
+    </a>
+    <a class="card" href="00-brainstorming/03-documentos-fuente/ranking-ideas-ecuador-v1.0.md">
+      <div class="num">02</div>
+      <span class="tag">Fuente Markdown</span>
+      <h3>Ranking (fuente)</h3>
+      <p>El ranking completo en Markdown: scoring detallado, filtros, competencia, riesgos y plan. Fuente del HTML.</p>
+    </a>
+    <a class="card" href="00-brainstorming/03-documentos-fuente/01 Proyecto_Compliance_Ecuador_V2.md">
+      <div class="num">03</div>
+      <span class="tag">Documento del socio</span>
+      <h3>Proyecto Compliance EC V2</h3>
+      <p>El documento original del abogado: la visión de plataforma de 12 capas. Fuente de las ideas del grupo C.</p>
+    </a>
+  </div>
+
+  <h2>Los pasos</h2>
+  <div class="grid grid-3">
+    <div class="card"><div class="num">1</div><span class="tag">Aquí estamos</span><h3>Seleccionar la idea</h3><p>Evaluar las 12 ideas, recomendar el top 5, elegir con el equipo. Entregable: este ranking.</p></div>
+    <div class="card"><div class="num">2</div><span class="tag">Siguiente</span><h3>Validar / preventa</h3><p>Landing + TikTok + diagnóstico. Confirmar demanda y precio antes de construir más.</p></div>
+    <div class="card"><div class="num">3</div><span class="tag">Después</span><h3>Plan de negocio</h3><p>De la idea elegida: oferta, pricing, operación, finanzas, roadmap de EnRegla.</p></div>
+  </div>
+
+  <footer>
+    <p>Aura Ecuador · producto de Aura International · v1.0 · 2026-06-12 · Histórico en <a href="https://github.com/mdanilorojas/aura-int">github.com/mdanilorojas/aura-int</a></p>
+  </footer>
+</main>
+</body>
+</html>

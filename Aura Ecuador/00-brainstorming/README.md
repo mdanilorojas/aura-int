@@ -1,70 +1,40 @@
-# 00 Brainstorming
+# 00 Brainstorming — Aura Ecuador
 
-Espacio para explorar ideas de negocio, contexto del equipo, restricciones, filtros, oportunidades y recomendaciones iniciales.
+Evaluación de ideas de negocio para Ecuador (equipo de 2: Danilo + socio abogado), sobre tres activos: abogado colegiado, EnRegla (producto ya construido) y canal TikTok legal de 25k. Misma metodología que Aura International, recalibrada para Ecuador.
 
 ## Versión activa
 
-**v2.0** (2026-05-24). Cambios respecto a v1.1: sub-criterio 4.8.b (concentración de riesgo), filtros 5.7 (jurisdicción) y 5.8 (lista de prospects nombrada), capas 8 y 9 del proceso (monitoreo semanal y cadencia de re-evaluación), palancas comerciales activadas (#12 retainer post-audit, #2 tier-pricing, #1 anchor Big4, #11 outbound multi-fundador), assets fundacionales (lista de clientes nominales, playbook venta sin empresa, validación externa).
+**v1.0** (2026-06-12). Primera evaluación. Idea líder: **B2 Aura Compliance EC** (8.74) — diagnóstico de compliance → retainer mensual sobre EnRegla.
 
 ## Estructura
 
 ### `01-criterios-base`
-
-Archivos fuente del sistema de evaluación.
-
-**Activos (v2.0):**
-
-- `criterios-base-ideas.md` (panel de control editable)
-- `evaluation-process-v2.0.md`
-- `evaluation-process-v2.0.html`
-- `mejoras-iteracion-1.md` (fuente de los cambios v1.1 → v2.0)
-
-**Históricos:**
-
-- `evaluation-process-v1.1.md`
-- `evaluation-process-v1.1.html`
-
-Cuando quieras recalibrar el análisis, edita `criterios-base-ideas.md` primero.
+- `criterios-base-ecuador-v1.0.md` — panel de control editable (pesos, filtros, mapeo desde Aura International). **Edita este primero para recalibrar.**
+- `evaluation-process-ecuador-v1.0.md` / `.html` — explica el sistema de 5 capas y qué cambió frente a Aura International.
 
 ### `02-visuales-generados`
-
-HTML navegables del ranking de ideas.
-
-**Activos:**
-
-- `ranking-ideas-v2.0.html` (versión actual con palancas y plan de 14 días)
-
-**Históricos:**
-
-- `ranking-ideas-v1.1.html`
-- `Kickoff doc v1.1.html`
+- `ranking-ideas-ecuador-v1.0.html` — ranking navegable (documento principal de revisión).
+- `styles.css` — sistema de diseño Carbon compartido.
 
 ### `03-documentos-fuente`
+- `ranking-ideas-ecuador-v1.0.md` — fuente Markdown del ranking.
+- `01 Proyecto_Compliance_Ecuador_V2.md` — documento original del socio (visión de plataforma 12 capas).
 
-Documentos fuente y bitácora del proceso.
+## Diferencias clave frente a Aura International
 
-**Activos:**
+- Dos criterios nuevos con peso: **recurrencia/MRR** (12%) y **canal propio TikTok** (8%).
+- "Encaje con el equipo" deja de ser peso (con 2 personas no discrimina).
+- Filtro de **jurisdicción eliminado** (el socio es abogado colegiado en Ecuador).
+- **Concentración de riesgo** pasa de peso a filtro duro (>70% horas de Danilo).
 
-- `ranking-ideas-v2.0.md` (fuente del ranking actual)
+Tabla completa de mapeo de filtros en `criterios-base-ecuador-v1.0.md` §5b.
 
-**Históricos:**
+## Gobierno (2 personas)
 
-- `ranking-ideas-v1.1.md`
-- `Kickoff doc v1.md`, `Kickoff doc v1.1.md`, `Kickoff doc v1.1 - Parte II - Recomendacion.md`
-- `proceso-evaluacion-ideas.md`
+- **Semanal** (viernes, 15 min): dashboard de leading indicators (videos TikTok + leads, outbound, reuniones, propuestas, preventas).
+- **Mensual** (primer lunes, 30 min): nota de cambios materiales (SPDP, UAFE, competidores, objeciones).
+- **Re-ranking**: solo por evidencia (sin cadencia trimestral rígida).
 
-### `_subagentes-pasada-1`
+## Próximo paso
 
-Salidas crudas auditables de los subagentes que produjeron `mejoras-iteracion-1.md`. Referencia para validar evidencia detrás de las palancas y los assets.
-
-- `C-validacion-externa.md` (benchmarks pricing, multas, conferencias, partners, comparables).
-- `D-clientes-potenciales.md` (50+ clientes nominales con dolor específico y prioridad).
-- `E-playbook-venta-sin-empresa.md` (legal, facturación, credibilidad, restricciones de Mariam, trigger SL).
-
-## Cadencia de re-evaluación (Capa 9 del proceso)
-
-- **Semanal** (viernes, Bastien, 15 min): dashboard de leading indicators.
-- **Mensual** (primer lunes, Danilo, 30 min): nota corta con cambios materiales.
-- **Trimestral** (cada 3 meses, equipo, 2 horas): re-ranking completo. Próximo: **24 agosto 2026**.
-
-Detalle en `criterios-base-ideas.md` sección 9.
+El equipo revisa este ranking, elige la idea, y solo entonces se arma el plan de negocio (Paso 3).
