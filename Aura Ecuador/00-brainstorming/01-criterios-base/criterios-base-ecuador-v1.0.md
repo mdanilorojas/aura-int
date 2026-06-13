@@ -86,7 +86,7 @@ Cambios estructurales respecto a Aura International:
 
 **Objetivo:** ¿el ingreso se repite mes a mes sin re-vender?
 
-**Puntuación alta:** suscripción (EnRegla), retainer (DPO externo, oficial de cumplimiento externo), monitoreo regulatorio anual, soporte continuo. La obligación del cliente es **continua** (los datos personales se siguen tratando, los permisos se siguen venciendo), no un evento único.
+**Puntuación alta:** suscripción (EnRegla), retainer (DPD —Delegado de Protección de Datos— externo, oficial de cumplimiento externo), monitoreo regulatorio anual, soporte continuo. La obligación del cliente es **continua** (los datos personales se siguen tratando, los permisos se siguen venciendo), no un evento único.
 
 **Importante:** una idea que solo vende proyectos puntuales de alto esfuerzo, sin cola recurrente, no puede sacar nota alta aquí aunque su ticket inicial sea bueno.
 

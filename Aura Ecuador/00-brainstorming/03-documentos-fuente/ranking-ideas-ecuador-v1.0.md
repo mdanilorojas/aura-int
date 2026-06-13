@@ -22,7 +22,7 @@ Las ideas de plataforma completa del documento V2 (**C1, C2**) son el **destino,
 |---:|---|---|---:|---|
 | 1 | **B2 Aura Compliance EC** | B | **8.74** | Spearhead · diagnóstico → retainer sobre EnRegla |
 | 2 | A1 Diagnóstico LOPDP Express | A | **7.80** | Cash táctico · wedge y lead-gen de B2 |
-| 3 | A2 Implementación LOPDP + DPO externo | A | **7.68** | Entrega pesada · ticket mayor del mismo cliente |
+| 3 | A2 Implementación LOPDP + DPD (Delegado de Protección de Datos) externo | A | **7.68** | Entrega pesada · ticket mayor del mismo cliente |
 | 4 | B1 EnRegla SaaS PYME | B | **7.49** | Producto recurrente directo · preventa |
 | 5 | B3 EnRegla white-label estudios/contadores | B | **7.18** | Expansión por partners · distribución de terceros |
 
@@ -32,7 +32,7 @@ Las ideas de plataforma completa del documento V2 (**C1, C2**) son el **destino,
 |---:|---|---:|---|
 | 1 | B2 Aura Compliance EC | **8.74** | Prioridad inmediata |
 | 2 | A1 Diagnóstico LOPDP Express | **7.80** | Candidata fuerte (wedge de B2) |
-| 3 | A2 Implementación LOPDP + DPO externo | **7.68** | Candidata fuerte |
+| 3 | A2 Implementación LOPDP + DPD (Delegado de Protección de Datos) externo | **7.68** | Candidata fuerte |
 | 4 | B1 EnRegla SaaS PYME | **7.49** | Candidata fuerte |
 | 5 | B3 EnRegla white-label estudios | **7.18** | Backup / expansión |
 | 6 | B4 Oficial de cumplimiento UAFE externo | **7.01** | Backup (ojo responsabilidad personal) |
@@ -94,7 +94,7 @@ Pesos: Ingresos 16 · Urgencia 14 · Velocidad 12 · Recurrencia 12 · Margen 11
 
 Baja sola por **recurrencia** (4): un diagnóstico puntual no se repite. Por eso es el wedge de B2, no un negocio por sí solo.
 
-### 3 · A2 Implementación LOPDP + DPO externo · 7.68
+### 3 · A2 Implementación LOPDP + DPD (Delegado de Protección de Datos) externo · 7.68
 
 | Criterio | Peso | Nota | Aporte |
 |---|---:|---:|---:|
