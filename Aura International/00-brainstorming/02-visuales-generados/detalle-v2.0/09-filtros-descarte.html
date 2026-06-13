@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Filtros de descarte · Aura v2.0</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav">
+  <span class="brand"><strong>Aura</strong> · v2.0 · Filtros aplicados</span>
+  <a class="back" href="../../../index.html">← Landing</a>
+</nav>
+<main class="page">
+  <header>
+    <span class="eyebrow">Filtros · reglas duras · no negociables</span>
+    <h1>Los 8 filtros de descarte.</h1>
+    <p class="lede">Los filtros no son pesos. Son reglas duras que pueden pausar una idea aunque tenga buen puntaje. Su función es disciplinar el sistema y evitar que una idea atractiva consuma ciclos cuando algo crítico falla. v2.0 amplía de 6 a 8 filtros con dos nuevos (5.7 y 5.8) que reordenan el backup completo.</p>
+    <div class="meta">
+      <div><span>Total filtros</span><strong>8 (6 v1.1 + 2 nuevos)</strong></div>
+      <div><span>Ideas pausadas v2.0</span><strong>12 de 18</strong></div>
+      <div><span>Filtros nuevos v2.0</span><strong>5.7 jurisdicción · 5.8 prospects</strong></div>
+      <div><span>Diferencia con peso</span><strong>Hard rule (sí/no)</strong></div>
+    </div>
+  </header>
+
+  <h2>Filtros heredados de v1.1</h2>
+
+  <h3>5.1 — Sin comprador claro</h3>
+  <table>
+    <thead><tr><th>Pregunta</th><th>Regla</th><th>Ideas afectadas</th></tr></thead>
+    <tbody>
+      <tr><td>¿Quién firma y de qué presupuesto sale?</td><td>Si no hay comprador identificable, no entra al top 5.</td><td><strong>C2 TrialMatcher</strong> (marketplace con comprador incierto)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.2 — Sin primera oferta vendible</h3>
+  <table>
+    <thead><tr><th>Pregunta</th><th>Regla</th><th>Ideas afectadas</th></tr></thead>
+    <tbody>
+      <tr><td>¿Qué se puede vender en menos de 60 días?</td><td>Si exige construir software antes de vender, baja prioridad.</td><td><strong>B4 Patient Journey OS</strong> (requiere plataforma SaaS completa pre-venta)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.3 — Riesgo clínico alto</h3>
+  <table>
+    <thead><tr><th>Pregunta</th><th>Regla</th><th>Ideas afectadas</th></tr></thead>
+    <tbody>
+      <tr><td>¿La idea influye en decisiones clínicas?</td><td>Evitar salvo que sea informativa, no diagnóstica ni terapéutica.</td><td><strong>B3 Tumor Board AI</strong> (requiere CE marking + responsabilidad médica directa)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.4 — CAC incierto o alto</h3>
+  <table>
+    <thead><tr><th>Pregunta</th><th>Regla</th><th>Ideas afectadas</th></tr></thead>
+    <tbody>
+      <tr><td>¿Cómo llegamos al cliente sin gastar demasiado?</td><td>Si depende de ads B2C, volumen masivo o viralidad, baja prioridad.</td><td><strong>C6 Predictive Health Survivors</strong> (B2C consumer), <strong>C2 TrialMatcher</strong> (marketplace)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.5 — Margen artesanal</h3>
+  <table>
+    <thead><tr><th>Pregunta</th><th>Regla</th><th>Ideas afectadas</th></tr></thead>
+    <tbody>
+      <tr><td>¿Crece solo sumando horas humanas?</td><td>Si no se puede productizar, solo sirve como puente táctico.</td><td><strong>A6 EU Tender Strategist</strong> (margen bajo, mucho trabajo, fee fijo)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.6 — Capital inicial excesivo</h3>
+  <table>
+    <thead><tr><th>Pregunta</th><th>Regla</th><th>Ideas afectadas</th></tr></thead>
+    <tbody>
+      <tr><td>¿Necesita más de 30k antes de validar?</td><td>Si requiere inversión fuerte pre-ingreso, queda fuera de la fase inicial.</td><td><strong>C3 Pharma Knowledge Vault</strong>, <strong>C4 Hospital Innovation OS</strong>, <strong>C5 Biomarker Insights</strong>, <strong>B4 Patient Journey OS</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Filtros nuevos en v2.0</h2>
+
+  <h3>5.7 — Jurisdicción del comprador incompatible</h3>
+  <div class="callout callout--blue">
+    <p><strong>Por qué se añadió:</strong> el equipo no tiene empresa constituida ni licencia legal vinculante UE (Joseph es abogado Ecuador, sin colegio UE). En v1.1 esto solo se mencionaba como riesgo de A1 sin afectar el score. v2.0 lo convierte en filtro duro.</p>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Pregunta</th><th>Regla</th><th>Excepción</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>¿El comprador exige un vehículo legal, una licencia profesional o una representación local que el equipo no tiene hoy y no puede conseguir en menos de 60 días?</td><td>Si sí, pausar la idea.</td><td>Operar vía partner externo a coste razonable y mantener el margen (ver Asset E).</td></tr>
+    </tbody>
+  </table>
+  <h4>Ideas afectadas en v2.0</h4>
+  <ul>
+    <li><strong>B3 Tumor Board AI</strong> (refuerzo): requiere CE marking obligatorio + responsabilidad clínica directa. No mitigable vía partner.</li>
+    <li><strong>A5 Healthtech DD</strong> (degradada): claims legales formales para inversores VC. Mitigable vía abogado UE externo (Premium tier) pero ralentiza ciclo.</li>
+    <li><strong>C4 Hospital Innovation OS</strong>: venta pública UE requiere proveedor societario europeo. Sin SL no entra.</li>
+  </ul>
+
+  <h3>5.8 — Sin lista de prospects nombrada</h3>
+  <div class="callout callout--blue">
+    <p><strong>Por qué se añadió:</strong> en v1.1 varias ideas tenían descripción genérica del cliente ("healthtech series A-B en UE") sin lista nominal de organizaciones accesibles. v2.0 obliga a tener Asset D antes de entrar al top 5.</p>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Pregunta</th><th>Regla</th><th>Excepción</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>¿Existen al menos 10 prospectos nombrados (organización + comprador estimado + dolor específico) accesibles por la red del equipo, antes de iniciar la prospección?</td><td>Si no, no entra al top 5.</td><td>Se levanta el filtro presentando lista nominal con razones específicas (ver Asset D).</td></tr>
+    </tbody>
+  </table>
+  <h4>Ideas afectadas en v2.0</h4>
+  <p>Pausan 5 ideas del backup por no tener Asset D específico:</p>
+  <ul>
+    <li><strong>A5 Healthtech DD</strong>: lista de VCs / family offices no producida en iteración 1.</li>
+    <li><strong>B2 Compliance Copilot</strong>: clientes serían sub-segmento de A1; decisión de reabsorber como funcionalidad.</li>
+    <li><strong>B6 Scientific Writing Studio</strong>: lista de CROs / investigadores no producida.</li>
+    <li><strong>A3 Oncology Trials Insights</strong>: lista de Medical Affairs específica para "trials insights" no producida.</li>
+    <li><strong>A6 EU Tender Strategist</strong>: lista de PYMES healthtech con tenders activos no producida.</li>
+  </ul>
+
+  <h2>Resumen completo de filtros aplicados v2.0</h2>
+  <table>
+    <thead>
+      <tr><th>Idea</th><th>Filtros que fallan</th><th>Mitigable</th><th>Decisión</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A5 Healthtech DD</strong></td><td>5.7 (parcial) + 5.8</td><td>Sí, vía Asset D específico VC + abogado UE externo</td><td>Pausada hasta producir lista nominal</td></tr>
+      <tr><td><strong>B2 Compliance Copilot</strong></td><td>5.8</td><td>No (reabsorbida en A1)</td><td>Pausada; integrar como funcionalidad de A1 fase 2</td></tr>
+      <tr><td><strong>B6 Scientific Writing Studio</strong></td><td>5.5 + 5.8</td><td>Sí, con lista CROs nominal</td><td>Pausada</td></tr>
+      <tr><td><strong>A3 Oncology Trials Insights</strong></td><td>5.8</td><td>Sí, vía red Mariam Medical Affairs</td><td>Pausada hasta producir lista nominal</td></tr>
+      <tr><td><strong>A6 EU Tender Strategist</strong></td><td>5.5 + 5.8</td><td>Difícil (margen artesanal)</td><td>Pausada; revisar q3-2026</td></tr>
+      <tr><td><strong>B3 Tumor Board AI</strong></td><td>5.3 + 5.7</td><td>No (CE marking obligatorio)</td><td>Pausada; reabrir si modelo cambia a soporte no clínico</td></tr>
+      <tr><td><strong>B4 Patient Journey OS</strong></td><td>5.2 + 5.6</td><td>Difícil (ciclo venta &gt;12 meses)</td><td>Pausada</td></tr>
+      <tr><td><strong>C2 TrialMatcher</strong></td><td>5.1 + 5.4</td><td>Difícil (marketplace + comprador incierto)</td><td>Pausada</td></tr>
+      <tr><td><strong>C3 Pharma Knowledge Vault</strong></td><td>5.6 + incumbentes</td><td>Difícil (Veeva/IQVIA dominan)</td><td>Pausada</td></tr>
+      <tr><td><strong>C4 Hospital Innovation OS</strong></td><td>5.6 + 5.7</td><td>Difícil (venta pública lenta + sin SL)</td><td>Pausada</td></tr>
+      <tr><td><strong>C5 Biomarker Insights</strong></td><td>5.6 + acceso a datos</td><td>Difícil (capital + alianzas)</td><td>Pausada</td></tr>
+      <tr><td><strong>C6 Predictive Health Survivors</strong></td><td>5.4 + ético/regulatorio</td><td>Solo con partner B2B2C</td><td><strong>Candidata a matar q3-2026</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Filtros que NO se activaron (top 5 los pasa todos)</h2>
+  <div class="grid grid-3">
+    <article class="tile">
+      <span class="tag tag--green">A1</span>
+      <h3>Aura Compliance</h3>
+      <p>5.7: mitigado vía abogado UE externo (incluido en Premium). Resto: pasa todos los filtros.</p>
+    </article>
+    <article class="tile">
+      <span class="tag tag--green">A4</span>
+      <h3>AI Governance Bootcamp</h3>
+      <p>Workshop formativo: no toca decisión clínica, no requiere CE marking. Pasa todos los filtros.</p>
+    </article>
+    <article class="tile">
+      <span class="tag tag--green">A2</span>
+      <h3>GrantOps</h3>
+      <p>Cliente paga del propio grant (5.1 OK). Servicio recurrente vendible en menos de 60 días (5.2 OK). Sin claims clínicos (5.3 OK).</p>
+    </article>
+    <article class="tile">
+      <span class="tag tag--green">B5</span>
+      <h3>Regulatory Watch</h3>
+      <p>Boletín + Q&amp;A: no toca decisión clínica. Bajo costo operativo. Embebido en A1.</p>
+    </article>
+    <article class="tile">
+      <span class="tag tag--green">B1</span>
+      <h3>MedCases EU</h3>
+      <p>5.3 mitigado con disclaimers explícitos ("decision support, not decision making"). 5.8 cumplido con lista nominal Asset D (10 farmas).</p>
+    </article>
+  </div>
+
+  <h2>Cuándo se reabre un filtro</h2>
+  <table>
+    <thead>
+      <tr><th>Filtro</th><th>Trigger para reabrir</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>5.1 Sin comprador claro</td><td>Aparece comprador identificable con presupuesto demostrado</td></tr>
+      <tr><td>5.2 Sin oferta vendible &lt;60d</td><td>Se diseña MVP manual o servicio puente vendible rápido</td></tr>
+      <tr><td>5.3 Riesgo clínico alto</td><td>Modelo cambia a soporte no clínico (no diagnóstica ni terapéutica)</td></tr>
+      <tr><td>5.4 CAC alto / B2C</td><td>Aparece partner B2B2C (aseguradora, empresa) que absorbe el CAC</td></tr>
+      <tr><td>5.5 Margen artesanal</td><td>Se productiza (templates, software, plataforma)</td></tr>
+      <tr><td>5.6 Capital excesivo</td><td>Aparece grant Horizon Europe / EIT que cubre validación</td></tr>
+      <tr><td>5.7 Jurisdicción</td><td>Se constituye SL exprés España o se firma partnership con abogado UE colegiado</td></tr>
+      <tr><td>5.8 Sin prospects nombrados</td><td>Se produce lista nominal de ≥10 con dolor específico (ver Asset D)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Reglas de combinación de filtros</h2>
+  <ul>
+    <li>Una idea con <strong>1 filtro fallido</strong> y mitigación clara puede mantenerse en backup, no pausarse.</li>
+    <li>Una idea con <strong>2 filtros fallidos simultáneos sin mitigación viable</strong> se pausa automáticamente.</li>
+    <li>Una idea con <strong>3 filtros fallidos</strong> pasa directo a candidata a matar.</li>
+    <li>Las ideas pausadas se revisan cada re-ranking trimestral; si están pausadas <strong>2 trimestres consecutivos sin evidencia nueva</strong>, pasan a estado "muerta".</li>
+  </ul>
+
+  <nav class="nav-prev-next">
+    <a href="08-cambios-v1-v2.html"><span>← Anterior</span><strong>Cambios v1.1 → v2.0</strong></a>
+    <a class="next" href="10-clientes-potenciales.html"><span>Siguiente →</span><strong>Clientes potenciales</strong></a>
+  </nav>
+
+  <footer>
+    <p>Aura · v2.0 · Página 9 de 12 · <a href="../../../index.html">Portal</a></p>
+  </footer>
+</main>
+</body>
+</html>
