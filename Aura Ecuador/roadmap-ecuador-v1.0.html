@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roadmap · Aura Ecuador v1.0</title>
+<style>
+  :root {
+    --gray-100:#161616; --gray-90:#262626; --gray-80:#393939; --gray-70:#525252; --gray-60:#6f6f6f;
+    --gray-30:#c6c6c6; --gray-20:#e0e0e0; --gray-10:#f4f4f4; --white:#fff;
+    --blue-60:#0f62fe; --blue-50:#4589ff; --green-50:#24a148; --green-40:#42be65; --yellow-30:#f1c21b; --red-50:#da1e28;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--gray-100); color:var(--gray-10); font-family:"IBM Plex Sans","Segoe UI",Arial,sans-serif; font-size:16px; line-height:1.55; }
+  a { color:var(--blue-50); text-decoration:none; } a:hover { text-decoration:underline; }
+  .topnav { position:sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between; padding:.9rem clamp(1rem,4vw,3rem); background:#0f0f0f; border-bottom:1px solid var(--gray-80); font-size:.85rem; }
+  .topnav .brand { color:var(--gray-20); } .topnav .brand strong { color:var(--white); font-weight:500; }
+  .page { max-width:1120px; margin:0 auto; padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,3rem); }
+  .eyebrow { display:inline-block; color:var(--blue-50); font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+  h1 { margin:.75rem 0 1rem; font-size:clamp(2.5rem,6vw,5rem); line-height:.95; letter-spacing:-.05em; font-weight:400; }
+  .lede { max-width:780px; color:var(--gray-20); font-size:clamp(1.05rem,1.5vw,1.35rem); margin:0 0 2.5rem; }
+  h2 { margin:3.5rem 0 1rem; font-size:clamp(1.75rem,3vw,2.4rem); letter-spacing:-.03em; font-weight:400; }
+  h2:first-of-type { margin-top:1rem; }
+  h3 { margin:1.25rem 0 .75rem; font-size:1.35rem; font-weight:400; letter-spacing:-.02em; }
+  h4 { margin:1rem 0 .5rem; font-size:1rem; font-weight:600; }
+  p { margin:0 0 1rem; } ul { margin:0 0 1rem; padding-left:1.2rem; } li { margin-bottom:.3rem; }
+  code { background:var(--gray-90); border:1px solid var(--gray-80); padding:.1rem .35rem; font-family:"IBM Plex Mono",Consolas,monospace; font-size:.85em; }
+  .meta { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:1px solid var(--gray-70); border-left:1px solid var(--gray-70); margin:0 0 2.5rem; max-width:980px; }
+  .meta div { padding:.9rem 1rem; border-right:1px solid var(--gray-70); border-bottom:1px solid var(--gray-70); }
+  .meta span { display:block; color:var(--gray-30); font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; }
+  .meta strong { display:block; margin-top:.25rem; font-weight:400; font-size:.95rem; }
+  .grid { display:grid; gap:1px; background:var(--gray-80); border:1px solid var(--gray-80); }
+  .grid-2 { grid-template-columns:repeat(2,minmax(0,1fr)); } .grid-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .tile { background:var(--gray-90); padding:1.25rem; } .tile--light { background:var(--gray-10); color:var(--gray-100); } .tile--blue { background:var(--blue-60); color:#fff; }
+  .tag { display:inline-block; padding:.15rem .55rem; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; background:var(--gray-80); color:var(--gray-10); margin-bottom:.5rem; }
+  .tag--blue { background:var(--blue-60); color:#fff; } .tag--green { background:var(--green-50); color:#fff; } .tag--yellow { background:var(--yellow-30); color:var(--gray-100); } .tag--red { background:var(--red-50); color:#fff; } .tag--gray { background:var(--gray-70); color:#fff; }
+  table { width:100%; border-collapse:collapse; background:var(--gray-90); border:1px solid var(--gray-80); margin-bottom:1rem; }
+  th,td { padding:.7rem 1rem; border-bottom:1px solid var(--gray-80); vertical-align:top; text-align:left; font-size:.9rem; }
+  th { color:var(--gray-30); font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; font-weight:600; }
+  .callout { border-left:4px solid var(--yellow-30); background:var(--gray-90); padding:1.25rem; margin:1.5rem 0; }
+  .callout strong { color:var(--yellow-30); } .callout--blue { border-left-color:var(--blue-60); } .callout--blue strong { color:var(--blue-50); }
+  .callout--green { border-left-color:var(--green-50); } .callout--green strong { color:var(--green-40); }
+  .flow { background:#0f0f0f; border:1px solid var(--gray-80); padding:1.25rem; overflow-x:auto; margin-bottom:1.5rem; }
+  svg text { font-family:"IBM Plex Sans","Segoe UI",Arial,sans-serif; }
+  /* phase rail */
+  .phase { display:grid; grid-template-columns:2.5rem 1fr; gap:1rem; }
+  .phase .rail { position:relative; }
+  .phase .dot { width:1.5rem; height:1.5rem; border-radius:50%; border:3px solid var(--gray-70); background:var(--gray-100); margin:.2rem auto 0; }
+  .phase .line { position:absolute; top:1.7rem; bottom:-1.5rem; left:50%; width:2px; background:var(--gray-80); transform:translateX(-50%); }
+  .phase:last-child .line { display:none; }
+  .phase.done .dot { border-color:var(--green-50); background:var(--green-50); }
+  .phase.current .dot { border-color:var(--blue-50); background:var(--blue-60); box-shadow:0 0 0 4px rgba(15,98,254,.25); }
+  .phase .body { padding-bottom:2rem; }
+  .phase .body .box { background:var(--gray-90); border:1px solid var(--gray-80); padding:1.25rem; }
+  .phase.current .body .box { border-color:var(--blue-50); }
+  .gate { display:flex; align-items:center; gap:.6rem; margin:.75rem 0 0; padding:.6rem .9rem; background:#0f0f0f; border:1px dashed var(--gray-70); font-size:.85rem; color:var(--gray-20); }
+  .gate b { color:var(--yellow-30); }
+  .pct { font-variant-numeric:tabular-nums; }
+  footer { margin-top:5rem; padding-top:2rem; border-top:1px solid var(--gray-80); color:var(--gray-30); font-size:.85rem; }
+  footer a { color:var(--blue-50); }
+  @media (max-width:900px){ .grid-3,.meta{grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .grid-2,.grid-3,.meta{grid-template-columns:1fr;} table{display:block;overflow-x:auto;} }
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <span class="brand"><strong>Aura</strong> Ecuador · v1.0 · Roadmap end-to-end</span>
+  <a class="back" href="index.html">← Portal</a>
+</nav>
+<main class="page">
+  <header>
+    <span class="eyebrow">Plan de principio a fin · estado actual</span>
+    <h1>Roadmap Aura Ecuador.</h1>
+    <p class="lede">Dónde estamos hoy y el camino completo hasta el ingreso recurrente y la plataforma. Equipo de dos (Danilo + socio abogado), sobre tres activos: abogado colegiado, EnRegla ya construido y canal TikTok de 25k. Objetivo: primer ingreso en 90 días, motor recurrente sobre EnRegla.</p>
+    <div class="meta">
+      <div><span>Versión</span><strong>v1.0 · 2026-06-12</strong></div>
+      <div><span>Fase actual</span><strong>1 · Selección de idea</strong></div>
+      <div><span>Idea líder</span><strong>B2 Aura Compliance EC</strong></div>
+      <div><span>Próximo hito</span><strong>1ª preventa (día 14)</strong></div>
+    </div>
+  </header>
+
+  <div class="callout callout--blue">
+    <strong>Dónde estamos ahora.</strong> Fundación lista: repositorio, metodología adaptada de Aura International, EnRegla construido (funcional, falta deploy productivo) y la evaluación de 12 ideas con recomendación <strong>B2 · Aura Compliance EC (8.74)</strong>. Falta una sola cosa para arrancar la ejecución: que el equipo <strong>elija la idea</strong>. Todo lo demás está listo para empezar.
+  </div>
+
+  <h2>Línea de tiempo</h2>
+  <div class="flow">
+    <svg viewBox="0 0 1000 240" width="100%" role="img" aria-label="Línea de tiempo de fases">
+      <defs>
+        <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#525252"/></marker>
+      </defs>
+      <!-- axis -->
+      <line x1="30" y1="150" x2="970" y2="150" stroke="#393939" stroke-width="2"/>
+      <!-- segments: x positions -->
+      <!-- F0 done -->
+      <rect x="30" y="120" width="120" height="30" fill="#24a148"/>
+      <text x="90" y="140" fill="#fff" font-size="12" text-anchor="middle" font-weight="600">Fase 0</text>
+      <text x="90" y="172" fill="#c6c6c6" font-size="11" text-anchor="middle">Fundación</text>
+      <text x="90" y="110" fill="#42be65" font-size="10" text-anchor="middle">✓ hecho</text>
+      <!-- F1 current -->
+      <rect x="156" y="116" width="120" height="38" fill="#0f62fe" stroke="#4589ff" stroke-width="2"/>
+      <text x="216" y="139" fill="#fff" font-size="12" text-anchor="middle" font-weight="600">Fase 1</text>
+      <text x="216" y="172" fill="#c6c6c6" font-size="11" text-anchor="middle">Elegir idea</text>
+      <text x="216" y="108" fill="#4589ff" font-size="10" text-anchor="middle">▸ aquí</text>
+      <!-- F2 -->
+      <rect x="282" y="122" width="150" height="26" fill="#262626" stroke="#525252"/>
+      <text x="357" y="139" fill="#e0e0e0" font-size="12" text-anchor="middle">Fase 2</text>
+      <text x="357" y="172" fill="#6f6f6f" font-size="11" text-anchor="middle">Preventa · sem 1-4</text>
+      <!-- F3 -->
+      <rect x="438" y="122" width="120" height="26" fill="#262626" stroke="#525252"/>
+      <text x="498" y="139" fill="#e0e0e0" font-size="12" text-anchor="middle">Fase 3</text>
+      <text x="498" y="172" fill="#6f6f6f" font-size="11" text-anchor="middle">Plan negocio</text>
+      <!-- F4 -->
+      <rect x="564" y="122" width="150" height="26" fill="#262626" stroke="#525252"/>
+      <text x="639" y="139" fill="#e0e0e0" font-size="12" text-anchor="middle">Fase 4</text>
+      <text x="639" y="172" fill="#6f6f6f" font-size="11" text-anchor="middle">Clientes · mes 1-3</text>
+      <!-- F5 -->
+      <rect x="720" y="122" width="150" height="26" fill="#262626" stroke="#525252"/>
+      <text x="795" y="139" fill="#e0e0e0" font-size="12" text-anchor="middle">Fase 5</text>
+      <text x="795" y="172" fill="#6f6f6f" font-size="11" text-anchor="middle">Recurrente · mes 3-9</text>
+      <!-- F6 -->
+      <rect x="876" y="122" width="94" height="26" fill="#1b1b1b" stroke="#393939"/>
+      <text x="923" y="139" fill="#c6c6c6" font-size="12" text-anchor="middle">Fase 6</text>
+      <text x="923" y="172" fill="#6f6f6f" font-size="11" text-anchor="middle">Plataforma</text>
+      <!-- milestone markers -->
+      <circle cx="282" cy="150" r="5" fill="#f1c21b"/>
+      <text x="282" y="205" fill="#f1c21b" font-size="10" text-anchor="middle">idea elegida</text>
+      <circle cx="564" cy="150" r="5" fill="#f1c21b"/>
+      <text x="564" y="205" fill="#f1c21b" font-size="10" text-anchor="middle">1ª preventa</text>
+      <circle cx="720" cy="150" r="5" fill="#42be65"/>
+      <text x="720" y="205" fill="#42be65" font-size="10" text-anchor="middle">3 retainers (90d)</text>
+      <circle cx="876" cy="150" r="5" fill="#42be65"/>
+      <text x="876" y="222" fill="#42be65" font-size="10" text-anchor="middle">MRR estable</text>
+      <text x="30" y="40" fill="#f4f4f4" font-size="14" font-weight="600">Hoy → 9+ meses</text>
+      <text x="30" y="60" fill="#6f6f6f" font-size="11">verde = hecho · azul = en curso · gris = futuro · ◆ = hito</text>
+    </svg>
+  </div>
+
+  <h2>Las fases en detalle</h2>
+
+  <!-- FASE 0 -->
+  <div class="phase done">
+    <div class="rail"><div class="dot"></div><div class="line"></div></div>
+    <div class="body">
+      <div class="box">
+        <span class="tag tag--green">Completado · 2026-06-12</span>
+        <h3>Fase 0 · Fundación</h3>
+        <p>Montar la base para poder decidir y ejecutar sin improvisar.</p>
+        <ul>
+          <li>Repositorio reorganizado: <code>Aura International/</code> + <code>Aura Ecuador/</code>, publicado en GitHub.</li>
+          <li>Metodología de evaluación adaptada de Aura International v2.0 al contexto Ecuador (2 personas, EnRegla, canal TikTok, jurisdicción resuelta).</li>
+          <li><strong>EnRegla construido</strong> — SaaS de compliance/permisos funcional (falta deploy productivo).</li>
+          <li>Evaluación de 12 ideas → recomendación <strong>B2 Aura Compliance EC (8.74)</strong>, con análisis de competencia, segmentos de cliente y plan 14/90 días.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASE 1 -->
+  <div class="phase current">
+    <div class="rail"><div class="dot"></div><div class="line"></div></div>
+    <div class="body">
+      <div class="box">
+        <span class="tag tag--blue">En curso · decisión del equipo</span>
+        <h3>Fase 1 · Selección de idea</h3>
+        <p>El sistema recomienda; el equipo decide. Único bloqueante para arrancar la ejecución.</p>
+        <ul>
+          <li>Danilo + abogado revisan el <a href="00-brainstorming/02-visuales-generados/ranking-ideas-ecuador-v1.0.html">ranking v1.0</a>.</li>
+          <li>Ajustar pesos de los criterios si hace falta (panel editable <code>criterios-base-ecuador-v1.0.md</code>).</li>
+          <li>Elegir idea — recomendada: <strong>B2</strong>. Confirmar segmento de cliente inicial.</li>
+        </ul>
+        <div class="gate"><b>Gate ▸</b> Idea elegida y acordada por los dos socios. Sin esto, no se avanza.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASE 2 -->
+  <div class="phase">
+    <div class="rail"><div class="dot"></div><div class="line"></div></div>
+    <div class="body">
+      <div class="box">
+        <span class="tag tag--gray">Siguiente · semanas 1-4</span>
+        <h3>Fase 2 · Validación y preventa</h3>
+        <p>Vender en papel antes de construir más. EnRegla ya existe, así que validamos demanda y precio, no viabilidad técnica.</p>
+        <ul>
+          <li>Deploy productivo de EnRegla en URL viva con demo.</li>
+          <li>Definir oferta: alcance del diagnóstico + estructura y precio del retainer.</li>
+          <li>Landing de preventa con CTA + formulario de diagnóstico.</li>
+          <li>2-3 videos TikTok/semana con dolor LOPDP y CTA; outbound del abogado a su red.</li>
+          <li>Oferta fundadora para los primeros 10: descuento de por vida + permiso de logo/caso.</li>
+        </ul>
+        <div class="gate"><b>Gate ▸</b> ≥1 preventa firmada o señal clara de demanda (5+ conversaciones de descubrimiento). Si no, revisar oferta/precio/guion antes de seguir.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASE 3 -->
+  <div class="phase">
+    <div class="rail"><div class="dot"></div><div class="line"></div></div>
+    <div class="body">
+      <div class="box">
+        <span class="tag tag--gray">En paralelo · semanas 3-5</span>
+        <h3>Fase 3 · Plan de negocio</h3>
+        <p>De la idea elegida al documento operativo que guía la ejecución.</p>
+        <ul>
+          <li>Oferta detallada y pricing por niveles (diagnóstico, retainer, implementación).</li>
+          <li>Modelo financiero: CAC vía TikTok, ticket, LTV del retainer, punto de equilibrio.</li>
+          <li>Operación: cómo se entrega cada servicio, división de trabajo Danilo / abogado.</li>
+          <li>Roadmap de producto EnRegla: qué mejorar para soportar el retainer.</li>
+          <li>Estructura legal y de facturación (qué vehículo usa el abogado para emitir).</li>
+        </ul>
+        <div class="gate"><b>Gate ▸</b> Plan de negocio escrito (md + html) y revisado por el equipo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASE 4 -->
+  <div class="phase">
+    <div class="rail"><div class="dot"></div><div class="line"></div></div>
+    <div class="body">
+      <div class="box">
+        <span class="tag tag--gray">Mes 1-3</span>
+        <h3>Fase 4 · Primeros clientes y cashflow</h3>
+        <p>Convertir las preventas y los leads en ingreso real.</p>
+        <ul>
+          <li>Entregar los primeros diagnósticos (A1) a clientes pagados.</li>
+          <li>Convertir diagnóstico → retainer mensual operado sobre EnRegla (B2).</li>
+          <li>Iterar la oferta con feedback real (objeciones, precio, qué cierra).</li>
+        </ul>
+        <div class="gate"><b>Gate ▸</b> ≥3 retainers activos a los 90 días = primer ingreso recurrente. Si no, reordenar hacia B1/B3 o reconsiderar segmento.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASE 5 -->
+  <div class="phase">
+    <div class="rail"><div class="dot"></div><div class="line"></div></div>
+    <div class="body">
+      <div class="box">
+        <span class="tag tag--gray">Mes 3-9</span>
+        <h3>Fase 5 · Motor recurrente</h3>
+        <p>Pasar de proyectos sueltos a un motor de MRR que no depende de las horas del abogado.</p>
+        <ul>
+          <li>Estabilizar la entrega productizada (plantillas, dashboards, IA reduce horas).</li>
+          <li>Activar <strong>B3 — EnRegla white-label</strong> con 1-2 estudios jurídicos/contables piloto.</li>
+          <li>Montar <strong>C3 — Regulatory Watch Ecuador</strong> como cross-sell del retainer.</li>
+          <li>Mejorar EnRegla con el feedback acumulado de clientes reales.</li>
+        </ul>
+        <div class="gate"><b>Gate ▸</b> MRR estable + primer estudio partner operando. Cashflow sostiene al equipo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASE 6 -->
+  <div class="phase">
+    <div class="rail"><div class="dot"></div></div>
+    <div class="body">
+      <div class="box">
+        <span class="tag tag--gray">Mes 9+</span>
+        <h3>Fase 6 · Hacia la plataforma (visión V2)</h3>
+        <p>La plataforma de 12 capas del documento del socio, construida por fases y financiada con el cashflow — no antes.</p>
+        <ul>
+          <li>Construir capas del doc V2 según demanda real validada (no especulativa).</li>
+          <li>Escalar el canal (TikTok + partners + referidos).</li>
+          <li>Re-ranking de ideas con la evidencia acumulada; abrir nuevos verticales/sectores.</li>
+        </ul>
+        <div class="gate"><b>Gate ▸</b> Cada capa nueva se construye solo si hay demanda pagada que la pida.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Tablero de métricas</h2>
+  <table>
+    <thead><tr><th>Fase</th><th>Métrica clave</th><th>Objetivo</th><th>Dato que obliga a pivotar</th></tr></thead>
+    <tbody>
+      <tr><td>2 · Preventa</td><td>Preventas firmadas / conversaciones</td><td>1 preventa, 5 conversaciones (día 14)</td><td>0 preventa y &lt;5 conversaciones → revisar oferta</td></tr>
+      <tr><td>4 · Clientes</td><td>Retainers activos</td><td>≥3 a los 90 días</td><td>&lt;3 retainers → reordenar a B1/B3</td></tr>
+      <tr><td>4 · Conversión</td><td>Diagnóstico → retainer</td><td>≥30%</td><td>&lt;30% → el negocio es puntual, no recurrente</td></tr>
+      <tr><td>Semanal</td><td>Videos TikTok + leads medibles</td><td>≥2 videos, ≥10 leads/sem</td><td>Alcance sin leads → audiencia no es decisora</td></tr>
+      <tr><td>5 · Recurrente</td><td>MRR + partners</td><td>MRR estable, 1 estudio partner</td><td>MRR no crece → revisar pricing/segmento</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Riesgos transversales</h2>
+  <div class="grid grid-3">
+    <div class="tile"><span class="tag tag--red">Producto</span><h4>EnRegla sin deploy</h4><p>Es el primer entregable técnico de la Fase 2. Hasta que esté en producción, el retainer no tiene sistema. Bloquea B2.</p></div>
+    <div class="tile"><span class="tag tag--red">Cuello de botella</span><h4>Horas de Danilo</h4><p>Part-time y único dev. La oferta se diseñó para que el abogado y EnRegla absorban la carga; vigilar que no se concentre todo en él.</p></div>
+    <div class="tile"><span class="tag tag--red">Canal</span><h4>TikTok B2C vs B2B</h4><p>Si la audiencia de 25k no incluye decisores de empresa, el CAC sube. Mitigación: peso a outbound del abogado a su red.</p></div>
+    <div class="tile"><span class="tag tag--red">Legal</span><h4>Montos regulatorios</h4><p>Las cifras de multa LOPDP/UAFE usadas en venta deben verificarse contra la resolución vigente antes de publicarlas.</p></div>
+    <div class="tile"><span class="tag tag--red">Conversión</span><h4>Diagnóstico no convierte</h4><p>Si el cliente paga el diagnóstico pero no el retainer, el negocio pierde recurrencia. Validar en mes 1.</p></div>
+    <div class="tile"><span class="tag tag--red">Capital</span><h4>$2k-10k antes de ingreso</h4><p>Presupuesto ajustado. Toda fase pre-ingreso debe operar dentro de ese techo (filtro F5.5).</p></div>
+  </div>
+
+  <h2>Documentos del proyecto</h2>
+  <div class="grid grid-2">
+    <a class="tile" href="00-brainstorming/02-visuales-generados/ranking-ideas-ecuador-v1.0.html"><span class="tag">Paso 1</span><h4>Ranking de ideas v1.0 →</h4><p>Las 12 ideas, top 5, competencia, segmentos, plan 14/90 días.</p></a>
+    <a class="tile" href="00-brainstorming/01-criterios-base/evaluation-process-ecuador-v1.0.html"><span class="tag">Sistema</span><h4>Evaluation Process v1.0 →</h4><p>El motor de evaluación y qué cambió frente a Aura International.</p></a>
+    <a class="tile" href="index.html"><span class="tag">Portal</span><h4>Portal Aura Ecuador →</h4><p>Índice de todos los documentos del proyecto.</p></a>
+    <a class="tile" href="00-brainstorming/03-documentos-fuente/01 Proyecto_Compliance_Ecuador_V2.md"><span class="tag">Socio</span><h4>Documento V2 del abogado →</h4><p>La visión original de plataforma de 12 capas.</p></a>
+  </div>
+
+  <footer>
+    <p>Aura Ecuador · Roadmap v1.0 · 2026-06-12 · Publicado vía GitHub Pages · Histórico en <a href="https://github.com/mdanilorojas/aura-int">github.com/mdanilorojas/aura-int</a></p>
+  </footer>
+</main>
+</body>
+</html>
