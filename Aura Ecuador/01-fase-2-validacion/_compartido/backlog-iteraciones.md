@@ -28,10 +28,18 @@ Loop self-paced: cada iteración perfecciona el plan. Registro de qué se hizo y
 - B2/landing.html migrada a ACDS (calc de multa, semáforo, cupos, sticky CTA). Las 3 landings ya comparten el sistema de diseño.
 - index.html: hub de Fase 2 enlazando las 3 landings + todos los assets + gate.
 
+## Iteración 7 (hecho)
+- _compartido/checklist-diagnostico-15min.md: hoja de campo del abogado.
+- portal index.html: paso 2 enlaza al hub de Fase 2.
+
+## Iteración 8 (hecho) — fix de deploy
+- Verificadas las 3 landings + hub en GitHub Pages.
+- **Bug crítico encontrado y corregido:** `.nojekyll` no estaba commiteado → Jekyll ignoraba `_compartido/` (empieza con `_`) → el CSS daba 404 y las landings cargaban sin estilo. Commiteado `.nojekyll`; CSS ahora 200. Las 3 landings renderizan con ACDS.
+
 ## Backlog (próximas iteraciones, por prioridad)
 
 ### Alta
-- [ ] **Checklist imprimible** del diagnóstico gratis de 15 min para el abogado (hoja de campo).
+- [x] ~~Checklist imprimible del diagnóstico~~ (hecho iter 7).
 - [ ] **Pulir conversión** (pasada fina): heads/subheads más fuertes, prueba social real cuando exista, A/B de CTA.
 - [ ] Enlazar el hub de Fase 2 desde el portal `index.html` de Aura Ecuador.
 
