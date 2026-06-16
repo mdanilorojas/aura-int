@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manifiesto — Aura Compliance EC · Protección de datos para PYMES</title>
+<meta name="description" content="Qué es Aura Compliance EC, cómo hace cumplir la LOPDP a las PYMES, qué multas hay y por qué deberían cumplir. Documento interno de producto, UX y go-to-market.">
+<link rel="stylesheet" href="../_compartido/design-system/aura-compliance.css">
+<style>
+  /* Ajustes locales del manifiesto (no tocan el design system) */
+  .toc{position:sticky;top:0;z-index:25;background:#0f0f0f;border-bottom:1px solid var(--gray-80);
+    display:flex;gap:.25rem;overflow-x:auto;padding:.6rem clamp(1rem,4vw,2rem);font-size:.82rem}
+  .toc a{color:var(--gray-30);white-space:nowrap;padding:.35rem .7rem;border-radius:var(--r)}
+  .toc a:hover{color:#fff;background:var(--gray-90);text-decoration:none}
+  .lead-block{border-left:3px solid var(--blue-60);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0}
+  table.acds-t{width:100%;border-collapse:collapse;font-size:.9rem}
+  table.acds-t th,table.acds-t td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--gray-80);vertical-align:top}
+  table.acds-t th{color:var(--gray-30);text-transform:uppercase;letter-spacing:.05em;font-size:.72rem;font-weight:600}
+  table.acds-t tr:hover td{background:var(--gray-90)}
+  .num{font-family:var(--mono);color:var(--blue-50)}
+  .flow{display:grid;gap:1px;background:var(--gray-80);border:1px solid var(--gray-80)}
+  .flow .node{background:var(--gray-90);padding:1rem 1.25rem;display:flex;gap:1rem;align-items:center}
+  .flow .node .ar{color:var(--blue-50);font-family:var(--mono)}
+  .pill{font-family:var(--mono);font-size:.8rem;color:var(--gray-30)}
+  .disc{background:var(--gray-90);border:1px solid var(--gray-80);border-left:3px solid var(--risk-mid);padding:1rem 1.25rem;font-size:.88rem;color:var(--gray-20)}
+  h2 .tag{vertical-align:middle;margin-left:.6rem}
+  ul.clean{list-style:none;padding:0;margin:1rem 0}
+  ul.clean li{padding:.35rem 0 .35rem 1.5rem;position:relative;color:var(--gray-20)}
+  ul.clean li::before{content:"›";position:absolute;left:0;color:var(--blue-50);font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="alert-bar">Documento interno · <b>Manifiesto de producto</b> — no es la landing de venta. Sirve para entender la idea a fondo.</div>
+
+<nav class="nav">
+  <span class="brand"><b>Aura</b> Compliance <small>EC · Manifiesto</small></span>
+  <a class="btn btn--ghost" href="landing.html">Ver la landing →</a>
+</nav>
+
+<div class="toc">
+  <a href="#que-es">1. Qué es</a>
+  <a href="#ley">2. La ley y la multa</a>
+  <a href="#probabilidad">3. ¿Qué tan probable?</a>
+  <a href="#porque">4. Por qué cumplir</a>
+  <a href="#como">5. Cómo hace cumplir</a>
+  <a href="#producto">6. Producto</a>
+  <a href="#ux">7. UX y flujo</a>
+  <a href="#gtm">8. Go-to-market</a>
+  <a href="#negocio">9. Modelo / margen</a>
+  <a href="#riesgos">10. Riesgos</a>
+</div>
+
+<div class="wrap">
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <span class="eyebrow">Manifiesto · Aura Compliance EC</span>
+  <h1>Vendemos <b>dejar de estar expuesto</b> a una multa que no viste venir — y no tener que volver a preocuparte.</h1>
+  <p class="lede">Aura Compliance ayuda a una PYME ecuatoriana a cumplir la <b>Ley Orgánica de Protección de Datos Personales (LOPDP)</b>: primero le decimos en qué riesgo está, luego la ponemos en regla, y después la mantenemos al día mes a mes con un oficial de cumplimiento externo + nuestro sistema <b>EnRegla</b>.</p>
+  <div class="trust-row">
+    <span>Abogado colegiado en Ecuador</span>
+    <span>Sistema propio EnRegla</span>
+    <span>Diagnóstico inicial gratis (15 min)</span>
+  </div>
+</header>
+
+<!-- ============ 1. QUÉ ES ============ -->
+<section id="que-es">
+  <span class="eyebrow">01</span>
+  <h2>Qué es, en una frase</h2>
+  <div class="lead-block">
+    <p style="font-size:1.25rem;margin:0">Por <b class="num">$390</b> revisamos si tu empresa cumple la LOPDP y te damos un <b>informe de riesgo + plan de acción en 5 días</b>. Por <b class="num">$190/mes</b> te mantenemos al día con un oficial de cumplimiento externo y EnRegla.</p>
+  </div>
+  <p class="muted">No vendemos "protección de datos" en abstracto. Vendemos dos cosas que un dueño de PYME sí entiende: <b>saber si está en riesgo</b> (el diagnóstico) y <b>no tener que pensar más en esto</b> (el retainer). La protección de datos es el medio; la tranquilidad y evitar la multa son el producto.</p>
+
+  <div class="grid g3" style="margin-top:1.5rem">
+    <div class="card"><div class="kpi">Quién</div><p>PYMES ecuatorianas con RUC activo que tratan datos de clientes, empleados o pacientes. Foco: salud, financiero, retail con base de marketing, inmobiliario.</p></div>
+    <div class="card"><div class="kpi">Qué duele</div><p>Casi ninguna sabe si cumple, y ninguna tiene a alguien vigilando que siga cumpliendo cada mes. El responsable interno hoy es: nadie.</p></div>
+    <div class="card"><div class="kpi">Qué damos</div><p>Claridad (semáforo de riesgo), cumplimiento (lo arreglamos) y continuidad (te avisamos antes de cada vencimiento). Con respaldo legal real.</p></div>
+  </div>
+</section>
+
+<!-- ============ 2. LA LEY Y LA MULTA ============ -->
+<section id="ley">
+  <span class="eyebrow">02</span>
+  <h2>La ley y la multa <span class="tag tag--risk">riesgo real</span></h2>
+  <p class="lede">La LOPDP está vigente y la <b>Superintendencia de Protección de Datos Personales</b> ya fiscaliza. Toda PYME que trata datos personales (es decir, toda PYME) está dentro del alcance.</p>
+
+  <h3>Las multas, en cifras</h3>
+  <div class="risk-list" style="margin:1rem 0 1.5rem">
+    <div class="risk-row"><span class="dot m"></span><div><b>Infracciones leves</b><br><small>Ej.: no tener política de privacidad publicada, no llevar registro de actividades de tratamiento.</small></div><span class="risk risk--mid">0,1% – 0,7%</span></div>
+    <div class="risk-row"><span class="dot h"></span><div><b>Infracciones graves</b><br><small>Ej.: tratar datos sin base legal, no atender derechos del titular, no reportar una brecha de seguridad.</small></div><span class="risk risk--high">0,7% – 1%</span></div>
+  </div>
+  <p class="muted">El porcentaje se calcula sobre la <b>facturación / volumen de negocio del ejercicio anterior</b>. Y el punto clave: <b>las infracciones se suman</b>. Sin política + sin consentimiento + sin registro = tres infracciones independientes, no una.</p>
+
+  <h3 style="margin-top:2rem">Qué significa para una PYME concreta</h3>
+  <table class="acds-t">
+    <thead><tr><th>Facturación anual</th><th>Multa al 0,1% (mínima)</th><th>Multa al 1% (máxima)</th><th>Diagnóstico Aura</th></tr></thead>
+    <tbody>
+      <tr><td class="num">$200.000</td><td class="num">$200</td><td class="num">$2.000</td><td class="num">$390</td></tr>
+      <tr><td class="num">$400.000</td><td class="num">$400</td><td class="num">$4.000</td><td class="num">$390</td></tr>
+      <tr><td class="num">$1.000.000</td><td class="num">$1.000</td><td class="num">$10.000</td><td class="num">$390</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted" style="margin-top:.75rem">El anclaje del negocio: <b>el diagnóstico cuesta menos que la multa más pequeña posible.</b> Esa es la frase que cierra.</p>
+
+  <div class="disc" style="margin-top:1.5rem"><b>Honestidad de las cifras:</b> los rangos (0,1%–1%) y la lógica de infracción acumulable vienen del régimen sancionador de la LOPDP. Las cifras de la tabla son ilustrativas. Antes de publicar montos exactos en material de venta, el abogado debe confirmar el reglamento sancionador vigente y la metodología de cálculo de la Superintendencia.</div>
+</section>
+
+<!-- ============ 3. PROBABILIDAD ============ -->
+<section id="probabilidad">
+  <span class="eyebrow">03</span>
+  <h2>"¿Qué tan probable es que me multen?"</h2>
+  <p class="lede">La pregunta honesta. No hay una estadística pública oficial de "% de PYMES multadas" — y prometer una cifra sería mentir. Lo que sí sabemos pinta el cuadro:</p>
+
+  <ul class="clean">
+    <li>La Superintendencia <b>existe, está operativa y ya emite notificaciones / requerimientos.</b> El régimen sancionador está activo, no es una ley dormida.</li>
+    <li>La fiscalización arranca por <b>denuncia de un titular</b> (un cliente molesto, un ex-empleado) y por <b>sectores sensibles</b> (salud, financiero). No necesitas hacer algo grave: basta que alguien reclame.</li>
+    <li>El riesgo no es solo la multa. Es también <b>el costo de responder un requerimiento sin tener nada armado</b>: parálisis, abogado de emergencia, exposición reputacional.</li>
+  </ul>
+
+  <div class="lead-block">
+    <p style="margin:0">Cómo lo planteamos sin exagerar: <b>"No te vendemos miedo a una probabilidad. Te vendemos que el día que llegue el oficio —y la Superintendencia ya los está mandando— estés listo en vez de improvisando. El costo de estar listo es ~1% de lo que cuesta no estarlo."</b></p>
+  </div>
+
+  <div class="grid g3" style="margin-top:1.5rem">
+    <div class="card"><div class="kpi">Gatillo 1</div><p>Denuncia de un titular (cliente/empleado) ante la Superintendencia. El más común y el menos controlable.</p></div>
+    <div class="card"><div class="kpi">Gatillo 2</div><p>Brecha de seguridad (filtración, hackeo) que obliga a reportar. Si no reportas bien → infracción grave.</p></div>
+    <div class="card"><div class="kpi">Gatillo 3</div><p>Fiscalización sectorial dirigida. Salud y financiero primero por ser dato sensible.</p></div>
+  </div>
+</section>
+
+<!-- ============ 4. POR QUÉ CUMPLIR ============ -->
+<section id="porque">
+  <span class="eyebrow">04</span>
+  <h2>Por qué una PYME debería cumplir (más allá de la multa)</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Es ley vigente, no opcional</h3><p>El tratamiento de datos sin base legal es ilegal hoy, no "pronto". El cumplimiento es el piso, no un extra.</p></div>
+    <div class="card"><h3>Evita la multa acumulable</h3><p>0,1%–1% de la facturación, por cada infracción. Prevenir cuesta una fracción de eso.</p></div>
+    <div class="card"><h3>Protege la reputación</h3><p>Una filtración mal manejada destruye la confianza del cliente más rápido que cualquier multa.</p></div>
+    <div class="card"><h3>Requisito comercial creciente</h3><p>Clientes grandes y licitaciones ya exigen contratos de tratamiento de datos a sus proveedores. Sin cumplir, te quedas fuera.</p></div>
+  </div>
+</section>
+
+<!-- ============ 5. CÓMO HACE CUMPLIR ============ -->
+<section id="como">
+  <span class="eyebrow">05</span>
+  <h2>Cómo Aura hace que una empresa <em>cumpla</em></h2>
+  <p class="lede">"Cumplir" no es un PDF. Es un estado que hay que alcanzar y luego <b>mantener</b>. Aura lo cubre en tres movimientos: diagnosticar → implementar → sostener.</p>
+
+  <div class="steps">
+    <div class="step"><div><h3>Diagnosticar — saber dónde estás</h3><p class="muted">Entrevista + mapeo de qué datos trata el negocio y cómo. Detectamos brechas frente a la LOPDP: base legal, consentimientos, política de privacidad, contratos con encargados, registro de actividades, medidas de seguridad. Entregable: informe con <b>semáforo por área</b> + plan priorizado en 5 días.</p></div></div>
+    <div class="step"><div><h3>Implementar — ponerte en regla</h3><p class="muted">Cuando hay brechas grandes, ejecutamos: registro de tratamientos, políticas, mecanismos de consentimiento, contratos con proveedores, capacitación al equipo. Es el upsell natural, no una venta aparte.</p></div></div>
+    <div class="step"><div><h3>Sostener — mantenerte al día (lo que nadie más hace)</h3><p class="muted">Aquí está la diferencia. Designamos un <b>Delegado de Protección de Datos (DPD) externo</b> ante la Superintendencia, y EnRegla vigila vencimientos y obligaciones con recordatorios automáticos. Cumplir una vez es fácil; <b>seguir cumpliendo</b> es donde fallan el abogado tradicional y la plantilla de ChatGPT.</p></div></div>
+  </div>
+
+  <h3 style="margin-top:2rem">El foso defensivo: por qué no nos copian fácil</h3>
+  <div class="grid g3">
+    <div class="card"><div class="kpi">Legal real</div><p>Un abogado colegiado firma como DPD y asume responsabilidad profesional. Una plantilla no firma nada.</p></div>
+    <div class="card"><div class="kpi">EnRegla</div><p>Software propio que automatiza el seguimiento. Convierte un servicio legal en un producto recurrente de margen alto.</p></div>
+    <div class="card"><div class="kpi">Continuidad</div><p>Te avisamos antes de cada vencimiento y ante cambios normativos. El valor no es el documento, es no tener que acordarte.</p></div>
+  </div>
+</section>
+
+<!-- ============ 6. PRODUCTO ============ -->
+<section id="producto">
+  <span class="eyebrow">06</span>
+  <h2>El producto, escalonado</h2>
+  <p class="lede">Una escalera: el anzuelo gratis califica, el diagnóstico pagado entrega valor y filtra, el retainer captura el ingreso recurrente.</p>
+
+  <div class="flow" style="margin:1.5rem 0">
+    <div class="node"><span class="pill">Anzuelo</span><span class="ar">→</span><div><b>Diagnóstico gratis 15 min.</b> <span class="muted">Llamada de descubrimiento. Califica y genera el "ajá" de riesgo.</span></div></div>
+    <div class="node"><span class="pill">A1</span><span class="ar">→</span><div><b>Diagnóstico pagado · $390.</b> <span class="muted">Informe de riesgo + plan en 5 días. 50% anticipo.</span></div></div>
+    <div class="node"><span class="pill">A2</span><span class="ar">→</span><div><b>Implementación · $1.500–$3.500.</b> <span class="muted">Solo si el diagnóstico revela brechas grandes. Termina enchufando al retainer.</span></div></div>
+    <div class="node"><span class="pill">B2</span><span class="ar">★</span><div><b>Retainer "Cumplimiento al día" · $190/mes.</b> <span class="muted">DPD externo + EnRegla + 1 consulta/mes. Mín. 6 meses. El corazón del negocio.</span></div></div>
+  </div>
+
+  <div class="pricing cols-2" style="margin-top:1.5rem">
+    <div class="plan">
+      <span class="tag">Entrada</span>
+      <h3>Diagnóstico de cumplimiento</h3>
+      <div class="amt">$390 <small>/ único · fundador $290</small></div>
+      <ul>
+        <li>Entrevista de 45 min con el responsable</li>
+        <li>Mapeo de datos que trata el negocio</li>
+        <li>Detección de brechas vs LOPDP</li>
+        <li>Informe con semáforo por área</li>
+        <li>Plan de acción priorizado en 5 días</li>
+      </ul>
+      <p class="small muted">Cobramos por la tranquilidad de saber. Si sale verde, te lo decimos y no te vendemos más.</p>
+    </div>
+    <div class="plan feat">
+      <span class="badge">Core del negocio</span>
+      <h3>Cumplimiento al día</h3>
+      <div class="amt">$190 <small>/mes · fundador $140 · mín. 6m</small></div>
+      <ul>
+        <li>DPD externo designable ante la Superintendencia</li>
+        <li>EnRegla: dashboard de obligaciones + recordatorios</li>
+        <li>Actualización ante cambios normativos</li>
+        <li>1 consulta/mes (30 min) con el abogado</li>
+        <li>Atención de derechos de titulares (plantillas)</li>
+      </ul>
+      <p class="small" style="color:#cfe0ff">Menos que tu software contable. Te cubre una multa de hasta el 1% de tu facturación.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">Qué NO incluye (límites para controlar riesgo)</h3>
+  <ul class="clean">
+    <li>No es un dictamen legal que garantice cumplimiento absoluto (disclaimer en contrato).</li>
+    <li>No cubre litigios ni representación ante la Superintendencia (servicio aparte).</li>
+    <li>El diagnóstico no automatiza decisiones sin revisión humana del abogado.</li>
+  </ul>
+</section>
+
+<!-- ============ 7. UX ============ -->
+<section id="ux">
+  <span class="eyebrow">07</span>
+  <h2>UX y flujo del usuario</h2>
+  <p class="lede">Dónde entra el cliente, qué decide en cada paso, qué pasa si dice sí o no, y dónde termina.</p>
+
+  <div class="flow" style="margin:1.5rem 0">
+    <div class="node"><span class="pill">Entrada</span><span class="ar">→</span><div>Ve un <b>TikTok / mensaje de outbound</b> del abogado → click a la <b>landing</b>.</div></div>
+    <div class="node"><span class="pill">Landing</span><span class="ar">→</span><div>Lee multa → brechas → oferta. Usa la <b>calculadora de multa</b> (mete su facturación, ve su cifra). CTA único: "Diagnóstico gratis".</div></div>
+    <div class="node"><span class="pill">Form</span><span class="ar">→</span><div>Deja nombre, empresa, sector, WhatsApp, correo. <b>5 campos, nada más.</b></div></div>
+    <div class="node"><span class="pill">Llamada</span><span class="ar">→</span><div>Discovery de 15 min con el abogado. Califica + genera el "ajá" de riesgo + ofrece diagnóstico $390.</div></div>
+  </div>
+
+  <h3>Ramas de decisión tras la llamada</h3>
+  <div class="risk-list">
+    <div class="risk-row"><span class="dot l"></span><div><b>Dice SÍ al diagnóstico</b><br><small>→ link de pago + contrato + agenda entrevista de 45 min → informe en 5 días → presentación → oferta de retainer.</small></div><span class="risk risk--low">camino feliz</span></div>
+    <div class="risk-row"><span class="dot m"></span><div><b>Duda</b><br><small>→ se le envía propuesta de 1 página en &lt;2h (mientras está caliente) + se agenda seguimiento. Oferta fundadora como gancho.</small></div><span class="risk risk--mid">nurture</span></div>
+    <div class="risk-row"><span class="dot h"></span><div><b>Dice NO / no califica</b><br><small>→ si sale "verde", se le dice honestamente y se cierra. Se pide referido. Informal sin RUC = se descarta.</small></div><span class="risk risk--high">cierre / descarte</span></div>
+  </div>
+
+  <h3 style="margin-top:2rem">Principios de UX (del design system)</h3>
+  <div class="grid g2">
+    <div class="card"><p><b>Móvil primero.</b> La mayoría llega desde TikTok en celular → sticky CTA siempre a la vista.</p></div>
+    <div class="card"><p><b>El dolor antes que la solución.</b> Orden fijo: multa → brechas → oferta.</p></div>
+    <div class="card"><p><b>Cifra concreta siempre.</b> "1% de tu facturación", no "multas altas". La calculadora personaliza el dolor.</p></div>
+    <div class="card"><p><b>Un solo CTA primario</b> repetido 3+ veces. Prueba social antes de pedir plata.</p></div>
+  </div>
+</section>
+
+<!-- ============ 8. GO TO MARKET ============ -->
+<section id="gtm">
+  <span class="eyebrow">08</span>
+  <h2>Go-to-market</h2>
+  <p class="lede">Dos motores: la <b>red profesional del abogado</b> (confianza, cierra rápido) y <b>contenido en TikTok</b> (escala, alimenta el funnel). El objetivo de cada toque no es vender — es agendar los 15 min.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Motor 1 · Outbound cálido</h3>
+      <p class="muted">5–10 mensajes/día por WhatsApp/LinkedIn a la red del abogado. Secuencia de 3 toques: apertura cálida → diagnóstico gratis → seguimiento suave. Personalizado por sector/dato concreto. Variantes para contacto cercano, referido y salud (urgencia alta).</p>
+    </div>
+    <div class="card">
+      <h3>Motor 2 · Contenido TikTok</h3>
+      <p class="muted">El abogado explica casos reales anonimizados y "te pueden multar por esto". Top del funnel que normaliza el riesgo y lleva a la landing. Bajo costo, escala sin horas de venta 1-a-1.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">Métricas que validan el negocio (Fase 2)</h3>
+  <table class="acds-t">
+    <thead><tr><th>Métrica</th><th>Qué prueba</th><th>Meta</th></tr></thead>
+    <tbody>
+      <tr><td>% cierre tras discovery</td><td>Que $390 no frena el diagnóstico</td><td class="num">a medir</td></tr>
+      <tr><td>% diagnóstico → retainer</td><td>Que el MRR engancha</td><td class="num">≥ 30%</td></tr>
+      <tr><td>Retainers activos a 90 días</td><td>Umbral de viabilidad</td><td class="num">≥ 3</td></tr>
+      <tr><td>Margen real tras 3 entregas</td><td>Que las horas estimadas se cumplen</td><td class="num">~63–77%</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:2rem">Oferta fundadora (escasez real)</h3>
+  <p><span class="cupos">Primeros <b>10</b> clientes · precio de por vida</span></p>
+  <p class="muted" style="margin-top:.75rem">Diagnóstico $290 / retainer $140 de por vida a cambio de ser caso de ejemplo (logo + testimonio). Construye la prueba social que hoy no existe.</p>
+</section>
+
+<!-- ============ 9. NEGOCIO ============ -->
+<section id="negocio">
+  <span class="eyebrow">09</span>
+  <h2>Modelo de negocio y margen</h2>
+  <p class="lede">El retainer es el de mayor margen porque EnRegla automatiza el seguimiento: la hora del abogado baja con cada mes. Recurrencia + apalancamiento de software.</p>
+
+  <table class="acds-t">
+    <thead><tr><th>Oferta</th><th>Precio</th><th>Costo directo aprox.</th><th>Margen bruto</th></tr></thead>
+    <tbody>
+      <tr><td>Diagnóstico (A1)</td><td class="num">$390</td><td class="num">~$145</td><td><span class="risk risk--mid">~63%</span></td></tr>
+      <tr><td>Retainer (B2)</td><td class="num">$190/mes</td><td class="num">~$43</td><td><span class="risk risk--low">~77%</span></td></tr>
+      <tr><td>Implementación (A2)</td><td class="num">$1.500–3.500</td><td class="num">~$575</td><td><span class="risk risk--low">~77%</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:2rem">Punto de equilibrio</h3>
+  <div class="grid g3">
+    <div class="card"><div class="kpi">Supervivencia</div><p><b>3 retainers + 2 diagnósticos/mes</b> ≈ $1.350/mes. Cubre el costo fijo (~$300) y deja margen.</p></div>
+    <div class="card"><div class="kpi">Tracción</div><p><b>8 retainers + 4 diagnósticos/mes</b> ≈ $3.080/mes.</p></div>
+    <div class="card"><div class="kpi">Techo</div><p>El cuello de botella son las <b>horas del abogado</b> (~12 clientes activos), no las de Danilo — EnRegla automatiza la entrega.</p></div>
+  </div>
+  <p class="small muted" style="margin-top:1rem">Implicación estratégica: al llegar a ~10 clientes, el siguiente paso es <b>productizar más</b> (plantillas por sector) o sumar un paralegal, no más horas del fundador.</p>
+</section>
+
+<!-- ============ 10. RIESGOS ============ -->
+<section id="riesgos">
+  <span class="eyebrow">10</span>
+  <h2>Riesgos honestos y cómo los cubrimos</h2>
+  <div class="risk-list">
+    <div class="risk-row"><span class="dot m"></span><div><b>"Eso lo hace mi abogado / lo armo con ChatGPT"</b><br><small>Respuesta: una plantilla no firma como DPD ni asume responsabilidad, y no te avisa de los vencimientos ni de los cambios. El valor es la continuidad con respaldo, no el documento.</small></div><span class="risk risk--mid">objeción</span></div>
+    <div class="risk-row"><span class="dot m"></span><div><b>Precio frena el cierre</b><br><small>Palancas en orden: fundador $290 → retainer $140 → diagnóstico gratis a cambio de compromiso de retainer. Nunca bajar de $120/mes (el margen no cubre la hora del abogado a escala).</small></div><span class="risk risk--mid">pricing</span></div>
+    <div class="risk-row"><span class="dot h"></span><div><b>Dependencia de un solo abogado (cuello de botella)</b><br><small>Mitigación: productizar plantillas por sector y sumar paralegal a partir de ~10 clientes. Danilo no es el cuello de botella mientras no haya features nuevas.</small></div><span class="risk risk--high">operación</span></div>
+    <div class="risk-row"><span class="dot h"></span><div><b>Promesa legal excesiva</b><br><small>Mitigación: disclaimer claro (no garantiza cumplimiento absoluto), revisión humana del abogado, montos de multa confirmados contra el reglamento vigente antes de publicarlos.</small></div><span class="risk risk--high">legal</span></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p><b>Aura Compliance EC</b> — Manifiesto de producto (Fase 2 · validación). Documento interno para entender la idea: qué hace, cómo hace cumplir, qué multas hay, por qué cumplir, producto, UX y go-to-market.</p>
+  <p class="small">Fuentes: oferta.md · pricing.md · discovery-call.md · outbound.md · criterios v2.1. Las cifras de multa deben confirmarse contra el reglamento sancionador vigente de la Superintendencia antes de uso comercial. · <a href="landing.html">Ir a la landing →</a></p>
+</footer>
+
+</div>
+
+<div class="sticky-cta"><a class="btn btn--primary" href="landing.html">Ver la landing de venta →</a></div>
+
+</body>
+</html>
