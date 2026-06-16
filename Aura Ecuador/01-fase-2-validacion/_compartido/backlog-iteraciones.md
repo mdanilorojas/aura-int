@@ -9,14 +9,17 @@ Loop self-paced: cada iteración perfecciona el plan. Registro de qué se hizo y
 - A2: oferta (paquete, pricing por tier).
 - Compartido: funnel, oferta-fundadora, calendario-contenido (4 sem), metricas-gate, enregla-deploy.
 
+## Iteración 2 (hecho)
+- B2/pricing.md: tabla, costo de entrega, margen (~63% diag / ~77% retainer), punto de equilibrio, capacidad, sensibilidad de precio.
+- _compartido/propuesta-1pagina.md: plantilla post-discovery.
+- _compartido/plantilla-informe-diagnostico.md: el entregable de $390 (semáforo, plan de acción).
+- _compartido/nurture-seguimiento.md: secuencia de 4 toques + reactivación.
+
 ## Backlog (próximas iteraciones, por prioridad)
 
 ### Alta
-- [ ] **pricing.md dedicado** por idea con cálculo de margen y punto de equilibrio (cuántos clientes para cubrir 10–15h/sem de Danilo).
-- [ ] **Contrato/propuesta de 1 página** (plantilla) para enviar tras discovery call — B2 y A2.
-- [ ] **Plantilla de informe de diagnóstico** (el entregable de $390): estructura, semáforo, secciones.
 - [ ] **Landing A1** (variante "solo diagnóstico", ticket bajo) y **A2** (variante "implementación", B2B).
-- [ ] **Email/WhatsApp de seguimiento** post-discovery (secuencia de nurture para los "déjame pensarlo").
+- [ ] **Checklist imprimible** del diagnóstico gratis de 15 min para el abogado (de discovery-call.md a hoja de campo).
 
 ### Media
 - [ ] Guion de los **15 min de diagnóstico gratis** como checklist imprimible para el abogado.
