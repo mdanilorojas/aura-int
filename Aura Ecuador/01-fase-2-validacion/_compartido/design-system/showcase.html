@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aura Compliance Design System · Showcase</title>
+<link rel="stylesheet" href="aura-compliance.css">
+</head>
+<body>
+<div class="alert-bar">⚠ Componente <b>.alert-bar</b> — urgencia arriba del fold</div>
+<nav class="nav"><span class="brand"><b>Aura</b> Compliance <small>Design System v1.0</small></span><a href="#" class="btn btn--ghost">.btn--ghost</a></nav>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="eyebrow">Showcase · ACDS</span>
+    <h1>Sistema de diseño <b>Aura Compliance</b>.</h1>
+    <p class="lede">Base IBM Carbon, orientado a cumplimiento, confianza y conversión. Catálogo de componentes para A1, A2 y B2.</p>
+    <a href="#" class="btn btn--primary btn--lg">.btn--primary .btn--lg</a>
+    <a href="#" class="btn btn--ghost btn--lg">Secundario</a>
+    <div class="trust-row"><span>Abogado colegiado</span><span>Sistema EnRegla</span><span>Sin compromiso</span></div>
+  </header>
+
+  <section>
+    <h2>Semáforo de riesgo <span class="tag">firma del sistema</span></h2>
+    <p><span class="risk risk--high">Riesgo alto</span> <span class="risk risk--mid">Riesgo medio</span> <span class="risk risk--low">Conforme</span></p>
+    <div class="risk-list">
+      <div class="risk-row"><span class="dot h"></span><div><strong>Política de privacidad</strong><br><small>No publicada — infracción directa</small></div><span class="risk risk--high">Alto</span></div>
+      <div class="risk-row"><span class="dot m"></span><div><strong>Registro de tratamientos</strong><br><small>Inexistente — exigible por la Superintendencia</small></div><span class="risk risk--mid">Medio</span></div>
+      <div class="risk-row"><span class="dot l"></span><div><strong>Medidas de seguridad</strong><br><small>Adecuadas</small></div><span class="risk risk--low">Conforme</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>KPIs / cards</h2>
+    <div class="grid g3">
+      <div class="card"><div class="kpi">0,1–1%</div><p>De tu facturación anual — el rango de multa LOPDP.</p></div>
+      <div class="card"><div class="kpi">5 días</div><p>Entrega del informe de diagnóstico.</p></div>
+      <div class="card"><div class="kpi">$190/mes</div><p>Retainer: te mantenemos al día.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Pasos</h2>
+    <div class="steps">
+      <div class="step"><div><strong>Diagnóstico gratis 15 min.</strong> Te decimos si hay riesgo.</div></div>
+      <div class="step"><div><strong>Informe formal $390.</strong> Semáforo + plan en 5 días.</div></div>
+      <div class="step"><div><strong>Te mantenemos al día $190/mes.</strong> Oficial externo + EnRegla.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Precios</h2>
+    <div class="pricing cols-2">
+      <div class="plan"><span class="eyebrow">Diagnóstico</span><div class="amt">$390</div><ul><li>Entrevista 45 min</li><li>Informe de riesgo</li><li>Plan priorizado</li></ul><a class="btn btn--ghost btn--block" href="#">Empezar</a></div>
+      <div class="plan feat"><span class="badge">Más popular</span><span class="eyebrow" style="color:#fff">Retainer</span><div class="amt">$190<small>/mes</small></div><ul><li>DPD externo</li><li>EnRegla dashboard</li><li>Soporte continuo</li></ul><a class="btn btn--primary btn--block" style="background:#fff;color:#0f62fe" href="#">Contratar</a></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Calculadora de multa <span class="tag tag--blue">lead magnet</span></h2>
+    <div class="calc">
+      <div><label class="small muted">Facturación anual aproximada (USD)</label><input type="number" value="400000" style="width:100%;background:var(--gray-100);border:1px solid var(--gray-70);color:#fff;padding:.7rem"></div>
+      <div class="out">$400 – $4.000<small>Exposición estimada a multa (0,1%–1%). Por cada infracción.</small></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Prueba social + cupos</h2>
+    <div class="grid g2">
+      <div class="quote"><p>"En 5 días supe exactamente qué me faltaba. El dashboard me avisa antes de cada vencimiento."</p><div class="by">— Cliente fundador, sector salud</div></div>
+      <div class="card"><div class="logos"><span>Logo cliente</span><span>Logo cliente</span><span>Logo cliente</span></div><p style="margin-top:1rem"><span class="cupos">🔥 Quedan <b>4 de 10</b> cupos fundadores</span></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Formulario</h2>
+    <form class="acds">
+      <div class="row"><div><label>Nombre</label><input></div><div><label>Empresa</label><input></div></div>
+      <div><label>Sector</label><select><option>Salud</option><option>Retail</option></select></div>
+      <div class="row"><div><label>WhatsApp</label><input></div><div><label>Correo</label><input></div></div>
+      <button class="btn btn--primary btn--block" type="button">Solicitar diagnóstico gratis</button>
+    </form>
+  </section>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details open><summary>¿De verdad es gratis?</summary><p>El diagnóstico inicial de 15 min sí. Sin sorpresas.</p></details>
+    <details><summary>¿Esto no lo hace mi abogado?</summary><p>Cumplir la LOPDP es continuo, no un contrato único.</p></details>
+  </section>
+</div>
+
+<div class="sticky-cta"><a class="btn btn--primary" href="#">Diagnóstico gratis →</a></div>
+<footer class="footer"><div class="wrap">Aura Compliance Design System v1.0 · uso interno</div></footer>
+</body>
+</html>
