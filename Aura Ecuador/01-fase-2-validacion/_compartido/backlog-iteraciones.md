@@ -15,11 +15,22 @@ Loop self-paced: cada iteración perfecciona el plan. Registro de qué se hizo y
 - _compartido/plantilla-informe-diagnostico.md: el entregable de $390 (semáforo, plan de acción).
 - _compartido/nurture-seguimiento.md: secuencia de 4 toques + reactivación.
 
+## Iteración 3 (hecho)
+- Aura Compliance Design System v1.0: aura-compliance.css + README + showcase.html.
+
+## Iteración 4 (hecho)
+- A1 completo: discovery, outbound, pricing, tiktok-scripts, landing.html (ACDS, calc de multa interactiva).
+
+## Iteración 5 (hecho)
+- A2 completo: discovery (venta sobre informe), outbound, pricing (tiers), tiktok-scripts, landing.html (B2B, ACDS).
+
 ## Backlog (próximas iteraciones, por prioridad)
 
 ### Alta
-- [ ] **Landing A1** (variante "solo diagnóstico", ticket bajo) y **A2** (variante "implementación", B2B).
-- [ ] **Checklist imprimible** del diagnóstico gratis de 15 min para el abogado (de discovery-call.md a hoja de campo).
+- [ ] **Migrar B2/landing.html a ACDS** (hoy tiene CSS inline propio) + agregar calc de multa, cupos, sticky CTA.
+- [ ] **Pulir conversión** las 3 landings: revisar jerarquía, CTA repetido, prueba social, móvil.
+- [ ] **Índice HTML de Fase 2** (hub que enlace las 3 landings + assets) en el sistema Carbon del portal.
+- [ ] **Checklist imprimible** del diagnóstico gratis de 15 min para el abogado.
 
 ### Media
 - [ ] Guion de los **15 min de diagnóstico gratis** como checklist imprimible para el abogado.
