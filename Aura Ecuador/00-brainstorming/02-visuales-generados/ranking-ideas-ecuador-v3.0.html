@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ranking de ideas · Aura Ecuador v3.0</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .rank-row { display:grid; grid-template-columns: 3rem 1fr 5rem; gap:1rem; align-items:center; padding:.7rem 1rem; border-bottom:1px solid var(--gray-80); background:var(--gray-90); color:var(--gray-10); }
+  a.rank-row:hover { background:var(--gray-80); text-decoration:none; }
+  a.rank-row:hover strong { color:var(--blue-50); }
+  .rank-row .pos { font-variant-numeric:tabular-nums; color:var(--gray-30); font-size:1.1rem; }
+  .rank-row .code { display:inline-block; font-family:"IBM Plex Mono",Consolas,monospace; font-size:.7rem; color:var(--gray-30); background:var(--gray-80); padding:.05rem .35rem; margin-right:.5rem; }
+  .rank-row .bar { height:8px; background:var(--gray-80); position:relative; margin-top:.4rem; }
+  .rank-row .bar i { position:absolute; inset:0 auto 0 0; background:var(--blue-50); display:block; }
+  .rank-row.top .bar i { background:var(--green-50); }
+  .rank-row.dim { opacity:.55; }
+  .rank-row .arrow { color:var(--gray-60); font-size:.75rem; }
+  a.rank-row:hover .arrow { color:var(--blue-50); }
+  .legend { display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.8rem; color:var(--gray-30); margin:.5rem 0 1.5rem; }
+  .legend span::before { content:""; display:inline-block; width:.7rem; height:.7rem; margin-right:.35rem; vertical-align:middle; }
+  .legend .g::before { background:var(--green-50); } .legend .b::before { background:var(--blue-50); } .legend .d::before { background:var(--gray-60); }
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <span class="brand"><strong>Aura</strong> · Ecuador · v3.0 · Ranking de ideas</span>
+  <a class="back" href="../../index.html">← Portal</a>
+</nav>
+<main class="page">
+  <header>
+    <span class="eyebrow">40 ideas nuevas · scoring con valor al cliente al mando</span>
+    <h1>Ranking de ideas — v3.0.</h1>
+    <p class="lede">Brainstorming nuevo, scope amplio, evaluado con los Criterios v3.0 donde <strong>Valor al cliente pesa 36%</strong>. El antiguo ganador LOPDP se desploma al fondo; lo que sube es lo que el SRI, el municipio y el Ministerio del Trabajo <strong>fiscalizan de verdad</strong>. Cada idea del top 15 tiene página de detalle: haz click en la fila.</p>
+    <div class="meta">
+      <div><span>Versión</span><strong>v3.0 · 2026-06-16</strong></div>
+      <div><span>Ideas evaluadas</span><strong>40 · top 15 con detalle</strong></div>
+      <div><span>Mayor valor</span><strong>T1 Anti-clausura SRI · 8.62</strong></div>
+      <div><span>Ejecutable hoy</span><strong>L1 Blindaje laboral · 8.39</strong></div>
+    </div>
+  </header>
+
+  <div class="callout callout--green">
+    <strong>Recomendación.</strong> Arrancar por <strong>L1 · Blindaje laboral</strong> (8.39) con <strong>P5/X1</strong> como wedge y <strong>P2/EnRegla</strong> como recurrencia: máximo valor real <strong>ejecutable con el equipo de hoy</strong>. En paralelo, sumar un contador aliado para desbloquear <strong>T1 · Anti-clausura SRI</strong> (8.62), la idea de mayor valor absoluto.
+  </div>
+  <div class="callout callout--red">
+    <strong>El titular: LOPDP se cae.</strong> En v2.0 lideraba con 8.70. Con valor al cliente mandando, su dolor fiscalizado (1–2: ley dormida, sin estadística de sanciones) la hunde a <strong>5.41–5.44</strong>, puestos 39–40. Confirma la tesis: nadie compra una obligación que no se fiscaliza y no da plata.
+  </div>
+
+  <h2>Top 15 — con página de detalle</h2>
+  <div class="legend"><span class="g">Score ≥ 8.0</span><span class="b">7.0–7.9</span><span class="d">&lt; 7.0</span></div>
+  <div style="border:1px solid var(--gray-80)">
+    <a class="rank-row top" href="ideas-v3.0/idea-01-sri-anticlausura.html"><span class="pos">1</span><div><strong><span class="code">T1</span>Anti-clausura SRI</strong><div class="bar"><i style="width:86.2%"></i></div><small style="color:var(--gray-30)">Máximo valor · el SRI clausura locales · requiere sumar contador</small></div><span class="score">8.62 <span class="arrow">→</span></span></a>
+    <a class="rank-row top" href="ideas-v3.0/idea-02-blindaje-laboral.html"><span class="pos">2</span><div><strong><span class="code">L1</span>Blindaje laboral PYME</strong><div class="bar"><i style="width:83.9%"></i></div><small style="color:var(--gray-30)">Prioridad ejecutable · juicios laborales reales · lo entrega el abogado</small></div><span class="score">8.39 <span class="arrow">→</span></span></a>
+    <a class="rank-row top" href="ideas-v3.0/idea-03-pack-segundo-local.html"><span class="pos">3</span><div><strong><span class="code">X5</span>Pack "abre tu segundo local"</strong><div class="bar"><i style="width:81.7%"></i></div><small style="color:var(--gray-30)">Bundle premium · el dueño que expande es el que más paga</small></div><span class="score">8.17 <span class="arrow">→</span></span></a>
+    <a class="rank-row top" href="ideas-v3.0/idea-04-auditoria-clausura.html"><span class="pos">4</span><div><strong><span class="code">P5</span>Auditoría "¿me clausuran hoy?"</strong><div class="bar"><i style="width:81.4%"></i></div><small style="color:var(--gray-30)">Wedge de permisos · viral · diagnóstico exprés por local</small></div><span class="score">8.14 <span class="arrow">→</span></span></a>
+    <a class="rank-row top" href="ideas-v3.0/idea-05-apertura-local.html"><span class="pos">5</span><div><strong><span class="code">P1</span>Apertura de local llave en mano</strong><div class="bar"><i style="width:80.9%"></i></div><small style="color:var(--gray-30)">Todos los permisos para abrir · ticket alto · entra a EnRegla</small></div><span class="score">8.09 <span class="arrow">→</span></span></a>
+    <a class="rank-row top" href="ideas-v3.0/idea-06-defensa-clausura.html"><span class="pos">6</span><div><strong><span class="code">P6</span>Defensa de clausura exprés</strong><div class="bar"><i style="width:80.9%"></i></div><small style="color:var(--gray-30)">Urgencia máxima · ya te cerraron · paga lo que sea</small></div><span class="score">8.09 <span class="arrow">→</span></span></a>
+    <a class="rank-row top" href="ideas-v3.0/idea-07-enregla-semaforo.html"><span class="pos">7</span><div><strong><span class="code">P2</span>EnRegla Local — semáforo multi-local</strong><div class="bar"><i style="width:80.7%"></i></div><small style="color:var(--gray-30)">Motor de recurrencia · alertas de vencimiento por cada local</small></div><span class="score">8.07 <span class="arrow">→</span></span></a>
+    <a class="rank-row" href="ideas-v3.0/idea-08-cobranza.html"><span class="pos">8</span><div><strong><span class="code">F1</span>Cobranza pre-judicial productizada</strong><div class="bar"><i style="width:79.3%"></i></div><small style="color:var(--gray-30)">Plata directa · recupera cartera vencida · viral en TikTok</small></div><span class="score">7.93 <span class="arrow">→</span></span></a>
+    <a class="rank-row" href="ideas-v3.0/idea-09-seguro-cumplimiento.html"><span class="pos">9</span><div><strong><span class="code">X2</span>Seguro de cumplimiento (retainer)</strong><div class="bar"><i style="width:79.3%"></i></div><small style="color:var(--gray-30)">Máxima recurrencia · permisos+laboral+tributario en un solo $/mes</small></div><span class="score">7.93 <span class="arrow">→</span></span></a>
+    <a class="rank-row" href="ideas-v3.0/idea-10-auditoria-360.html"><span class="pos">10</span><div><strong><span class="code">X1</span>Auditoría 360 de riesgo del dueño</strong><div class="bar"><i style="width:78%"></i></div><small style="color:var(--gray-30)">Wedge maestro · scorecard que detecta y vende todo lo demás</small></div><span class="score">7.80 <span class="arrow">→</span></span></a>
+    <a class="rank-row" href="ideas-v3.0/idea-11-defensa-inspeccion.html"><span class="pos">11</span><div><strong><span class="code">L2</span>Defensa de inspección laboral/IESS</strong><div class="bar"><i style="width:77.9%"></i></div><small style="color:var(--gray-30)">Retainer anti-inspección · cuando llega el inspector, respuesta lista</small></div><span class="score">7.79 <span class="arrow">→</span></span></a>
+    <a class="rank-row" href="ideas-v3.0/idea-12-calendario-tributario.html"><span class="pos">12</span><div><strong><span class="code">T3</span>Calendario tributario en EnRegla</strong><div class="bar"><i style="width:77.9%"></i></div><small style="color:var(--gray-30)">Recurrencia · alertas de declaraciones · requiere contador</small></div><span class="score">7.79 <span class="arrow">→</span></span></a>
+    <a class="rank-row" href="ideas-v3.0/idea-13-arcsa.html"><span class="pos">13</span><div><strong><span class="code">P4</span>Permiso sanitario ARCSA</strong><div class="bar"><i style="width:76.4%"></i></div><small style="color:var(--gray-30)">Vertical alimentos/salud/estética · inspección real</small></div><span class="score">7.64 <span class="arrow">→</span></span></a>
+    <a class="rank-row" href="ideas-v3.0/idea-14-contratos.html"><span class="pos">14</span><div><strong><span class="code">F2</span>Contratos comerciales blindados</strong><div class="bar"><i style="width:74.1%"></i></div><small style="color:var(--gray-30)">Abogado puro · proveedor/cliente/arriendo sin pérdidas</small></div><span class="score">7.41 <span class="arrow">→</span></span></a>
+    <a class="rank-row" href="ideas-v3.0/idea-15-white-label.html"><span class="pos">15</span><div><strong><span class="code">X4</span>EnRegla white-label contadores</strong><div class="bar"><i style="width:72.8%"></i></div><small style="color:var(--gray-30)">Canal B2B2B · el partner atiende a sus clientes · baja carga Danilo</small></div><span class="score">7.28 <span class="arrow">→</span></span></a>
+  </div>
+
+  <h2>Ranking completo — 40 ideas</h2>
+  <p>Puestos 16–40: backups, expansión y descartes. Sin página de detalle individual.</p>
+  <div style="border:1px solid var(--gray-80)">
+    <div class="rank-row dim"><span class="pos">16</span><div><strong><span class="code">F4</span>Arriendo comercial blindado</strong><div class="bar"><i style="width:72%"></i></div><small style="color:var(--gray-30)">Backup · perder el local es catastrófico</small></div><span class="score">7.20</span></div>
+    <div class="rank-row dim"><span class="pos">17</span><div><strong><span class="code">P7</span>Patente municipal + tasas (calendario)</strong><div class="bar"><i style="width:71.9%"></i></div><small style="color:var(--gray-30)">Backup · cross-sell EnRegla</small></div><span class="score">7.19</span></div>
+    <div class="rank-row dim"><span class="pos">18</span><div><strong><span class="code">P3</span>Bomberos + plan de emergencia</strong><div class="bar"><i style="width:71.6%"></i></div><small style="color:var(--gray-30)">Backup · obligatorio anual</small></div><span class="score">7.16</span></div>
+    <div class="rank-row dim"><span class="pos">19</span><div><strong><span class="code">S1</span>Registro de marca (SENADI)</strong><div class="bar"><i style="width:71.3%"></i></div><small style="color:var(--gray-30)">Backup · "te roban el nombre" es viral</small></div><span class="score">7.13</span></div>
+    <div class="rank-row dim"><span class="pos">20</span><div><strong><span class="code">T2</span>Facturación electrónica obligatoria</strong><div class="bar"><i style="width:71%"></i></div><small style="color:var(--gray-30)">Backup · requiere contador</small></div><span class="score">7.10</span></div>
+    <div class="rank-row dim"><span class="pos">21</span><div><strong><span class="code">L4</span>Calculadora de finiquito (free tool)</strong><div class="bar"><i style="width:70%"></i></div><small style="color:var(--gray-30)">Lead magnet → L1</small></div><span class="score">7.00</span></div>
+    <div class="rank-row dim"><span class="pos">22</span><div><strong><span class="code">X6</span>Playbook "qué hago si me inspeccionan"</strong><div class="bar"><i style="width:69.9%"></i></div><small style="color:var(--gray-30)">Contenido/lead magnet por giro</small></div><span class="score">6.99</span></div>
+    <div class="rank-row dim"><span class="pos">23</span><div><strong><span class="code">L5</span>Onboarding laboral 24h</strong><div class="bar"><i style="width:69.5%"></i></div><small style="color:var(--gray-30)">Backup</small></div><span class="score">6.95</span></div>
+    <div class="rank-row dim"><span class="pos">24</span><div><strong><span class="code">L3</span>Reglamento interno + SST obligatorios</strong><div class="bar"><i style="width:69.3%"></i></div><small style="color:var(--gray-30)">Backup</small></div><span class="score">6.93</span></div>
+    <div class="rank-row dim"><span class="pos">25</span><div><strong><span class="code">F3</span>Pagarés y garantías cobrables</strong><div class="bar"><i style="width:69%"></i></div><small style="color:var(--gray-30)">Backup · complemento de F1</small></div><span class="score">6.90</span></div>
+    <div class="rank-row dim"><span class="pos">26</span><div><strong><span class="code">L7</span>Capacitación SST obligatoria</strong><div class="bar"><i style="width:68.5%"></i></div><small style="color:var(--gray-30)">Backup · apalancable grupal/online</small></div><span class="score">6.85</span></div>
+    <div class="rank-row dim"><span class="pos">26</span><div><strong><span class="code">F5</span>Due diligence de traspaso de local</strong><div class="bar"><i style="width:68.5%"></i></div><small style="color:var(--gray-30)">Backup</small></div><span class="score">6.85</span></div>
+    <div class="rank-row dim"><span class="pos">28</span><div><strong><span class="code">S2</span>Constitución / paso a SAS</strong><div class="bar"><i style="width:67.8%"></i></div><small style="color:var(--gray-30)">Backup · blindaje patrimonial al crecer</small></div><span class="score">6.78</span></div>
+    <div class="rank-row dim"><span class="pos">29</span><div><strong><span class="code">L6</span>Gestión de accidente laboral / IESS</strong><div class="bar"><i style="width:67.6%"></i></div><small style="color:var(--gray-30)">Backup · reactivo</small></div><span class="score">6.76</span></div>
+    <div class="rank-row dim"><span class="pos">30</span><div><strong><span class="code">X3</span>Manual de operación por local</strong><div class="bar"><i style="width:66.7%"></i></div><small style="color:var(--gray-30)">Expansión · estandariza locales</small></div><span class="score">6.67</span></div>
+    <div class="rank-row dim"><span class="pos">31</span><div><strong><span class="code">T4</span>Sustento de gastos / glosas SRI</strong><div class="bar"><i style="width:66.2%"></i></div><small style="color:var(--gray-30)">Backup · requiere contador</small></div><span class="score">6.62</span></div>
+    <div class="rank-row dim"><span class="pos">32</span><div><strong><span class="code">X7</span>Test de riesgo gratis online</strong><div class="bar"><i style="width:66%"></i></div><small style="color:var(--gray-30)">Infra de lead-gen · no es oferta en sí</small></div><span class="score">6.60</span></div>
+    <div class="rank-row dim"><span class="pos">33</span><div><strong><span class="code">S4</span>Identidad digital del negocio</strong><div class="bar"><i style="width:64.8%"></i></div><small style="color:var(--gray-30)">Pausar</small></div><span class="score">6.48</span></div>
+    <div class="rank-row dim"><span class="pos">34</span><div><strong><span class="code">D3</span>Oficial de cumplimiento UAFE externo</strong><div class="bar"><i style="width:64.7%"></i></div><small style="color:var(--gray-30)">Pausar · segmento angosto · responsabilidad personal</small></div><span class="score">6.47</span></div>
+    <div class="rank-row dim"><span class="pos">35</span><div><strong><span class="code">P8</span>Permiso ambiental</strong><div class="bar"><i style="width:64.4%"></i></div><small style="color:var(--gray-30)">Pausar · giros acotados</small></div><span class="score">6.44</span></div>
+    <div class="rank-row dim"><span class="pos">36</span><div><strong><span class="code">S5</span>Kit de franquicia básico</strong><div class="bar"><i style="width:62.2%"></i></div><small style="color:var(--gray-30)">Pausar · nicho (dueños 3+ locales exitosos)</small></div><span class="score">6.22</span></div>
+    <div class="rank-row dim"><span class="pos">37</span><div><strong><span class="code">S3</span>Protocolo familiar / sucesión</strong><div class="bar"><i style="width:56.4%"></i></div><small style="color:var(--gray-30)">Pausar · importante pero no urgente</small></div><span class="score">5.64</span></div>
+    <div class="rank-row dim"><span class="pos">38</span><div><strong><span class="code">X8</span>Marketplace de trámites/gestores</strong><div class="bar"><i style="width:55.1%"></i></div><small style="color:var(--gray-30)">Pausar · falla F2 y F6 (plataforma)</small></div><span class="score">5.51</span></div>
+    <div class="rank-row dim"><span class="pos">39</span><div><strong><span class="code">D2</span>Diagnóstico LOPDP exprés</strong><div class="bar"><i style="width:54.4%;background:var(--red-50)"></i></div><small style="color:var(--gray-30)">Pausar · ley dormida</small></div><span class="score">5.44</span></div>
+    <div class="rank-row dim"><span class="pos">40</span><div><strong><span class="code">D1</span>DPD externo LOPDP</strong><div class="bar"><i style="width:54.1%;background:var(--red-50)"></i></div><small style="color:var(--gray-30)">Pausar · ley dormida · era el ganador de v2.0</small></div><span class="score">5.41</span></div>
+  </div>
+
+  <h2>Un solo movimiento — el spine estratégico</h2>
+  <div class="grid grid-4">
+    <div class="tile"><span class="tag tag--blue">1 · Wedge</span><h4>Entra barato/gratis</h4><p>X1 Auditoría 360 + P5 "¿me clausuran hoy?" detectan los riesgos reales y abren la conversación. Virales en TikTok.</p></div>
+    <div class="tile"><span class="tag tag--green">2 · Cash</span><h4>Cobra rápido</h4><p>L1 Blindaje laboral, P1 Apertura, P6 Defensa de clausura, F1 Cobranza: un dolor concreto, ticket medio.</p></div>
+    <div class="tile"><span class="tag tag--green">3 · Recurrencia</span><h4>Retiene</h4><p>P2 EnRegla semáforo + X2 Seguro de cumplimiento: monitoreo mensual de permisos/laboral/tributario.</p></div>
+    <div class="tile"><span class="tag">4 · Expansión</span><h4>Escala</h4><p>X4 white-label a contadores/estudios + familia tributaria cuando entre el contador aliado.</p></div>
+  </div>
+
+  <h2>Detalle de scoring del top 15</h2>
+  <p>Notas (1–10) por criterio. Pesos: Valor 36 (DolorFisc 12 · Dinero 10 · RiesgoOp 8 · Frec 6) · Ingreso 12 · Recurrencia 12 · Velocidad 8 · TikTok 8 · Margen 6 · MVP 6 · ValidOp 5 · Sinergia 3 · Riesgo 2 · Expansión 2.</p>
+  <table>
+    <thead><tr><th>Criterio</th><th class="num">Peso</th><th class="num">T1</th><th class="num">L1</th><th class="num">X5</th><th class="num">P5</th><th class="num">P1</th><th class="num">P6</th><th class="num">P2</th><th class="num">F1</th><th class="num">X2</th><th class="num">X1</th><th class="num">L2</th><th class="num">T3</th><th class="num">P4</th><th class="num">F2</th><th class="num">X4</th></tr></thead>
+    <tbody>
+      <tr><td>Dolor fiscalizado</td><td class="num">12%</td><td class="num">10</td><td class="num">9</td><td class="num">9</td><td class="num">9</td><td class="num">9</td><td class="num">10</td><td class="num">9</td><td class="num">7</td><td class="num">9</td><td class="num">8</td><td class="num">9</td><td class="num">9</td><td class="num">9</td><td class="num">6</td><td class="num">7</td></tr>
+      <tr><td>Hace/ahorra dinero</td><td class="num">10%</td><td class="num">9</td><td class="num">9</td><td class="num">9</td><td class="num">8</td><td class="num">8</td><td class="num">9</td><td class="num">8</td><td class="num">10</td><td class="num">8</td><td class="num">8</td><td class="num">8</td><td class="num">7</td><td class="num">7</td><td class="num">8</td><td class="num">7</td></tr>
+      <tr><td>Reduce riesgo op.</td><td class="num">8%</td><td class="num">10</td><td class="num">8</td><td class="num">9</td><td class="num">9</td><td class="num">10</td><td class="num">10</td><td class="num">9</td><td class="num">7</td><td class="num">9</td><td class="num">8</td><td class="num">8</td><td class="num">8</td><td class="num">9</td><td class="num">8</td><td class="num">7</td></tr>
+      <tr><td>Dolor frec./consciente</td><td class="num">6%</td><td class="num">9</td><td class="num">9</td><td class="num">7</td><td class="num">8</td><td class="num">7</td><td class="num">6</td><td class="num">8</td><td class="num">8</td><td class="num">8</td><td class="num">8</td><td class="num">7</td><td class="num">8</td><td class="num">7</td><td class="num">7</td><td class="num">7</td></tr>
+      <tr><td>Ingreso rápido</td><td class="num">12%</td><td class="num">8</td><td class="num">8</td><td class="num">9</td><td class="num">8</td><td class="num">9</td><td class="num">9</td><td class="num">6</td><td class="num">9</td><td class="num">7</td><td class="num">7</td><td class="num">7</td><td class="num">6</td><td class="num">8</td><td class="num">8</td><td class="num">6</td></tr>
+      <tr><td>Recurrencia / MRR</td><td class="num">12%</td><td class="num">9</td><td class="num">8</td><td class="num">8</td><td class="num">6</td><td class="num">7</td><td class="num">5</td><td class="num">9</td><td class="num">7</td><td class="num">10</td><td class="num">5</td><td class="num">9</td><td class="num">9</td><td class="num">7</td><td class="num">6</td><td class="num">9</td></tr>
+      <tr><td>Velocidad de venta</td><td class="num">8%</td><td class="num">8</td><td class="num">8</td><td class="num">7</td><td class="num">9</td><td class="num">8</td><td class="num">9</td><td class="num">7</td><td class="num">8</td><td class="num">6</td><td class="num">9</td><td class="num">7</td><td class="num">7</td><td class="num">7</td><td class="num">7</td><td class="num">6</td></tr>
+      <tr><td>Encaje TikTok + red</td><td class="num">8%</td><td class="num">9</td><td class="num">9</td><td class="num">8</td><td class="num">9</td><td class="num">8</td><td class="num">9</td><td class="num">8</td><td class="num">9</td><td class="num">7</td><td class="num">9</td><td class="num">8</td><td class="num">8</td><td class="num">8</td><td class="num">8</td><td class="num">7</td></tr>
+      <tr><td>Margen + apalanc.</td><td class="num">6%</td><td class="num">8</td><td class="num">8</td><td class="num">7</td><td class="num">8</td><td class="num">7</td><td class="num">6</td><td class="num">9</td><td class="num">7</td><td class="num">8</td><td class="num">8</td><td class="num">7</td><td class="num">9</td><td class="num">7</td><td class="num">8</td><td class="num">9</td></tr>
+      <tr><td>MVP / preventa</td><td class="num">6%</td><td class="num">8</td><td class="num">8</td><td class="num">7</td><td class="num">9</td><td class="num">8</td><td class="num">8</td><td class="num">9</td><td class="num">8</td><td class="num">6</td><td class="num">9</td><td class="num">6</td><td class="num">8</td><td class="num">8</td><td class="num">8</td><td class="num">7</td></tr>
+      <tr><td>Validación operativa</td><td class="num">5%</td><td class="num">6</td><td class="num">9</td><td class="num">7</td><td class="num">7</td><td class="num">6</td><td class="num">8</td><td class="num">6</td><td class="num">8</td><td class="num">7</td><td class="num">8</td><td class="num">9</td><td class="num">6</td><td class="num">6</td><td class="num">9</td><td class="num">8</td></tr>
+      <tr><td>Sinergia cross-idea</td><td class="num">3%</td><td class="num">8</td><td class="num">8</td><td class="num">10</td><td class="num">9</td><td class="num">9</td><td class="num">9</td><td class="num">9</td><td class="num">7</td><td class="num">10</td><td class="num">10</td><td class="num">8</td><td class="num">9</td><td class="num">8</td><td class="num">8</td><td class="num">8</td></tr>
+      <tr><td>Riesgo controlado</td><td class="num">2%</td><td class="num">6</td><td class="num">8</td><td class="num">7</td><td class="num">8</td><td class="num">8</td><td class="num">5</td><td class="num">8</td><td class="num">6</td><td class="num">5</td><td class="num">8</td><td class="num">7</td><td class="num">7</td><td class="num">7</td><td class="num">8</td><td class="num">7</td></tr>
+      <tr><td>Expansión</td><td class="num">2%</td><td class="num">8</td><td class="num">7</td><td class="num">9</td><td class="num">7</td><td class="num">8</td><td class="num">5</td><td class="num">9</td><td class="num">7</td><td class="num">9</td><td class="num">8</td><td class="num">6</td><td class="num">8</td><td class="num">7</td><td class="num">7</td><td class="num">9</td></tr>
+      <tr><td><strong>Score</strong></td><td></td><td class="num score">8.62</td><td class="num score">8.39</td><td class="num score">8.17</td><td class="num score">8.14</td><td class="num score">8.09</td><td class="num score">8.09</td><td class="num score">8.07</td><td class="num score">7.93</td><td class="num score">7.93</td><td class="num score">7.80</td><td class="num score">7.79</td><td class="num score">7.79</td><td class="num score">7.64</td><td class="num score">7.41</td><td class="num score">7.28</td></tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <p>Aura International · Ecuador · Ranking v3.0 · 2026-06-16 · <a href="../01-criterios-base/criterios-v3.0/criterios-base-ecuador-v3.0.html">Ver criterios v3.0 →</a> · <a href="../03-documentos-fuente/ranking-ideas-ecuador-v3.0.md">Fuente markdown →</a></p>
+  </footer>
+</main>
+</body>
+</html>

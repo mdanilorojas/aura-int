@@ -4,7 +4,15 @@ Evaluación de ideas de negocio para Ecuador (equipo de 2: Danilo + socio abogad
 
 ## Versión activa
 
-**v1.0** (2026-06-12). Primera evaluación. Idea líder: **B2 Aura Compliance EC** (8.74) — diagnóstico de compliance → retainer mensual sobre EnRegla.
+**v3.0** (2026-06-16). Brainstorming reescrito con **Valor al cliente** como criterio dominante (36%). 40 ideas nuevas, scope amplio (laboral, permisos, SRI, financiero, societario, datos) para el dueño de 2–10 locales. El antiguo ganador LOPDP cae al fondo (ley dormida, casi sin fiscalización); suben los dolores fiscalizados de verdad.
+
+- Mayor valor: **T1 Anti-clausura SRI** (8.62, requiere sumar contador aliado).
+- Ejecutable con el equipo de hoy: **L1 Blindaje laboral PYME** (8.39).
+- Archivos v3.0: `01-criterios-base/criterios-v3.0/`, `03-documentos-fuente/ranking-ideas-ecuador-v3.0.md`, `02-visuales-generados/ranking-ideas-ecuador-v3.0.html` + `ideas-v3.0/` (15 páginas de detalle).
+
+### Histórico
+- **v2.0/v2.1** (2026-06-15). 12 ideas de compliance, ganador B2 Aura Compliance EC (8.70). Conservado como referencia.
+- **v1.0** (2026-06-12). Primera evaluación.
 
 ## Estructura
 
