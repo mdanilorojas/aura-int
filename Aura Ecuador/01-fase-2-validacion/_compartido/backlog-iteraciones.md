@@ -24,13 +24,21 @@ Loop self-paced: cada iteración perfecciona el plan. Registro de qué se hizo y
 ## Iteración 5 (hecho)
 - A2 completo: discovery (venta sobre informe), outbound, pricing (tiers), tiktok-scripts, landing.html (B2B, ACDS).
 
+## Iteración 6 (hecho)
+- B2/landing.html migrada a ACDS (calc de multa, semáforo, cupos, sticky CTA). Las 3 landings ya comparten el sistema de diseño.
+- index.html: hub de Fase 2 enlazando las 3 landings + todos los assets + gate.
+
 ## Backlog (próximas iteraciones, por prioridad)
 
 ### Alta
-- [ ] **Migrar B2/landing.html a ACDS** (hoy tiene CSS inline propio) + agregar calc de multa, cupos, sticky CTA.
-- [ ] **Pulir conversión** las 3 landings: revisar jerarquía, CTA repetido, prueba social, móvil.
-- [ ] **Índice HTML de Fase 2** (hub que enlace las 3 landings + assets) en el sistema Carbon del portal.
-- [ ] **Checklist imprimible** del diagnóstico gratis de 15 min para el abogado.
+- [ ] **Checklist imprimible** del diagnóstico gratis de 15 min para el abogado (hoja de campo).
+- [ ] **Pulir conversión** (pasada fina): heads/subheads más fuertes, prueba social real cuando exista, A/B de CTA.
+- [ ] Enlazar el hub de Fase 2 desde el portal `index.html` de Aura Ecuador.
+
+### Media
+- [ ] Set de 10–15 guiones TikTok por sector.
+- [ ] Calculadora de multa como página standalone (lead magnet con captura).
+- [ ] Secuencia de onboarding del retainer (día 1 tras firmar).
 
 ### Media
 - [ ] Guion de los **15 min de diagnóstico gratis** como checklist imprimible para el abogado.
